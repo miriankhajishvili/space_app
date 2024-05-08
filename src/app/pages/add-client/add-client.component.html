@@ -46,7 +46,7 @@
                 <div class="col-md-6 mb-4">
                   <h6 class="mb-2 pb-1">Gender: </h6>
                   <div *ngFor="let gender of myGender" class="form-check form-check-inline">
-                    <input (change)="radioChangeHandler($event)" class="form-check-input" type="radio" name="inlineRadioOptions" 
+                    <input  (change)="radioChangeHandler($event)" class="form-check-input" type="radio" name="inlineRadioOptions" 
                       value="{{gender}}"  />
                     <label class="form-check-label" >{{gender}}</label>
                   </div>
