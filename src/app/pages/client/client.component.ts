@@ -29,7 +29,12 @@ export class ClientComponent implements OnInit {
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
+
+   
   
     
+  }
+  onDelete(id:string){
+    this.clientService.deleteClient(id).subscribe(res =>console.log(res))
   }
 }

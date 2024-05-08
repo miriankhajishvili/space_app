@@ -12,4 +12,5 @@ export interface IClient {
   legalcity: string;
   legalcountry: string;
   img: string;
+  card: []
 }

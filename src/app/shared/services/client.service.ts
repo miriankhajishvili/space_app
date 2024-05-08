@@ -16,4 +16,8 @@ export class ClientService extends BaseService {
   getCurrentClient(id: string): Observable<IClient> {
     return this.get<IClient>(`clients/${id}`)
   }
+
+  deleteClient(id: string): Observable<IClient> {
+    return this.delete<IClient>(`clients/${id}`)
+  }
 }

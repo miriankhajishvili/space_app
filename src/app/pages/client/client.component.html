@@ -16,7 +16,7 @@
                 <p>For more detailed information, please visit my profile</p>
                 <div>
                   <button  class="btn btn-round btn-gray" [routerLink]="['/client-detail', client.id]">Show Profile</button>
-                  <button  class="btn btn-round btn-red"  color="red" >Delete User</button>
+                  <button  class="btn btn-round btn-red"  color="red" (click)="onDelete(client.id)" >Delete User</button>
                 </div>
               </div>
             </div>

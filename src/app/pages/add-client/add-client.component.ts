@@ -45,12 +45,15 @@ export class AddClientComponent {
     currentcity: new FormControl('', [Validators.required]),
     legalcountry: new FormControl('', [Validators.required]),
     currentcountry: new FormControl('', [Validators.required]),
+    img: new FormControl('', [Validators.required]),
   });
 
   myGender: string[] = ['Male', 'Female'];
 
   radioChangeHandler(value: any) {
     console.log(value.target.value);
+
+    this.form.controls['gender'].setValue(value.target.value);
   }
 
   get firstname() {
@@ -61,6 +64,9 @@ export class AddClientComponent {
   }
   get personalid() {
     return this.form.controls['personalid'];
+  }
+  get gender() {
+    return this.form.controls['gender'];
   }
   get phonenumber() {
     return this.form.controls['phonenumber'];
@@ -83,11 +89,15 @@ export class AddClientComponent {
   get currentcountry() {
     return this.form.controls['currentcountry'];
   }
+  get img() {
+    return this.form.controls['img'];
+  }
 
 
   onSubmit() {
     // console.log(this.form.value);
 
-    console.log(this.firstname.value);
+    console.log(this.form.value);
+    console.log(this.img)
   }
 }
