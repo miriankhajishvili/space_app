@@ -1,26 +1,28 @@
-<div class="card flex justify-content-center">
-  <p-card
-    *ngFor="let client of allClients$"
-    [header]="client.lastname"
-    subheader="Card Subheader"
-    [style]="{ width: '360px' }"
-  >
-    <ng-template pTemplate="header">
-      <img alt="Card" [src]="client.img" />
-    </ng-template>
-    <p>
-      {{ client.firstname }}
-    </p>
-    <ng-template pTemplate="footer">
-      <div class="flex gap-3 mt-1">
-        <p-button
-          label="Cancel"
-          severity="secondary"
-          class="w-full"
-          styleClass="w-full"
-        />
-        <p-button label="Save" class="w-full" styleClass="w-full" />
+<div >
+  <div class="container profile-page">
+    <div class="row">
+      <div class="col-xl-6 col-lg-7 col-md-12" *ngFor="let client of allClients$ | async">
+        <div class="card profile-header">
+          <div class="body">
+            <div class="row">
+              <div class="col-lg-4 col-md-4 col-12">
+                <div class="profile-image float-md-right">
+                  <img [src]="client.img" alt="" style="max-width: 100%; height: auto;">
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8 col-12">
+                <h4 class="m-t-0 m-b-0"><strong>{{ client.firstname }} {{ client.lastname }}</strong></h4>
+                <!-- <h4>Age: {{ user.age }}</h4> -->
+                <p>For more detailed information, please visit my profile</p>
+                <div>
+                  <button  class="btn btn-round btn-gray" [routerLink]="['/client-detail', client.id]">Show Profile</button>
+                  <button  class="btn btn-round btn-red"  color="red" >Delete User</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </ng-template>
-  </p-card>
+    </div>
+  </div>
 </div>

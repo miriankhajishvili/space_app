@@ -7,6 +7,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BaseService } from '../../shared/services/base.service';
 import { Observable } from 'rxjs';
+import { IClient } from '../../shared/interfaces/client.interface';
 
 @Component({
   selector: 'app-client',
@@ -23,14 +24,12 @@ import { Observable } from 'rxjs';
   providers: [],
 })
 export class ClientComponent implements OnInit {
-  allClients$!: any[] 
+  allClients$ : Observable<IClient[]> = this.clientService.getClients()
 
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
-    this.clientService
-      .getClients()
-      .subscribe((res) => (this.allClients$ = res));
-    console.log(this.allClients$);
+  
+    
   }
 }
