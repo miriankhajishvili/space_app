@@ -16,7 +16,7 @@ export class ClientDetailComponent implements OnInit {
   activeId!: string;
   // currentClient$ : Observable<IClient> = this.clientService.getCurrentClient(this.activeId)
 
-  currentClient!: IClient;
+  currentClient!: IClient | undefined;
 
   constructor(
     private activateRoute: ActivatedRoute,
