@@ -1,0 +1,142 @@
+{
+  "0clients": [
+    {
+      "id": "1",
+      "firstname": "John",
+      "lastname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    },
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    },
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    },
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    },
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    },
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Lennon",
+      "gender": "male",
+      "personalId": "61004068063",
+      "mobile": "595 58 04 04",
+      "generalAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "currentAddress": [
+        {
+          "country": "Georgia",
+          "City": "Tbilisi",
+          "address": "Rustaveli Str"
+        }
+      ],
+      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
+    }
+  ]
+}
