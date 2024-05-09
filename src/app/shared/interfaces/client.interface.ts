@@ -3,8 +3,8 @@ export interface IClient {
   firstname: string;
   lastname: string;
   gender: string;
-  personalId: string;
-  mobile: string;
+  personalid: string;
+  phonenumber: string;
   currentaddress: string;
   currentcity: string;
   currentcountry: string;

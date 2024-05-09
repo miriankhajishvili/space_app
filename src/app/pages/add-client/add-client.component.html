@@ -8,227 +8,229 @@
         >
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="firstname"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">First Name</label>
+            <form  [formGroup]="form" (ngSubmit)="onSubmit()">
+              <!-- <ng-container *ngif="currentClient$ | async as myClient"> -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="firstname"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">First Name</label>
+                    </div>
+                    <span *ngIf="firstname?.errors?.['minlength']">
+                      Minlengh mast be at least 2 charachters</span
+                    >
+                    <span *ngIf="firstname?.errors?.['maxlength']">
+                      Maxlength mast be max 50 charachters</span
+                    >
+                    <span *ngIf="firstname?.touched && firstname.value === ''">
+                      Filed must not be empty</span
+                    >
                   </div>
-                  <span *ngIf="firstname?.errors?.['minlength']">
-                    Minlengh mast be at least 2 charachters</span
-                  >
-                  <span *ngIf="firstname?.errors?.['maxlength']">
-                    Maxlength mast be max 50 charachters</span
-                  >
-                  <span *ngIf="firstname?.touched && firstname.value === ''">
-                    Filed must not be empty</span
-                  >
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="lastname"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Last Name</label>
+                  <div class="col-md-6 mb-4">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="lastname"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Last Name</label>
+                    </div>
+                    <span *ngIf="lastname?.errors?.['minlength']">
+                      Minlengh mast be at least 2 charachters</span
+                    >
+                    <span *ngIf="lastname?.errors?.['maxlength']">
+                      Maxlength mast be max 50 charachters</span
+                    >
+                    <span *ngIf="lastname?.touched && lastname.value === ''">
+                      Filed must not be empty</span
+                    >
                   </div>
-                  <span *ngIf="lastname?.errors?.['minlength']">
-                    Minlengh mast be at least 2 charachters</span
-                  >
-                  <span *ngIf="lastname?.errors?.['maxlength']">
-                    Maxlength mast be max 50 charachters</span
-                  >
-                  <span *ngIf="lastname?.touched && lastname.value === ''">
-                    Filed must not be empty</span
-                  >
                 </div>
-              </div>
 
-              <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-                  <div
-                    data-mdb-input-init
-                    class="form-outline datepicker w-100"
-                  >
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+                    <div
+                      data-mdb-input-init
+                      class="form-outline datepicker w-100"
+                    >
+                      <input
+                        formControlName="personalid"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Personal ID</label>
+                      <br />
+                      <span
+                        *ngIf="personalid?.errors?.['minlength'] || personalid?.errors?.['maxlength']"
+                      >
+                        Length mast be at 11 charachters</span
+                      >
+                      <span
+                        *ngIf="personalid?.touched && personalid.value === ''"
+                      >
+                        Filed must not be empty</span
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <h6 class="mb-2 pb-1">Gender:</h6>
+                    <div
+                      *ngFor="let gender of myGender"
+                      class="form-check form-check-inline"
+                    >
+                      <input
+                        (change)="radioChangeHandler($event)"
+                        class="form-check-input"
+                        type="radio"
+                        name="inlineRadioOptions"
+                        value="{{ gender }}"
+                      />
+                      <label class="form-check-label">{{ gender }}</label>
+                    </div>
+                  </div>
+                  <div data-mdb-input-init class="form-outline">
                     <input
-                      formControlName="personalid"
-                      type="text"
+                      formControlName="phonenumber"
+                      type="tel"
                       class="form-control form-control-lg"
                     />
-                    <label class="form-label">Personal ID</label>
-                    <br />
+                    <label class="form-label">Phone Number</label>
+                  </div>
+                </div>
+                <span
+                  *ngIf="phonenumber?.errors?.['minlength'] || phonenumber?.errors?.['maxlength']"
+                >
+                  Length mast be at 9 charachters</span
+                >
+                <span *ngIf="phonenumber?.touched && phonenumber.value === ''">
+                  Filed must not be empty</span
+                >
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="legaladdress"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Legal Address</label>
+                    </div>
                     <span
-                      *ngIf="personalid?.errors?.['minlength'] || personalid?.errors?.['maxlength']"
+                      *ngIf="legaladdress?.touched && legaladdress.value === ''"
                     >
-                      Length mast be at 11 charachters</span
+                      Filed must not be empty</span
                     >
+                  </div>
+
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="currentaddress"
+                        type="tel"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Current Address</label>
+                    </div>
                     <span
-                      *ngIf="personalid?.touched && personalid.value === ''"
+                      *ngIf="
+                        currentaddress?.touched && currentaddress.value === ''
+                      "
                     >
                       Filed must not be empty</span
                     >
                   </div>
                 </div>
-                <div class="col-md-6 mb-4">
-                  <h6 class="mb-2 pb-1">Gender:</h6>
-                  <div
-                    *ngFor="let gender of myGender"
-                    class="form-check form-check-inline"
-                  >
-                    <input
-                      (change)="radioChangeHandler($event)"
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      value="{{ gender }}"
-                    />
-                    <label class="form-check-label">{{ gender }}</label>
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="legalcity"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Legal City</label>
+                    </div>
+                    <span *ngIf="legalcity?.touched && legalcity.value === ''">
+                      Filed must not be empty</span
+                    >
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="currentcity"
+                        type="tel"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Current City</label>
+                    </div>
+                    <span
+                      *ngIf="currentcity?.touched && currentcity.value === ''"
+                    >
+                      Filed must not be empty</span
+                    >
                   </div>
                 </div>
-                <div data-mdb-input-init class="form-outline">
+
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="legalcountry"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Legal County</label>
+                    </div>
+                    <span
+                      *ngIf="legalcountry?.touched && legalcountry.value === ''"
+                    >
+                      Filed must not be empty</span
+                    >
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        formControlName="currentcountry"
+                        type="text"
+                        class="form-control form-control-lg"
+                      />
+                      <label class="form-label">Current Country</label>
+                    </div>
+                    <span
+                      *ngIf="
+                        currentcountry?.touched && currentcountry.value === ''
+                      "
+                    >
+                      Filed must not be empty</span
+                    >
+                  </div>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <h4>Upload Photo</h4>
                   <input
-                    formControlName="phonenumber"
-                    type="tel"
+                    formControlName="img"
                     class="form-control form-control-lg"
+                    id="formFileLg"
+                    type="file"
                   />
-                  <label class="form-label">Phone Number</label>
-                </div>
-              </div>
-              <span
-                *ngIf="phonenumber?.errors?.['minlength'] || phonenumber?.errors?.['maxlength']"
-              >
-                Length mast be at 9 charachters</span
-              >
-              <span *ngIf="phonenumber?.touched && phonenumber.value === ''">
-                Filed must not be empty</span
-              >
-
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="legaladdress"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Legal Address</label>
-                  </div>
-                  <span
-                    *ngIf="legaladdress?.touched && legaladdress.value === ''"
-                  >
-                    Filed must not be empty</span
-                  >
                 </div>
 
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="currentaddress"
-                      type="tel"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Current Address</label>
-                  </div>
-                  <span
-                    *ngIf="
-                      currentaddress?.touched && currentaddress.value === ''
-                    "
-                  >
-                    Filed must not be empty</span
-                  >
+                <div class="mt-4 pt-2">
+                  <input
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    class="btn btn-primary btn-lg"
+                    type="submit"
+                    value="Submit"
+                  />
                 </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="legalcity"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Legal City</label>
-                  </div>
-                  <span *ngIf="legalcity?.touched && legalcity.value === ''">
-                    Filed must not be empty</span
-                  >
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="currentcity"
-                      type="tel"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Current City</label>
-                  </div>
-                  <span
-                    *ngIf="currentcity?.touched && currentcity.value === ''"
-                  >
-                    Filed must not be empty</span
-                  >
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="legalcountry"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Legal County</label>
-                  </div>
-                  <span
-                    *ngIf="legalcountry?.touched && legalcountry.value === ''"
-                  >
-                    Filed must not be empty</span
-                  >
-                </div>
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      formControlName="currentcountry"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <label class="form-label">Current Country</label>
-                  </div>
-                  <span
-                    *ngIf="
-                      currentcountry?.touched && currentcountry.value === ''
-                    "
-                  >
-                    Filed must not be empty</span
-                  >
-                </div>
-              </div>
-              <div class="col-md-9 pe-5">
-                <h4>Upload Photo</h4>
-                <input
-                  formControlName="img"
-                  class="form-control form-control-lg"
-                  id="formFileLg"
-                  type="file"
-                />
-              </div>
-
-              <div class="mt-4 pt-2">
-                <input
-                  data-mdb-button-init
-                  data-mdb-ripple-init
-                  class="btn btn-primary btn-lg"
-                  type="submit"
-                  value="Submit"
-                />
-              </div>
+              <!-- </ng-container> -->
             </form>
           </div>
         </div>

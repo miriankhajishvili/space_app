@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,15 +13,25 @@ import {
 } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { ClientService } from '../../shared/services/client.service';
+import { Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-client',
   standalone: true,
-  imports: [CommonModule, InputTextModule, ReactiveFormsModule, ButtonModule],
+  changeDetection: ChangeDetectionStrategy.Default,
+  imports: [
+    CommonModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RouterModule,
+  ],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
 })
-export class AddClientComponent {
+export class AddClientComponent implements OnInit {
   form: FormGroup = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -51,10 +66,10 @@ export class AddClientComponent {
   myGender: string[] = ['Male', 'Female'];
 
   radioChangeHandler(value: any) {
-    console.log(value.target.value);
-
     this.form.controls['gender'].setValue(value.target.value);
   }
+
+  // currentClient$ = this.clientService.currentClient$;
 
   get firstname() {
     return this.form.controls['firstname'];
@@ -93,11 +108,25 @@ export class AddClientComponent {
     return this.form.controls['img'];
   }
 
+  constructor(
+    private clientService: ClientService,
+    private Router: Router,
+    private changeDetRef: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.clientService.currentClient$.subscribe((res) => {
+      console.log(res)
+      this.form.patchValue({firstname: res?.firstname});
+      this.form.updateValueAndValidity();
+      this.changeDetRef.detectChanges
+      console.log(res);
+      console.log(this.form);
+    });
+  }
 
   onSubmit() {
-    // console.log(this.form.value);
-
-    console.log(this.form.value);
-    console.log(this.img)
+    this.clientService.addClient(this.form.value).subscribe();
+    this.Router.navigate(['/']);
   }
 }

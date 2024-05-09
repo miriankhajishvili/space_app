@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { ClientService } from '../../shared/services/client.service';
 import { Observable } from 'rxjs';
 import { IClient } from '../../shared/interfaces/client.interface';
@@ -8,7 +8,7 @@ import { IClient } from '../../shared/interfaces/client.interface';
 @Component({
   selector: 'app-client-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
 })
@@ -20,7 +20,8 @@ export class ClientDetailComponent implements OnInit {
 
   constructor(
     private activateRoute: ActivatedRoute,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +30,12 @@ export class ClientDetailComponent implements OnInit {
       .getCurrentClient(this.activeId)
       .subscribe((res) => (this.currentClient = res));
 
-      console.log(this.currentClient)
+
+  }
+
+  onEdit(client: IClient | undefined ){
+
+    this.clientService.currentClient$.next(client)
+    this.router.navigate(['/add-client'])
   }
 }

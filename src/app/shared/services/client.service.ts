@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IClient } from '../interfaces/client.interface';
 
 @Injectable({
@@ -9,12 +9,19 @@ import { IClient } from '../interfaces/client.interface';
 export class ClientService extends BaseService {
 
 
+  currentClient$ = new Subject<IClient | undefined>
+
+
   getClients(): Observable<IClient[]> {
     return this.get<IClient[]>('clients');
   }
 
   getCurrentClient(id: string): Observable<IClient> {
     return this.get<IClient>(`clients/${id}`)
+  }
+
+  addClient(data: IClient): Observable<IClient>{
+    return this.post<IClient>('clients', data)
   }
 
   deleteClient(id: string): Observable<IClient> {
