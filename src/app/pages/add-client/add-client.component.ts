@@ -1,33 +1,21 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { Router, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs';
+import { georgianLettersValidator } from '../../shared/georgianLettersValidator';
 
 @Component({
   selector: 'app-add-client',
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Default,
-  imports: [
-    CommonModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    ButtonModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, ButtonModule, RouterModule],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
 })
@@ -37,6 +25,7 @@ export class AddClientComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
+      georgianLettersValidator()
     ]),
     lastname: new FormControl('', [
       Validators.required,
@@ -51,8 +40,7 @@ export class AddClientComponent implements OnInit {
     gender: new FormControl('', [Validators.required]),
     phonenumber: new FormControl('', [
       Validators.required,
-      Validators.minLength(9),
-      Validators.maxLength(9),
+      Validators.pattern(/^5\d{8}$/),
     ]),
     legaladdress: new FormControl('', [Validators.required]),
     currentaddress: new FormControl('', [Validators.required]),
@@ -63,13 +51,13 @@ export class AddClientComponent implements OnInit {
     img: new FormControl('', [Validators.required]),
   });
 
-  myGender: string[] = ['Male', 'Female'];
+  clientId!: string | undefined;
 
   radioChangeHandler(value: any) {
-    this.form.controls['gender'].setValue(value.target.value);
+    if (value.target.value) {
+      this.form.controls['gender'].setValue(value.target.value);
+    }
   }
-
-  // currentClient$ = this.clientService.currentClient$;
 
   get firstname() {
     return this.form.controls['firstname'];
@@ -108,25 +96,39 @@ export class AddClientComponent implements OnInit {
     return this.form.controls['img'];
   }
 
-  constructor(
-    private clientService: ClientService,
-    private Router: Router,
-    private changeDetRef: ChangeDetectorRef
-  ) {}
+
+
+  constructor(private clientService: ClientService, private Router: Router) {}
 
   ngOnInit(): void {
     this.clientService.currentClient$.subscribe((res) => {
-      console.log(res)
-      this.form.patchValue({firstname: res?.firstname});
-      this.form.updateValueAndValidity();
-      this.changeDetRef.detectChanges
-      console.log(res);
-      console.log(this.form);
+      this.form.patchValue(res!);
+      this.clientId = res?.id;
     });
+
+  console.log(this.form)
   }
 
   onSubmit() {
-    this.clientService.addClient(this.form.value).subscribe();
-    this.Router.navigate(['/']);
+    if (this.firstname.value) {
+      this.clientService
+        .editClient(this.clientId, this.form.value).pipe(switchMap( res => {
+          return this.clientService.getClients()
+        }))
+        .subscribe();
+      this.Router.navigate(['/']);
+    } else {
+      this.clientService
+        .addClient(this.form.value)
+        .pipe(
+          switchMap((res) => {
+            return this.clientService.getClients();
+          })
+        )
+        .subscribe();
+
+      this.Router.navigate(['/']);
+   
+    }
   }
 }

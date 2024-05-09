@@ -1,25 +1,10 @@
 {
   "clients": [
     {
-      "id": "2",
-      "firstname": "Ringo",
-      "lastname": "Starr",
-      "gender": "Male",
-      "personalid": "61004068063",
-      "phonenumber": "595 58 04 04",
-      "currentaddress": "Georgia",
-      "currentcity": "Tbilisi",
-      "currentcountry": "Rustaveli Str",
-      "legaladdress": "Georgia",
-      "legalcity": "Tbilisi",
-      "legalcountry": "Rustaveli Str",
-      "img": "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=800"
-    },
-    {
       "id": "3",
       "firstname": "Paul",
       "lastname": "Mccartney",
-      "gender": "Male",
+      "gender": "Famale",
       "personalid": "61004068063",
       "phonenumber": "595 58 04 04",
       "currentaddress": "Georgia",
@@ -49,21 +34,6 @@
       "id": "5",
       "firstname": "Freddie ",
       "lastname": "Mercury",
-      "gender": "Male",
-      "personalid": "61004068063",
-      "phonenumber": "595 58 04 04",
-      "currentaddress": "Georgia",
-      "currentcity": "Tbilisi",
-      "currentcountry": "Rustaveli Str",
-      "legaladdress": "Georgia",
-      "legalcity": "Tbilisi",
-      "legalcountry": "Rustaveli Str",
-      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd"
-    },
-    {
-      "id": "6",
-      "firstname": "John",
-      "lastname": "Deacon",
       "gender": "Male",
       "personalid": "61004068063",
       "phonenumber": "595 58 04 04",

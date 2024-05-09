@@ -6,7 +6,7 @@ import { ClientService } from '../../shared/services/client.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BaseService } from '../../shared/services/base.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { IClient } from '../../shared/interfaces/client.interface';
 
 @Component({
@@ -24,17 +24,15 @@ import { IClient } from '../../shared/interfaces/client.interface';
   providers: [],
 })
 export class ClientComponent implements OnInit {
-  allClients$ : Observable<IClient[]> = this.clientService.getClients()
+  allClients$: Observable<IClient[]> = this.clientService.getClients();
 
   constructor(private clientService: ClientService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-   
-  
-    
-  }
-  onDelete(id:string){
-    this.clientService.deleteClient(id).subscribe(res =>console.log(res))
+  onDelete(id: string) {
+    this.clientService.deleteClient(id).pipe(switchMap( res => {
+      return this.clientService.getClients()
+    })).subscribe()
   }
 }

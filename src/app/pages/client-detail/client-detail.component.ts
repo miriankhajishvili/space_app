@@ -37,5 +37,7 @@ export class ClientDetailComponent implements OnInit {
 
     this.clientService.currentClient$.next(client)
     this.router.navigate(['/add-client'])
+    console.log(client)
+    
   }
 }
