@@ -16,7 +16,6 @@
                   <div data-mdb-input-init class="form-outline">
                     <label class="form-label">First Name</label>
                     <input
-                    
                       formControlName="firstname"
                       type="text"
                       class="form-control form-control-lg"
@@ -32,8 +31,8 @@
                     Filed must not be empty</span
                   >
                   <span *ngIf="firstname?.errors?.['georgianLetters']">
-                    Name </span
-                  >
+                    Name
+                  </span>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div data-mdb-input-init class="form-outline">
@@ -244,17 +243,7 @@
                 />
               </div>
 
-              <div class="mt-4 pt-2">
-                <input
-                  data-mdb-button-init
-                  data-mdb-ripple-init
-                  class="btn btn-primary btn-lg"
-                  type="submit"
-                  value="{{ form.valid ? 'Edit client' : 'Register client' }}"
-                />
-              </div>
-
-              <button type="button" class="btn btn-primary btn-lg">
+              <button type="submit" class="btn btn-primary btn-lg">
                 {{ form.valid ? "Edit client" : "Register client" }}
               </button>
             </form>

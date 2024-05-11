@@ -23,7 +23,7 @@
                         <h6 class="mb-0">Current Address:</h6>
                       </div>
                       <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentaddress}}
+                          {{currentClient?.currentAddress?.currentAddress}}
                       </div>
                     </div>
                     <div class="row">
@@ -31,7 +31,7 @@
                         <h6 class="mb-0">Current City:</h6>
                       </div>
                       <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentcity}}
+                          {{currentClient?.currentAddress?.currentCity}}
                       </div>
                     </div>
                     <div class="row">
@@ -39,7 +39,7 @@
                         <h6 class="mb-0">Current Country:</h6>
                       </div>
                       <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentcountry}}
+                          {{currentClient?.currentAddress?.currentCountry}}
                       </div>
                     </div>
                   </div>
@@ -89,10 +89,10 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Legal Address</h6>
+                      <h6 class="mb-0"> Address</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{currentClient?.legaladdress}}
+                        {{currentClient?.address?.address}}
                     </div>
                   </div>
                   <div class="row">
@@ -100,7 +100,7 @@
                       <h6 class="mb-0">Legal City</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{currentClient?.legalcity}}
+                        {{currentClient?.address?.city}}
                     </div>
                   </div>
                   <div class="row">
@@ -108,7 +108,7 @@
                       <h6 class="mb-0">Legal Country</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        {{currentClient?.legalcountry}}
+                        {{currentClient?.address?.country}}
                     </div>
                   </div>
           

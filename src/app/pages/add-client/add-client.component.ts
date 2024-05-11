@@ -11,6 +11,7 @@ import { ClientService } from '../../shared/services/client.service';
 import { Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { georgianLettersValidator } from '../../shared/georgianLettersValidator';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-add-client',
@@ -25,7 +26,7 @@ export class AddClientComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
-      georgianLettersValidator()
+      georgianLettersValidator(),
     ]),
     lastname: new FormControl('', [
       Validators.required,
@@ -96,9 +97,11 @@ export class AddClientComponent implements OnInit {
     return this.form.controls['img'];
   }
 
-
-
-  constructor(private clientService: ClientService, private Router: Router) {}
+  constructor(
+    private clientService: ClientService,
+    private Router: Router,
+    private NgToastService: NgToastService
+  ) {}
 
   ngOnInit(): void {
     this.clientService.currentClient$.subscribe((res) => {
@@ -106,15 +109,19 @@ export class AddClientComponent implements OnInit {
       this.clientId = res?.id;
     });
 
-  console.log(this.form)
+    console.log(this.form);
   }
 
   onSubmit() {
     if (this.firstname.value) {
       this.clientService
-        .editClient(this.clientId, this.form.value).pipe(switchMap( res => {
-          return this.clientService.getClients()
-        }))
+        .editClient(this.clientId, this.form.value)
+        .pipe(
+          switchMap((res) => {
+            this.NgToastService.success({detail: "Success Messege", summary: "Client edited successfully"})
+            return this.clientService.getClients();
+          })
+        )
         .subscribe();
       this.Router.navigate(['/']);
     } else {
@@ -122,13 +129,13 @@ export class AddClientComponent implements OnInit {
         .addClient(this.form.value)
         .pipe(
           switchMap((res) => {
+            this.NgToastService.success({detail: "Success Messege", summary: "Client was created successfully"})
             return this.clientService.getClients();
           })
         )
         .subscribe();
 
       this.Router.navigate(['/']);
-   
     }
   }
 }

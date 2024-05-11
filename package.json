@@ -22,6 +22,7 @@
     "@angular/router": "^17.2.0",
     "@angular/ssr": "^17.2.1",
     "express": "^4.18.2",
+    "ng-angular-popup": "^0.5.2",
     "primeicons": "^7.0.0",
     "primeng": "^17.16.0",
     "rxjs": "~7.8.0",

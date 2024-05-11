@@ -5,12 +5,16 @@ export interface IClient {
   gender: string;
   personalid: string;
   phonenumber: string;
-  currentaddress: string;
-  currentcity: string;
-  currentcountry: string;
-  legaladdress: string;
-  legalcity: string;
-  legalcountry: string;
+  address: {
+    address: string;
+    city: string;
+    country: string;
+  };
+  currentAddress: {
+    currentAddress: string,
+    currentCity:string,
+    currentCountry: string
+  }
   img: string;
-  card: []
+  card: [];
 }
