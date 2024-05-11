@@ -31,6 +31,6 @@ export interface IClient {
 export interface pageRequest {
   first: number;
   rows: number;
-  sortField?: string | string[];
-  sortOrder?: number;
+  search: string | undefined | null;
+ 
 }

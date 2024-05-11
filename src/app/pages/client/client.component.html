@@ -1,5 +1,17 @@
 <div>
   <div class="container profile-page">
+    <form [formGroup]="form">
+      <div class="p-toolbar-group-center">
+        <span class="p-input-icon-left">
+          <i class="pi pi-search"></i>
+          <input
+            formControlName="searchinput"
+            pInputText
+            placeholder="Search"
+          />
+        </span>
+      </div>
+    </form>
     <div class="row">
       <div
         class="col-xl-6 col-lg-7 col-md-12"
@@ -21,7 +33,6 @@
                 <h4 class="m-t-0 m-b-0">
                   <strong>{{ client.firstname }} {{ client.lastname }}</strong>
                 </h4>
-                <!-- <h4>Age: {{ user.age }}</h4> -->
                 <p>For more detailed information, please visit my profile</p>
                 <div>
                   <button
