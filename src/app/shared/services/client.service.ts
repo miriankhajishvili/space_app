@@ -9,6 +9,8 @@ import { IClient } from '../interfaces/client.interface';
 export class ClientService extends BaseService {
   currentClient$ = new ReplaySubject<IClient | undefined>();
 
+
+
   getClients(): Observable<IClient[]> {
     return this.get<IClient[]>('clients');
   }

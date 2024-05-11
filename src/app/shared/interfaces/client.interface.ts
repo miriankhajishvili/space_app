@@ -2,8 +2,8 @@ export interface IClient {
   id: string;
   firstname: string;
   lastname: string;
-  gender: string;
   personalid: string;
+  gender: string;
   phonenumber: string;
   address: {
     address: string;
@@ -16,5 +16,5 @@ export interface IClient {
     currentCountry: string
   }
   img: string;
-  card: [];
+  
 }

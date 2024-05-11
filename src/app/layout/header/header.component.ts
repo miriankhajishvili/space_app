@@ -5,6 +5,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
+import { ClientService } from '../../shared/services/client.service';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -14,25 +15,15 @@ import { InputTextModule } from 'primeng/inputtext';
     ButtonModule,
     SplitButtonModule,
     InputTextModule,
-    
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  items: any[] | undefined;
 
-  ngOnInit() {
-    this.items = [
-      {
-        label: 'Update',
-        icon: 'pi pi-refresh',
-      },
-      {
-        label: 'Delete',
-        icon: 'pi pi-times',
-      },
-    ];
-  }
+  ngOnInit() {}
+
+  constructor(private clientService: ClientService){}
+
 }
-``
+``;

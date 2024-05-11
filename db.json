@@ -1,93 +1,174 @@
 {
   "clients": [
     {
-      "firstname": "მირიანნნ",
-      "lastname": "Mccartney",
+      "firstname": "აააა",
+      "lastname": "გიორგაძე",
       "personalid": "61004068063",
-      "gender": "Famale",
+      "gender": "Male",
       "phonenumber": "595580404",
-      "legaladdress": "ასდასდ",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
-      "img": "https://img.freepik.com/free-photo/handsome-bearded-guy-posing-against-white-wall_273609-20597.jpg?w=1800&t=st=1715093485~exp=1715094085~hmac=eb55463ddadd3d9fa217435d6df0733b734ea9de37a70b66a1c2c64fc3cd36fd",
-      "id": "3"
+      "address": {
+        "address": "რუსთაველის 140დ",
+        "city": "ქობულეთი",
+        "country": "საქართველო"
+      },
+      "currentAddress": {
+        "currentAddress": "იშხნელების 10",
+        "currentCity": "თბილისი",
+        "currentCountry": "საქართველო"
+      },
+      "img": "https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "id": "3f07"
     },
     {
-      "id": "baa3",
-      "firstname": "",
-      "lastname": "",
-      "personalid": "",
-      "gender": "",
-      "phonenumber": "",
-      "legaladdress": "",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
+      "id": "0458",
+      "firstname": "მირიან",
+      "lastname": "ხაჯიშვილი",
+      "personalid": "61004068063",
+      "gender": "Male",
+      "phonenumber": "595580404",
+      "address": {
+        "address": "ქობულეთი",
+        "city": "ქობულეთი",
+        "country": "ქობულეთი"
+      },
+      "currentAddress": {
+        "currentAddress": "ქობულეთი",
+        "currentCity": "ქობულეთი",
+        "currentCountry": "ქობულეთი"
+      },
       "img": ""
     },
     {
-      "id": "219c",
+      "id": "0caf",
       "firstname": "",
       "lastname": "",
       "personalid": "",
       "gender": "",
       "phonenumber": "",
-      "legaladdress": "",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
       "img": ""
     },
     {
-      "id": "095a",
+      "id": "1fa7",
       "firstname": "",
       "lastname": "",
       "personalid": "",
       "gender": "",
       "phonenumber": "",
-      "legaladdress": "",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
       "img": ""
     },
     {
-      "id": "ea45",
+      "id": "cd1b",
       "firstname": "",
       "lastname": "",
       "personalid": "",
       "gender": "",
       "phonenumber": "",
-      "legaladdress": "",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
       "img": ""
     },
     {
-      "id": "e80c",
+      "id": "36d0",
       "firstname": "",
       "lastname": "",
       "personalid": "",
       "gender": "",
       "phonenumber": "",
-      "legaladdress": "",
-      "currentaddress": "",
-      "legalcity": "",
-      "currentcity": "",
-      "legalcountry": "",
-      "currentcountry": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "0771",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "06be",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "5c6c",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
       "img": ""
     }
   ]

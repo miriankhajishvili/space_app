@@ -10,13 +10,21 @@ import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { Router, RouterModule } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { georgianLettersValidator } from '../../shared/georgianLettersValidator';
+import { singleLanguageValidator } from '../../shared/regex/georgianLettersValidator';
 import { NgToastService } from 'ng-angular-popup';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
 
 @Component({
   selector: 'app-add-client',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, RouterModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    RouterModule,
+    HttpClientModule,
+  ],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
 })
@@ -26,12 +34,15 @@ export class AddClientComponent implements OnInit {
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
-      georgianLettersValidator(),
+      singleLanguageValidator(),
+      Validators.pattern(/^\S+$/)
     ]),
     lastname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
+      singleLanguageValidator(),
+      Validators.pattern(/^\S+$/)
     ]),
     personalid: new FormControl('', [
       Validators.required,
@@ -41,18 +52,25 @@ export class AddClientComponent implements OnInit {
     gender: new FormControl('', [Validators.required]),
     phonenumber: new FormControl('', [
       Validators.required,
-      Validators.pattern(/^5\d{8}$/),
+      // Validators.pattern(/^5\d{8}$/),
+      // Validators.pattern(/^5\d{8}$/)
+      Validators.pattern(/^\S+$/),
+      phoneNumberValidator()
     ]),
-    legaladdress: new FormControl('', [Validators.required]),
-    currentaddress: new FormControl('', [Validators.required]),
-    legalcity: new FormControl('', [Validators.required]),
-    currentcity: new FormControl('', [Validators.required]),
-    legalcountry: new FormControl('', [Validators.required]),
-    currentcountry: new FormControl('', [Validators.required]),
+    address: new FormGroup({
+      address: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+    }),
+    currentAddress: new FormGroup({
+      currentAddress: new FormControl('', Validators.required),
+      currentCity: new FormControl('', Validators.required),
+      currentCountry: new FormControl('', Validators.required),
+    }),
     img: new FormControl('', [Validators.required]),
   });
 
-  clientId!: string | undefined;
+  clientId?: string;
 
   radioChangeHandler(value: any) {
     if (value.target.value) {
@@ -75,51 +93,70 @@ export class AddClientComponent implements OnInit {
   get phonenumber() {
     return this.form.controls['phonenumber'];
   }
-  get legaladdress() {
-    return this.form.controls['legaladdress'];
+  get address() {
+    return this.form.controls['address'] as FormGroup;
   }
-  get currentaddress() {
-    return this.form.controls['currentaddress'];
+
+  get myAddress() {
+    return this.address.controls['myAddress'];
   }
-  get legalcity() {
-    return this.form.controls['legalcity'];
+
+  get myCity() {
+    return this.address.controls['myCity'];
   }
-  get currentcity() {
-    return this.form.controls['currentcity'];
+
+  get myCountry() {
+    return this.address.controls['myCountry'];
   }
-  get legalcountry() {
-    return this.form.controls['legalcountry'];
+
+  get currentAddress() {
+    return this.form.controls['currentAddress'] as FormGroup;
   }
-  get currentcountry() {
-    return this.form.controls['currentcountry'];
+
+  get myCurrentAddress() {
+    return this.currentAddress.controls['myCurrentAddress'];
+  }
+  get myCurrentCity() {
+    return this.currentAddress.controls['myCurrentCity'];
+  }
+  get myCurrentCountry() {
+    return this.currentAddress.controls['myCurrentCountry'];
   }
   get img() {
     return this.form.controls['img'];
   }
 
+  selectedFile!: File;
+
   constructor(
     private clientService: ClientService,
     private Router: Router,
-    private NgToastService: NgToastService
+    private NgToastService: NgToastService,
   ) {}
 
   ngOnInit(): void {
     this.clientService.currentClient$.subscribe((res) => {
       this.form.patchValue(res!);
       this.clientId = res?.id;
+      
     });
 
-    console.log(this.form);
+
   }
 
   onSubmit() {
-    if (this.firstname.value) {
+    if (this.phonenumber.value === '') {
       this.clientService
         .editClient(this.clientId, this.form.value)
         .pipe(
           switchMap((res) => {
-            this.NgToastService.success({detail: "Success Messege", summary: "Client edited successfully"})
-            return this.clientService.getClients();
+            this.NgToastService.success({
+              detail: 'Success Messege',
+              summary: 'Client edited successfully',
+            });
+            this.form.reset()
+            return this.clientService.getClients() ;;
+         
           })
         )
         .subscribe();
@@ -129,7 +166,10 @@ export class AddClientComponent implements OnInit {
         .addClient(this.form.value)
         .pipe(
           switchMap((res) => {
-            this.NgToastService.success({detail: "Success Messege", summary: "Client was created successfully"})
+            this.NgToastService.success({
+              detail: 'Success Messege',
+              summary: 'Client was created successfully',
+            });
             return this.clientService.getClients();
           })
         )
@@ -137,5 +177,6 @@ export class AddClientComponent implements OnInit {
 
       this.Router.navigate(['/']);
     }
+    this.form.markAllAsTouched()
   }
 }
