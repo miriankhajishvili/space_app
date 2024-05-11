@@ -1,3 +1,12 @@
+export interface myData {
+  first: number;
+  prev: any;
+  next: any;
+  last: number;
+  pages: number;
+  items: number;
+  data: IClient[];
+}
 export interface IClient {
   id: string;
   firstname: string;
@@ -11,10 +20,17 @@ export interface IClient {
     country: string;
   };
   currentAddress: {
-    currentAddress: string,
-    currentCity:string,
-    currentCountry: string
-  }
+    currentAddress: string;
+    currentCity: string;
+    currentCountry: string;
+  };
   img: string;
-  
+}
+
+
+export interface pageRequest {
+  first: number;
+  rows: number;
+  sortField?: string | string[];
+  sortOrder?: number;
 }

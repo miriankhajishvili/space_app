@@ -139,44 +139,47 @@ export class AddClientComponent implements OnInit {
       this.form.patchValue(res!);
       this.clientId = res?.id;
       
+      
     });
 
 
   }
 
   onSubmit() {
-    if (this.phonenumber.value === '') {
-      this.clientService
-        .editClient(this.clientId, this.form.value)
-        .pipe(
-          switchMap((res) => {
-            this.NgToastService.success({
-              detail: 'Success Messege',
-              summary: 'Client edited successfully',
-            });
-            this.form.reset()
-            return this.clientService.getClients() ;;
+    // if (this.phonenumber.value === '') {
+    //   this.clientService
+    //     .editClient(this.clientId, this.form.value)
+    //     .pipe(
+    //       switchMap((res) => {
+    //         this.NgToastService.success({
+    //           detail: 'Success Messege',
+    //           summary: 'Client edited successfully',
+    //         });
+    //         this.form.reset()
+    //         return this.clientService.getClients() ;;
          
-          })
-        )
-        .subscribe();
-      this.Router.navigate(['/']);
-    } else {
-      this.clientService
-        .addClient(this.form.value)
-        .pipe(
-          switchMap((res) => {
-            this.NgToastService.success({
-              detail: 'Success Messege',
-              summary: 'Client was created successfully',
-            });
-            return this.clientService.getClients();
-          })
-        )
-        .subscribe();
+    //       })
+    //     )
+    //     .subscribe();
+    //   this.Router.navigate(['/']);
+    // } else {
+    //   this.clientService
+    //     .addClient(this.form.value)
+    //     .pipe(
+    //       switchMap((res) => {
+    //         this.NgToastService.success({
+    //           detail: 'Success Messege',
+    //           summary: 'Client was created successfully',
+    //         });
+    //         return this.clientService.getClients();
+    //       })
+    //     )
+    //     .subscribe();
 
-      this.Router.navigate(['/']);
-    }
-    this.form.markAllAsTouched()
+    //   this.Router.navigate(['/']);
+    // }
+    // this.form.markAllAsTouched()
+
+    this.clientService.addClient(this.form.value).subscribe(res => console.log(res))
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { IClient } from '../interfaces/client.interface';
+import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +9,13 @@ import { IClient } from '../interfaces/client.interface';
 export class ClientService extends BaseService {
   currentClient$ = new ReplaySubject<IClient | undefined>();
 
+  getClients( pageRequest: pageRequest): Observable<myData> {
+    const { first, rows } = pageRequest;
+    const page = first / rows + 1;
+    let pageDetail = `?_page=${page}`;
+    
 
-
-  getClients(): Observable<IClient[]> {
-    return this.get<IClient[]>('clients');
+    return this.get<myData>(`clients${pageDetail}`);
   }
 
   getCurrentClient(id: string): Observable<IClient> {
