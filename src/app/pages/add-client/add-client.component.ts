@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
-import { Router, RouterModule } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { map, mergeMap, of, switchMap } from 'rxjs';
 import { singleLanguageValidator } from '../../shared/regex/georgianLettersValidator';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -35,14 +35,14 @@ export class AddClientComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/)
+      Validators.pattern(/^\S+$/),
     ]),
     lastname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/)
+      Validators.pattern(/^\S+$/),
     ]),
     personalid: new FormControl('', [
       Validators.required,
@@ -55,7 +55,7 @@ export class AddClientComponent implements OnInit {
       // Validators.pattern(/^5\d{8}$/),
       // Validators.pattern(/^5\d{8}$/)
       Validators.pattern(/^\S+$/),
-      phoneNumberValidator()
+      phoneNumberValidator(),
     ]),
     address: new FormGroup({
       address: new FormControl('', Validators.required),
@@ -71,6 +71,7 @@ export class AddClientComponent implements OnInit {
   });
 
   clientId?: string;
+  isEdit: boolean = this.ActivatedRoute.snapshot.url[0].path === 'edit-client';
 
   radioChangeHandler(value: any) {
     if (value.target.value) {
@@ -130,56 +131,75 @@ export class AddClientComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
+    private ActivatedRoute: ActivatedRoute,
     private Router: Router,
-    private NgToastService: NgToastService,
+    private NgToastService: NgToastService
   ) {}
 
   ngOnInit(): void {
-    this.clientService.currentClient$.subscribe((res) => {
-      this.form.patchValue(res!);
-      this.clientId = res?.id;
-      
-      
-    });
 
 
+    this.ActivatedRoute.params
+      .pipe(
+        mergeMap((params) => {
+          if (params['id']) {
+            return this.clientService.getCurrentClient(params['id']);
+          } else return of(null);
+        }),
+        map((res) => {
+          if (res) {
+            this.form.patchValue(res);
+          }
+        })
+      )
+      .subscribe();
   }
 
   onSubmit() {
-    // if (this.phonenumber.value === '') {
-    //   this.clientService
-    //     .editClient(this.clientId, this.form.value)
-    //     .pipe(
-    //       switchMap((res) => {
-    //         this.NgToastService.success({
-    //           detail: 'Success Messege',
-    //           summary: 'Client edited successfully',
-    //         });
-    //         this.form.reset()
-    //         return this.clientService.getClients() ;;
-         
-    //       })
-    //     )
-    //     .subscribe();
-    //   this.Router.navigate(['/']);
-    // } else {
-    //   this.clientService
-    //     .addClient(this.form.value)
-    //     .pipe(
-    //       switchMap((res) => {
-    //         this.NgToastService.success({
-    //           detail: 'Success Messege',
-    //           summary: 'Client was created successfully',
-    //         });
-    //         return this.clientService.getClients();
-    //       })
-    //     )
-    //     .subscribe();
+    if (this.form.valid)
+      if (this.isEdit) {
+        this.clientService
+          .editClient(this.clientId, this.form.value)
 
-    //   this.Router.navigate(['/']);
-    // }
-    // this.form.markAllAsTouched()
+          .subscribe({
+            next: () => {
+              this.NgToastService.success({
+                detail: 'Success Messege',
+                summary: 'Client edited successfully',
+              });
+            },
+            error: () => {
+              this.NgToastService.error({
+                detail: 'Error Messege',
+                summary: 'Client edited unsuccessfully',
+              });
+              this.Router.navigate(['/']);
+            },
+          });
+      } else {
+        this.clientService
+          .addClient(this.form.value)
 
-    this.clientService.addClient(this.form.value).subscribe(res => console.log(res))
+          .subscribe({
+            next: () => {
+              this.NgToastService.success({
+                detail: 'Success Messege',
+                summary: 'Client edited successfully',
+              });
+
+              this.Router.navigate(['/']);
+            },
+            error: () => {
+              this.NgToastService.error({
+                detail: 'Error Messege',
+                summary: 'Client edited unsuccessfully',
+              });
+            },
+          });
+      }
+    {
+    }
+
+    this.form.markAllAsTouched();
   }
 }

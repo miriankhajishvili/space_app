@@ -127,10 +127,10 @@ export class ClientDetailComponent implements OnInit {
     this.visible = true;
   }
 
-  onEdit(client: IClient | undefined ){
+  onEdit(clientId: string | undefined ){
 
-    this.clientService.currentClient$.next(client)
-    this.router.navigate(['/add-client'])
+ 
+    this.router.navigate(['/edit-client', clientId])
   }
 
   onSubmit(visible: boolean) {

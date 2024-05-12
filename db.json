@@ -1,25 +1,6 @@
 {
   "clients": [
     {
-      "id": "e9k8",
-      "firstname": "Irakli",
-      "lastname": "Gurgenidze",
-      "personalid": "67005092085",
-      "gender": "Male",
-      "phonenumber": "555889900",
-      "address": {
-        "address": "Shota Rustaveli Str",
-        "city": "Zugdidi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "David Agmashenebeli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
       "id": "f4j7",
       "firstname": "Mariam",
       "lastname": "Chikvaidze",
@@ -584,6 +565,234 @@
       },
       "currentAddress": {
         "currentAddress": "David Agmashenebeli Str",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "1cd0",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "07f8",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "14e3",
+      "firstname": "",
+      "lastname": "",
+      "personalid": "",
+      "gender": "",
+      "phonenumber": "",
+      "address": {
+        "address": "",
+        "city": "",
+        "country": ""
+      },
+      "currentAddress": {
+        "currentAddress": "",
+        "currentCity": "",
+        "currentCountry": ""
+      },
+      "img": ""
+    },
+    {
+      "id": "413f",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "9229",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "9fc5",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "1f92",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "a32a",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "ba54",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "190a",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "7eb3",
+      "firstname": "Irakli",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
+        "currentCity": "Tbilisi",
+        "currentCountry": "Georgia"
+      },
+      "img": ""
+    },
+    {
+      "id": "b259",
+      "firstname": "Gela",
+      "lastname": "Gurgenidze",
+      "personalid": "67005092085",
+      "gender": "Male",
+      "phonenumber": "555889900",
+      "address": {
+        "address": "Shota Rustaveli Str",
+        "city": "Zugdidi",
+        "country": "Georgia"
+      },
+      "currentAddress": {
+        "currentAddress": "David Agmashenebeli Ave",
         "currentCity": "Tbilisi",
         "currentCountry": "Georgia"
       },

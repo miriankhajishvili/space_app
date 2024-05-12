@@ -9,7 +9,7 @@
           <div class="card-body p-4 p-md-5">
             <form [formGroup]="form">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">
-                {{ form.valid ? "Edit Form" : "Registration Form" }}
+                {{ isEdit ? "Edit Form" : "Registration Form" }}
               </h3>
               <div class="row">
                 <div class="col-md-6 mb-4">
@@ -256,12 +256,11 @@
               </div>
 
               <button
-             
                 type="button"
                 (click)="onSubmit()"
                 class="btn btn-primary btn-lg"
               >
-                {{ form.invalid ? "Register client" : "Edit" }}
+                {{ isEdit ? "Edit" : "Register client" }}
               </button>
             </form>
           </div>

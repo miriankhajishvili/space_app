@@ -57,7 +57,7 @@ export class ClientComponent implements OnInit, OnDestroy {
     first: 0,
     rows: 10,
     search: '',
-    sort: ''
+    sort: '',
   };
 
   constructor(private clientService: ClientService) {}
@@ -65,19 +65,25 @@ export class ClientComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.allcients = this.clientService.updatedClientLis$.pipe(
       switchMap(() => {
-        return this.clientService
-          .getClients(this.pagination)
-          .pipe(map((res) => res.data));
+        return this.clientService.getClients(this.pagination).pipe(
+          map((res) => {
+            this.totalRecords = res.items
+           return res.data;
+
+           
+            
+          })
+        );
       })
     );
 
-    this.clientService
-      .getClients(this.pagination)
-      .pipe(takeUntil(this.mySub$))
-      .subscribe((res) => {
-        this.allClients$ = res.data;
-        this.totalRecords = res.items;
-      });
+    // this.clientService
+    //   .getClients(this.pagination)
+    //   .pipe(takeUntil(this.mySub$))
+    //   .subscribe((res) => {
+    //     this.allClients$ = res.data;
+    //     this.totalRecords = res.items;
+    //   });
 
     this.clientService.updatedClientLis$.next(null);
 
