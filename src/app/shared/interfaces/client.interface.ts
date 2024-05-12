@@ -8,7 +8,7 @@ export interface myData {
   data: IClient[];
 }
 export interface IClient {
-  id: string;
+  id: number;
   firstname: string;
   lastname: string;
   personalid: string;

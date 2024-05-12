@@ -109,7 +109,7 @@ export class ClientComponent implements OnInit, OnDestroy {
     this.clientService.updatedClientLis$.next(null);
   }
 
-  onDelete(id: string) {
+  onDelete(id: number) {
     this.clientService
       .deleteClient(id)
       .pipe(

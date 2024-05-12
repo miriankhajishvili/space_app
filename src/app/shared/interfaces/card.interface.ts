@@ -1,6 +1,6 @@
 export interface ICard {
   id: number;
-  userID: string;
+  userID: number;
   currencies: string[];
   isActive: string;
   cardType: string;

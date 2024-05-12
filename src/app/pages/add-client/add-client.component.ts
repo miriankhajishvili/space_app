@@ -71,7 +71,7 @@ export class AddClientComponent implements OnInit {
     img: new FormControl('', [Validators.required]),
   });
 
-  clientId?: string;
+  clientId?: number;
   isEdit: boolean = this.ActivatedRoute.snapshot.url[0].path === 'edit-client';
   file: any;
   data: any;
@@ -151,7 +151,7 @@ export class AddClientComponent implements OnInit {
         }),
         map((res) => {
           if (res) {
-            this.clientId = res.id
+            this.clientId = res.id;
             this.form.patchValue(res);
           }
         })
@@ -160,7 +160,8 @@ export class AddClientComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid) this.submitted = true;
+    if (this.form.invalid) 
+       this.submitted = true;
     if (this.isEdit) {
       this.ClientService.editClient(this.clientId, this.form.value).subscribe({
         next: () => {
@@ -175,7 +176,6 @@ export class AddClientComponent implements OnInit {
             detail: 'Error Messege',
             summary: 'Client edited unsuccessfully',
           });
-       
         },
       });
     } else {
@@ -199,35 +199,38 @@ export class AddClientComponent implements OnInit {
     {
     }
 
-  //   this.form.markAllAsTouched();
 
-  //   const formData = new FormData();
-  //   formData.append('image', this.file, this.file.name);
+      this.form.markAllAsTouched();
 
-  //   this.ImageService.uploadImage(formData).subscribe((res) => {
-  //     this.data = res;
-  //     if ((this.data.status = true)) {
-  //       JSON.stringify(this.data.Messege),
-  //         '',
-  //         {
-  //           timeout: 2000,
-  //           progressBar: true,
-  //         };
-  //     } else {
-  //       JSON.stringify(this.data.Messege),
-  //         '',
-  //         {
-  //           timeout: 2000,
-  //           progressBar: true,
-  //         };
-  //     }
-  //     this.submitted = false;
-  //     this.img.reset();
-  //   });
-  // }
+    //   const formData = new FormData();
+    //   formData.append('image', this.file, this.file.name);
 
-  // uploadImage($event: any) {
-  //   console.log($event);
-  //   this.file = $event.target.files[0];
+    //   this.ImageService.uploadImage(formData).subscribe((res) => {
+    //     this.data = res;
+    //     if ((this.data.status = true)) {
+    //       JSON.stringify(this.data.Messege),
+    //         '',
+    //         {
+    //           timeout: 2000,
+    //           progressBar: true,
+    //         };
+    //     } else {
+    //       JSON.stringify(this.data.Messege),
+    //         '',
+    //         {
+    //           timeout: 2000,
+    //           progressBar: true,
+    //         };
+    //     }
+    //     this.submitted = false;
+    //     this.img.reset();
+    //   });
+    // }
+
+    // uploadImage($event: any) {
+    //   console.log($event);
+    //   this.file = $event.target.files[0];
+
+    console.log('hi')
   }
 }

@@ -8,7 +8,7 @@ import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 })
 export class ClientService extends BaseService {
   currentClient$ = new ReplaySubject<IClient | undefined>();
-
+  lastNumericId: number = 0;
   updatedClientLis$ = new ReplaySubject<myData | null>();
 
   getClients(pageRequest: pageRequest): Observable<myData> {
@@ -21,20 +21,23 @@ export class ClientService extends BaseService {
     );
   }
 
-  getCurrentClient(id: string): Observable<IClient> {
+  getCurrentClient(id: number): Observable<IClient> {
     return this.get<IClient>(`clients/${id}`);
   }
   
 
   addClient(data: IClient): Observable<IClient> {
-    return this.post<IClient>('clients', data);
+    this.lastNumericId++
+    const newClient = { ...data, id: this.lastNumericId.toString() };
+
+    return this.post<IClient>('clients', newClient);
   }
 
-  editClient(id: string | undefined, data: IClient): Observable<IClient> {
+  editClient(id: number | undefined, data: IClient): Observable<IClient> {
     return this.put<any>(`clients/${id}`, data);
   }
 
-  deleteClient(id: string): Observable<IClient> {
+  deleteClient(id: number): Observable<IClient> {
     return this.delete<IClient>(`clients/${id}`);
   }
 }

@@ -29,7 +29,7 @@ export class ClientDetailComponent implements OnInit {
 
   cardForm!: FormGroup;
 
-  activeId!: string;
+  activeId!: number;
 
   currentClient!: IClient
 
@@ -58,7 +58,9 @@ export class ClientDetailComponent implements OnInit {
     this.getCards();
     this.initForm();
     
-    this.activeId = this.activateRoute.snapshot.params['id'];
+    this.activeId =  parseInt(this.activateRoute.snapshot.params['id'], 10)
+
+    
     this.clientService
       .getCurrentClient(this.activeId)
       .subscribe((res: IClient) => (this.currentClient = res));
@@ -126,7 +128,7 @@ export class ClientDetailComponent implements OnInit {
     this.visible = true;
   }
 
-  onEdit(clientId: string | undefined ){
+  onEdit(clientId: number | undefined ){
 
  
     this.router.navigate(['/edit-client', clientId])
