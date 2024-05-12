@@ -154,6 +154,7 @@ export class ClientDetailComponent implements OnInit {
       });
     } else {
       const newCard = {
+        id: 0,
         userID: this.currentClient?.id,
         cardType: formData.cardType,
         currencies: formData.currencies,
@@ -174,7 +175,7 @@ export class ClientDetailComponent implements OnInit {
     this.visible = visible
   }
 
-  deleteCard(id:string){
+  deleteCard(id:number){
     this.cardService.deleteCard(id).subscribe(() => {
       this.currentUSerCards = this.currentUSerCards.filter(card => card.id !== id);
     })

@@ -1,121 +1,7 @@
 {
   "clients": [
     {
-      "firstname": "Gela",
-      "lastname": "Baramidze",
-      "personalid": "55006237089",
-      "gender": "Male",
-      "phonenumber": "555889900",
-      "address": {
-        "address": "Rustaveli Str",
-        "city": "Rustavi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "David Agmashenebeli Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": "",
-      "id": "i8u9"
-    },
-    {
-      "id": "j3m7",
-      "firstname": "Tamari",
-      "lastname": "Kandelaki",
-      "personalid": "69004219093",
-      "gender": "Female",
-      "phonenumber": "555112233",
-      "address": {
-        "address": "Agmashenebeli Str",
-        "city": "Kobuleti",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Rustaveli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "k9o2",
-      "firstname": "Zaza",
-      "lastname": "Todua",
-      "personalid": "72001026094",
-      "gender": "Male",
-      "phonenumber": "555334455",
-      "address": {
-        "address": "Chavchavadze Ave",
-        "city": "Kutaisi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Pekini Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "l4p8",
-      "firstname": "Tinatin",
-      "lastname": "Dolidze",
-      "personalid": "59003287095",
-      "gender": "Female",
-      "phonenumber": "555556677",
-      "address": {
-        "address": "Dadiani Str",
-        "city": "Rustavi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Gogebashvili Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "n3q7",
-      "firstname": "Salome",
-      "lastname": "Kharshiladze",
-      "personalid": "62001057091",
-      "gender": "Female",
-      "phonenumber": "555112233",
-      "address": {
-        "address": "Ilia Chavchavadze Ave",
-        "city": "Poti",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Rustaveli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "o2r4",
-      "firstname": "Gela",
-      "lastname": "Kharabadze",
-      "personalid": "69002255084",
-      "gender": "Male",
-      "phonenumber": "555334455",
-      "address": {
-        "address": "Chavchavadze Str",
-        "city": "Gori",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Rustaveli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "d506",
+      "id": "e40c",
       "firstname": "",
       "lastname": "",
       "personalid": "",
@@ -131,44 +17,6 @@
         "currentCity": "",
         "currentCountry": ""
       },
-      "img": "C:\\fakepath\\1.png.jpg"
-    },
-    {
-      "id": "4e7d",
-      "firstname": "Mirian",
-      "lastname": "Khajishvili",
-      "personalid": "61004068063",
-      "gender": "Male",
-      "phonenumber": "595580404",
-      "address": {
-        "address": "Rustvaeli 140d",
-        "city": "Kobuleti",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Sister Ishhknelebi str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": "C:\\fakepath\\1.png.jpg"
-    },
-    {
-      "id": "e3eb",
-      "firstname": "John",
-      "lastname": "Lennon",
-      "personalid": "61004068063",
-      "gender": "Male",
-      "phonenumber": "555101010",
-      "address": {
-        "address": "Aghmashenebeli str",
-        "city": "Tbilisi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Kekelidze Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
       "img": ""
     }
   ],
@@ -182,6 +30,63 @@
       "currencies": [
         {
           "name": "USD"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "1",
+      "userID": "e40c",
+      "cardType": {
+        "name": "მიმდინარე"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "2",
+      "userID": "e40c",
+      "cardType": {
+        "name": "დაგროვებითი"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "4",
+      "userID": "e40c",
+      "cardType": {
+        "name": "შემნახველი"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
         }
       ],
       "isActive": "true"
