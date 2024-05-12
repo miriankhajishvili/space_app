@@ -1,4 +1,4 @@
-.add-card {
+:host ::ng-deep.add-card {
   display: flex;
 
   border: none;
@@ -11,17 +11,17 @@
     font-size: 1rem;
   }
 }
-.dialog-buttons {
+:host ::ng-deep.dialog-buttons {
   margin-top: 7rem;
 }
 
-.active {
+:host ::ng-deep.active {
   color: green;
 }
 
-.deactivated {
+:host ::ng-deep.deactivated {
   color: red;
 }
-.deactivated-card {
+:host ::ng-deep.deactivated-card {
   opacity: 0.3;
 }

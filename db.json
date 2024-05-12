@@ -1,44 +1,43 @@
 {
   "clients": [
     {
-      "id": "2",
-      "firstname": "",
-      "lastname": "",
-      "personalid": "",
-      "gender": "",
-      "phonenumber": "",
+      "id": "1",
+      "firstname": "Mirian",
+      "lastname": "Khajishvili",
+      "personalid": "78888888888",
+      "gender": "Male",
+      "phonenumber": "589898989",
       "address": {
-        "address": "",
-        "city": "",
-        "country": ""
+        "address": "TBS-1475545, 1622 E Ayre street",
+        "city": "Wilmington",
+        "country": "adasd"
       },
       "currentAddress": {
-        "currentAddress": "",
-        "currentCity": "",
-        "currentCountry": ""
+        "currentAddress": "asda",
+        "currentCity": "sdasd",
+        "currentCountry": "asdasd"
       },
-      "img": ""
+      "img": "C:\\fakepath\\1.png.jpg"
+    },
+    {
+      "id": "3",
+      "firstname": "Giorgi",
+      "lastname": "Kalandadze",
+      "personalid": "asdasdasdas",
+      "gender": "Male",
+      "phonenumber": "589898989",
+      "address": {
+        "address": "TBS-1475545, 1622 E Ayre street",
+        "city": "Wilmington",
+        "country": "adasd"
+      },
+      "currentAddress": {
+        "currentAddress": "ads",
+        "currentCity": "adsaasd",
+        "currentCountry": "asdasd"
+      },
+      "img": "C:\\fakepath\\1.png.jpg"
     }
   ],
-  "cards": [
-    {
-      "id": "1",
-      "userID": "1",
-      "cardType": {
-        "name": "მიმდინარე"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    }
-  ]
+  "cards": []
 }

@@ -8,6 +8,7 @@ import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 })
 export class ClientService extends BaseService {
   currentClient$ = new ReplaySubject<IClient | undefined>();
+  private readonly localStorageKey = 'clientLastNumericId';
   lastNumericId: number = 0;
   updatedClientLis$ = new ReplaySubject<myData | null>();
 
@@ -27,7 +28,12 @@ export class ClientService extends BaseService {
   
 
   addClient(data: IClient): Observable<IClient> {
+    const storedId = localStorage.getItem(this.localStorageKey);
+    if (storedId) {
+      this.lastNumericId = parseInt(storedId, 10);
+    }
     this.lastNumericId++
+    localStorage.setItem(this.localStorageKey, this.lastNumericId.toString())
     const newClient = { ...data, id: this.lastNumericId.toString() };
 
     return this.post<IClient>('clients', newClient);

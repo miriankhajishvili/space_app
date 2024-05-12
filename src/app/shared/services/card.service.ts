@@ -8,9 +8,16 @@ import { ICard } from '../interfaces/card.interface';
 })
 export class CardService extends BaseService {
   lastNumericId: number = 0;
+  private readonly localStorageKey = 'cardLastNumericId';
+
 
   addCard(card: ICard): Observable<ICard> {
+    const storedId = localStorage.getItem(this.localStorageKey);
+    if (storedId) {
+      this.lastNumericId = parseInt(storedId, 10);
+    }
     this.lastNumericId++
+    localStorage.setItem(this.localStorageKey, this.lastNumericId.toString())
     const newCard = { ...card, id: this.lastNumericId.toString() };
     return this.post<ICard>('cards',newCard)
   }

@@ -103,15 +103,15 @@ export class AddClientComponent implements OnInit {
   }
 
   get myAddress() {
-    return this.address.controls['myAddress'];
+    return this.address.controls['address'];
   }
 
   get myCity() {
-    return this.address.controls['myCity'];
+    return this.address.controls['city'];
   }
 
   get myCountry() {
-    return this.address.controls['myCountry'];
+    return this.address.controls['country'];
   }
 
   get currentAddress() {
@@ -119,13 +119,13 @@ export class AddClientComponent implements OnInit {
   }
 
   get myCurrentAddress() {
-    return this.currentAddress.controls['myCurrentAddress'];
+    return this.currentAddress.controls['currentAddress'];
   }
   get myCurrentCity() {
-    return this.currentAddress.controls['myCurrentCity'];
+    return this.currentAddress.controls['currentCity'];
   }
   get myCurrentCountry() {
-    return this.currentAddress.controls['myCurrentCountry'];
+    return this.currentAddress.controls['currentCountry'];
   }
   get img() {
     return this.form.controls['img'];
@@ -160,47 +160,52 @@ export class AddClientComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid) 
-       this.submitted = true;
-    if (this.isEdit) {
-      this.ClientService.editClient(this.clientId, this.form.value).subscribe({
-        next: () => {
-          this.NgToastService.success({
-            detail: 'Success Messege',
-            summary: 'Client edited successfully',
-          });
-          this.Router.navigate(['/']);
-        },
-        error: () => {
-          this.NgToastService.error({
-            detail: 'Error Messege',
-            summary: 'Client edited unsuccessfully',
-          });
-        },
-      });
-    } else {
-      this.ClientService.addClient(this.form.value).subscribe({
-        next: () => {
-          this.NgToastService.success({
-            detail: 'Success Messege',
-            summary: 'Client edited successfully',
-          });
+    if (this.form.valid) {
+      if (this.isEdit) {
+        this.ClientService.editClient(this.clientId, this.form.value).subscribe(
+          {
+            next: () => {
+              this.NgToastService.success({
+                detail: 'Success Messege',
+                summary: 'Client edited successfully',
+              });
+              this.Router.navigate(['/']);
+            },
+            error: () => {
+              this.NgToastService.error({
+                detail: 'Error Messege',
+                summary: 'Client edited unsuccessfully',
+              });
+            },
+          }
+        );
+      } else {
+        this.ClientService.addClient(this.form.value).subscribe({
+          next: () => {
+            this.NgToastService.success({
+              detail: 'Success Messege',
+              summary: 'Client edited successfully',
+            });
 
-          this.Router.navigate(['/']);
-        },
-        error: () => {
-          this.NgToastService.error({
-            detail: 'Error Messege',
-            summary: 'Client edited unsuccessfully',
-          });
-        },
-      });
+            this.Router.navigate(['/']);
+          },
+          error: () => {
+            this.NgToastService.error({
+              detail: 'Error Messege',
+              summary: 'Client edited unsuccessfully',
+            });
+          },
+        });
+      }
+      {
+      }
     }
-    {
-    }
+    this.NgToastService.error({
+      detail: 'Error Messege',
+      summary: 'All fields must be filled.',
+    });
 
-
-      this.form.markAllAsTouched();
+    this.form.markAllAsTouched();
 
     //   const formData = new FormData();
     //   formData.append('image', this.file, this.file.name);
@@ -231,6 +236,6 @@ export class AddClientComponent implements OnInit {
     //   console.log($event);
     //   this.file = $event.target.files[0];
 
-    console.log('hi')
+    console.log('hi');
   }
 }

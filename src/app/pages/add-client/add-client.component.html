@@ -22,16 +22,16 @@
                     />
                   </div>
                   <span *ngIf="firstname?.errors?.['minlength']">
-                    Minlengh mast be at least 2 charachters</span
+                    Minlengh mast be at least 2 charachters.</span
                   >
                   <span *ngIf="firstname?.errors?.['maxlength']">
-                    Maxlength mast be max 50 charachters</span
+                    Maxlength mast be max 50 charachters.</span
                   >
                   <span *ngIf="firstname?.touched && firstname.value === ''">
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                   <span *ngIf="firstname?.errors?.['pattern']">
-                    Please do not write Empty space
+                   Please enter a value, empty space is not allowed.
                   </span>
                   <span *ngIf="firstname?.errors?.['singleLanguage']">
                     Please write in English or In Georgian
@@ -53,10 +53,10 @@
                     Maxlength mast be max 50 charachters</span
                   >
                   <span *ngIf="lastname?.touched && lastname.value === ''">
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                   <span *ngIf="lastname?.errors?.['pattern']">
-                    Please do not write Empty space
+                   Please enter a value, empty space is not allowed.
                   </span>
                   <span *ngIf="lastname?.errors?.['singleLanguage']">
                     Please write in English or In Georgian
@@ -85,7 +85,7 @@
                     <span
                       *ngIf="personalid?.touched && personalid.value === ''"
                     >
-                      Filed must not be empty</span
+                      Please enter a value, empty space is not allowed.</span
                     >
                   </div>
                 </div>
@@ -130,11 +130,11 @@
               </div>
 
               <span *ngIf="phonenumber?.errors?.['pattern']">
-                Please do not write Empty space.
+                Please enter a value, empty space is not allowed.
               </span>
 
               <span *ngIf="phonenumber?.touched && phonenumber.value === ''">
-                Filed must not be empty.</span
+                Please enter a value, empty space is not allowed.</span
               >
 
               <span *ngIf="phonenumber?.errors?.['startsWithFive']">
@@ -155,7 +155,7 @@
                     />
                   </div>
                   <span *ngIf="myAddress?.touched && myAddress.value === ''">
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
 
@@ -169,7 +169,7 @@
                     />
                   </div>
                   <span *ngIf="myCity?.touched && myCity.value === ''">
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
 
@@ -183,7 +183,7 @@
                     />
                   </div>
                   <span *ngIf="myCountry?.touched && myCountry.value === ''">
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
               </div>
@@ -203,7 +203,7 @@
                       myCurrentAddress?.touched && myCurrentAddress.value === ''
                     "
                   >
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
 
@@ -219,7 +219,7 @@
                   <span
                     *ngIf="myCurrentCity?.touched && myCurrentCity.value === ''"
                   >
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
 
@@ -237,7 +237,7 @@
                       myCurrentCountry?.touched && myCurrentCountry.value === ''
                     "
                   >
-                    Filed must not be empty</span
+                    Please enter a value, empty space is not allowed.</span
                   >
                 </div>
               </div>
