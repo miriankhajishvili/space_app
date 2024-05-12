@@ -5,13 +5,21 @@ import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Subject, debounceTime, switchMap, takeUntil } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  debounceTime,
+  map,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
 import { PaginatorModule } from 'primeng/paginator';
 import { LazyLoadEvent } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
+import { DialogModule } from 'primeng/dialog';
+import { SortComponent } from '../../shared/components/sort/sort/sort.component';
 
 @Component({
   selector: 'app-client',
@@ -25,7 +33,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
     PaginatorModule,
     InputTextModule,
     ReactiveFormsModule,
-  
+    DialogModule,
+    SortComponent,
   ],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss',
@@ -36,6 +45,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   allClients$!: IClient[];
   totalRecords?: number;
 
+  allcients!: Observable<any>;
   form = new FormGroup({
     searchinput: new FormControl(null),
   });
@@ -47,11 +57,20 @@ export class ClientComponent implements OnInit, OnDestroy {
     first: 0,
     rows: 10,
     search: '',
+    sort: ''
   };
 
   constructor(private clientService: ClientService) {}
 
   ngOnInit(): void {
+    this.allcients = this.clientService.updatedClientLis$.pipe(
+      switchMap(() => {
+        return this.clientService
+          .getClients(this.pagination)
+          .pipe(map((res) => res.data));
+      })
+    );
+
     this.clientService
       .getClients(this.pagination)
       .pipe(takeUntil(this.mySub$))
@@ -60,32 +79,28 @@ export class ClientComponent implements OnInit, OnDestroy {
         this.totalRecords = res.items;
       });
 
-      this.form.valueChanges.pipe(
-        debounceTime(500)
-      ).subscribe((value)=> {
-        this.pagination = {
-          ...this.pagination,
-          first:0,
-          search: value.searchinput
-        };
-        this.clientService.getClients(this.pagination).subscribe(
-          res => {
-           console.log(res)
-           this.allClients$ = res.data
-          }
-        )
-      })
+    this.clientService.updatedClientLis$.next(null);
+
+    this.inputValueChange();
+  }
+
+  inputValueChange() {
+    this.form.valueChanges.pipe(debounceTime(1000)).subscribe((value) => {
+      this.pagination = {
+        ...this.pagination,
+        first: 0,
+        search: value.searchinput,
+      };
+
+      this.clientService.updatedClientLis$.next(null);
+    });
   }
 
   onPageChange(event: LazyLoadEvent) {
+    this.inputValueChange();
+
     this.pagination.first = event.first || 0;
-    let newRequest = { ...this.pagination };
-    this.clientService
-      .getClients(newRequest)
-      .pipe(takeUntil(this.mySub$))
-      .subscribe((res) => (this.allClients$ = res.data));
-
-
+    this.clientService.updatedClientLis$.next(null);
   }
 
   onDelete(id: string) {
@@ -98,11 +113,8 @@ export class ClientComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((res) => {
-
-        this.allClients$ = res.data
-      }
-      )
-      
+        this.clientService.updatedClientLis$.next(null);
+      });
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);

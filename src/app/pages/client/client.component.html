@@ -5,18 +5,22 @@
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
-            formControlName="searchinput"
-            pInputText
+          formControlName="searchinput"
+          pInputText
             placeholder="Search"
-          />
-        </span>
-      </div>
-    </form>
-    <div class="row">
-      <div
+            />
+          </span>
+          
+        </div>
+        <app-sort ></app-sort>
+        
+      </form>
+      <div class="row">
+        <div
         class="col-xl-6 col-lg-7 col-md-12"
-        *ngFor="let client of allClients$"
-      >
+        *ngFor="let client of ( allcients | async) "
+        >
+    
         <div class="card profile-header">
           <div class="body">
             <div class="row">

@@ -9,14 +9,16 @@ import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 export class ClientService extends BaseService {
   currentClient$ = new ReplaySubject<IClient | undefined>();
 
+  updatedClientLis$ = new ReplaySubject<myData | null>()
+
 
   getClients( pageRequest: pageRequest): Observable<myData> {
-    const { first, rows, search} = pageRequest;
+    const { first, rows, search , sort} = pageRequest;
     const page = first / rows + 1;
     let pageDetail = `?_page=${page}`;
     
 
-    return this.get<myData>(`clients${pageDetail}&firstname=${search}`);
+    return this.get<myData>(`clients${pageDetail}&firstname=${search}&_sort=${sort}`);
   }
 
   getCurrentClient(id: string): Observable<IClient> {

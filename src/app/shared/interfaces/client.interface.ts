@@ -32,5 +32,6 @@ export interface pageRequest {
   first: number;
   rows: number;
   search: string | undefined | null;
+  sort:string
  
 }

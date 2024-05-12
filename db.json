@@ -1,25 +1,6 @@
 {
   "clients": [
     {
-      "id": "d7h5",
-      "firstname": "Ana",
-      "lastname": "Jikia",
-      "personalid": "49003241097",
-      "gender": "Female",
-      "phonenumber": "555556677",
-      "address": {
-        "address": "Dadiani Str",
-        "city": "Rustavi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Gogebashvili Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
       "id": "e9k8",
       "firstname": "Irakli",
       "lastname": "Gurgenidze",
@@ -172,25 +153,6 @@
       "img": ""
     },
     {
-      "id": "m8n5",
-      "firstname": "Revaz",
-      "lastname": "Lomidze",
-      "personalid": "67007035088",
-      "gender": "Male",
-      "phonenumber": "555889900",
-      "address": {
-        "address": "Shota Rustaveli Str",
-        "city": "Zugdidi",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "David Agmashenebeli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
       "id": "n3q7",
       "firstname": "Salome",
       "lastname": "Kharshiladze",
@@ -337,25 +299,6 @@
       },
       "currentAddress": {
         "currentAddress": "David Agmashenebeli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "v3w2",
-      "firstname": "Sophio",
-      "lastname": "Mchedlishvili",
-      "personalid": "71003246094",
-      "gender": "Female",
-      "phonenumber": "555667788",
-      "address": {
-        "address": "Gamsakhurdia Str",
-        "city": "Khashuri",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Freedom Square",
         "currentCity": "Tbilisi",
         "currentCountry": "Georgia"
       },
@@ -641,63 +584,6 @@
       },
       "currentAddress": {
         "currentAddress": "David Agmashenebeli Str",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "m5n6",
-      "firstname": "Mariam",
-      "lastname": "Chelidze",
-      "personalid": "73003296094",
-      "gender": "Female",
-      "phonenumber": "555990011",
-      "address": {
-        "address": "Ilia Chavchavadze Str",
-        "city": "Kobuleti",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Rustaveli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "n6o7",
-      "firstname": "Nodar",
-      "lastname": "Zurabashvili",
-      "personalid": "55008047093",
-      "gender": "Male",
-      "phonenumber": "555112233",
-      "address": {
-        "address": "Agmashenebeli Str",
-        "city": "Khashuri",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Rustaveli Ave",
-        "currentCity": "Tbilisi",
-        "currentCountry": "Georgia"
-      },
-      "img": ""
-    },
-    {
-      "id": "o7p8",
-      "firstname": "Sopo",
-      "lastname": "Kharabadze",
-      "personalid": "60005076095",
-      "gender": "Female",
-      "phonenumber": "555334455",
-      "address": {
-        "address": "Chavchavadze Str",
-        "city": "Gori",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Pekini Str",
         "currentCity": "Tbilisi",
         "currentCountry": "Georgia"
       },
