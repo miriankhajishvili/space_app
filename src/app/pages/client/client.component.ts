@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { SortComponent } from '../../shared/components/sort/sort/sort.component';
+import { CardService } from '../../shared/services/card.service';
 
 @Component({
   selector: 'app-client',
@@ -60,18 +61,15 @@ export class ClientComponent implements OnInit, OnDestroy {
     sort: '',
   };
 
-  constructor(private clientService: ClientService) {}
+  constructor(private clientService: ClientService, private cardService: CardService) {}
 
   ngOnInit(): void {
     this.allcients = this.clientService.updatedClientLis$.pipe(
       switchMap(() => {
         return this.clientService.getClients(this.pagination).pipe(
           map((res) => {
-            this.totalRecords = res.items
-           return res.data;
-
-           
-            
+            this.totalRecords = res.items;
+            return res.data;
           })
         );
       })
@@ -110,7 +108,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: number) {
-    this.clientService
+    this.cardService
       .deleteClient(id)
       .pipe(
         takeUntil(this.mySub$),

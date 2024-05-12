@@ -43,7 +43,5 @@ export class ClientService extends BaseService {
     return this.put<any>(`clients/${id}`, data);
   }
 
-  deleteClient(id: number): Observable<IClient> {
-    return this.delete<IClient>(`clients/${id}`);
-  }
+
 }
