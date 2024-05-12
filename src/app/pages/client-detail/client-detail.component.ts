@@ -30,7 +30,6 @@ export class ClientDetailComponent implements OnInit {
   cardForm!: FormGroup;
 
   activeId!: string;
-  // currentClient$ : Observable<IClient> = this.clientService.getCurrentClient(this.activeId)
 
   currentClient!: IClient
 
@@ -92,9 +91,9 @@ export class ClientDetailComponent implements OnInit {
 
   initForm(): void {
     this.cardForm = this.fb.group({
-      cardType: ['', Validators.required],
-      currencies: [[], Validators.required],
-      isActive: ['']
+      cardType: new FormControl( ['', Validators.required]),
+      currencies:new FormControl( [[], Validators.required]),
+      isActive: new FormControl([''])
     });
   }
 

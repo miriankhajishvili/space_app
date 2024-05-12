@@ -9,11 +9,12 @@ import {
 import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
-import { map, mergeMap, of, switchMap } from 'rxjs';
+import { map, mergeMap, of, switchMap, timeout } from 'rxjs';
 import { singleLanguageValidator } from '../../shared/regex/georgianLettersValidator';
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
+import { ImageService } from '../../shared/services/image.service';
 
 @Component({
   selector: 'app-add-client',
@@ -72,6 +73,9 @@ export class AddClientComponent implements OnInit {
 
   clientId?: string;
   isEdit: boolean = this.ActivatedRoute.snapshot.url[0].path === 'edit-client';
+  file: any;
+  data: any;
+  submitted = false;
 
   radioChangeHandler(value: any) {
     if (value.target.value) {
@@ -130,24 +134,24 @@ export class AddClientComponent implements OnInit {
   selectedFile!: File;
 
   constructor(
-    private clientService: ClientService,
+    private ClientService: ClientService,
     private ActivatedRoute: ActivatedRoute,
     private Router: Router,
-    private NgToastService: NgToastService
+    private NgToastService: NgToastService,
+    private ImageService: ImageService
   ) {}
 
   ngOnInit(): void {
-
-
     this.ActivatedRoute.params
       .pipe(
         mergeMap((params) => {
           if (params['id']) {
-            return this.clientService.getCurrentClient(params['id']);
+            return this.ClientService.getCurrentClient(params['id']);
           } else return of(null);
         }),
         map((res) => {
           if (res) {
+            this.clientId = res.id
             this.form.patchValue(res);
           }
         })
@@ -156,50 +160,74 @@ export class AddClientComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid)
-      if (this.isEdit) {
-        this.clientService
-          .editClient(this.clientId, this.form.value)
-
-          .subscribe({
-            next: () => {
-              this.NgToastService.success({
-                detail: 'Success Messege',
-                summary: 'Client edited successfully',
-              });
-            },
-            error: () => {
-              this.NgToastService.error({
-                detail: 'Error Messege',
-                summary: 'Client edited unsuccessfully',
-              });
-              this.Router.navigate(['/']);
-            },
+    if (this.form.valid) this.submitted = true;
+    if (this.isEdit) {
+      this.ClientService.editClient(this.clientId, this.form.value).subscribe({
+        next: () => {
+          this.NgToastService.success({
+            detail: 'Success Messege',
+            summary: 'Client edited successfully',
           });
-      } else {
-        this.clientService
-          .addClient(this.form.value)
-
-          .subscribe({
-            next: () => {
-              this.NgToastService.success({
-                detail: 'Success Messege',
-                summary: 'Client edited successfully',
-              });
-
-              this.Router.navigate(['/']);
-            },
-            error: () => {
-              this.NgToastService.error({
-                detail: 'Error Messege',
-                summary: 'Client edited unsuccessfully',
-              });
-            },
+          this.Router.navigate(['/']);
+        },
+        error: () => {
+          this.NgToastService.error({
+            detail: 'Error Messege',
+            summary: 'Client edited unsuccessfully',
           });
-      }
+       
+        },
+      });
+    } else {
+      this.ClientService.addClient(this.form.value).subscribe({
+        next: () => {
+          this.NgToastService.success({
+            detail: 'Success Messege',
+            summary: 'Client edited successfully',
+          });
+
+          this.Router.navigate(['/']);
+        },
+        error: () => {
+          this.NgToastService.error({
+            detail: 'Error Messege',
+            summary: 'Client edited unsuccessfully',
+          });
+        },
+      });
+    }
     {
     }
 
-    this.form.markAllAsTouched();
+  //   this.form.markAllAsTouched();
+
+  //   const formData = new FormData();
+  //   formData.append('image', this.file, this.file.name);
+
+  //   this.ImageService.uploadImage(formData).subscribe((res) => {
+  //     this.data = res;
+  //     if ((this.data.status = true)) {
+  //       JSON.stringify(this.data.Messege),
+  //         '',
+  //         {
+  //           timeout: 2000,
+  //           progressBar: true,
+  //         };
+  //     } else {
+  //       JSON.stringify(this.data.Messege),
+  //         '',
+  //         {
+  //           timeout: 2000,
+  //           progressBar: true,
+  //         };
+  //     }
+  //     this.submitted = false;
+  //     this.img.reset();
+  //   });
+  // }
+
+  // uploadImage($event: any) {
+  //   console.log($event);
+  //   this.file = $event.target.files[0];
   }
 }
