@@ -39,5 +39,19 @@
       "img": "C:\\fakepath\\1.png.jpg"
     }
   ],
-  "cards": []
+  "cards": [
+    {
+      "id": "9",
+      "userID": "1",
+      "cardType": {
+        "name": "შემნახველი"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        }
+      ],
+      "isActive": "true"
+    }
+  ]
 }

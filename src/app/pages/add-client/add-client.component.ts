@@ -49,12 +49,11 @@ export class AddClientComponent implements OnInit {
       Validators.required,
       Validators.minLength(11),
       Validators.maxLength(11),
+      Validators.pattern(/^[0-9]+$/),
     ]),
     gender: new FormControl('', [Validators.required]),
     phonenumber: new FormControl('', [
       Validators.required,
-      // Validators.pattern(/^5\d{8}$/),
-      // Validators.pattern(/^5\d{8}$/)
       Validators.pattern(/^\S+$/),
       phoneNumberValidator(),
     ]),

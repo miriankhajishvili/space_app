@@ -27,6 +27,7 @@ import { MultiSelect, MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
 import { ICard } from '../../shared/interfaces/card.interface';
 import { CardService } from '../../shared/services/card.service';
+import { NgToastService } from 'ng-angular-popup';
 
 interface CardTypes {
   name: string;
@@ -70,7 +71,8 @@ export class ClientDetailComponent implements OnInit {
     private clientService: ClientService,
     private router: Router,
     private fb: FormBuilder,
-    private cardService: CardService
+    private cardService: CardService,
+    private NgToastService: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -107,10 +109,20 @@ export class ClientDetailComponent implements OnInit {
 
   initForm(): void {
     this.cardForm = this.fb.group({
-      cardType: new FormControl(['', Validators.required]),
+      cardType: new FormControl('', Validators.required),
       currencies: new FormControl('', Validators.required),
       isActive: new FormControl(''),
     });
+  }
+
+  get cardType() {
+    return this.cardForm.controls['cardType'];
+  }
+  get currencies() {
+    return this.cardForm.controls['currencies'];
+  }
+  get isActive() {
+    return this.cardForm.controls['isActive'];
   }
 
   getCards() {
@@ -124,6 +136,7 @@ export class ClientDetailComponent implements OnInit {
     });
   }
   showDialog(card?: ICard) {
+    console.log(this.cardType);
     if (card) {
       this.isEditing = true;
       this.cardToEdit = card;
@@ -146,7 +159,13 @@ export class ClientDetailComponent implements OnInit {
   }
 
   onSubmit(visible: boolean) {
-    if (!this.cardForm.valid) return;
+    console.log(this.cardType);
+
+    if (this.cardForm.invalid)
+      return this.NgToastService.error({
+        detail: 'Error Messege',
+        summary: 'Please fill all needed fields.',
+      });
     this.visible = visible;
     const formData = this.cardForm.value;
 
@@ -159,6 +178,10 @@ export class ClientDetailComponent implements OnInit {
         isActive: formData.isActive,
       };
       this.cardService.editCard(editedCard).subscribe(() => {
+         this.NgToastService.success({
+        detail: 'Success Messege',
+        summary: 'Card was eddited successfully',
+      });
         const index = this.currentUSerCards.findIndex(
           (card) => card.id === editedCard.id
         );
@@ -168,7 +191,6 @@ export class ClientDetailComponent implements OnInit {
       });
     } else {
       const newCard = {
-      
         userID: this.currentClient?.id,
         cardType: formData.cardType,
         currencies: formData.currencies,
@@ -181,15 +203,27 @@ export class ClientDetailComponent implements OnInit {
         this.cardForm.reset();
         this.cardForm.markAllAsTouched();
       });
+      this.NgToastService.success({
+        detail: 'Success Messege',
+        summary: 'Card added successfully',
+      });
     }
   }
 
   cancel(visible: boolean) {
     this.visible = visible;
+    this.NgToastService.warning({
+      detail: 'Error Messege',
+      summary: 'Edit card was cancelled !',
+    });
   }
 
   deleteCard(id: number) {
     this.cardService.deleteCard(id).subscribe(() => {
+      this.NgToastService.success({
+        detail: 'Success Messege',
+        summary: 'Card deleted successfully',
+      });
       this.currentUSerCards = this.currentUSerCards.filter(
         (card) => card.id !== id
       );
