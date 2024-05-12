@@ -589,5 +589,36 @@
       },
       "img": ""
     }
+  ],
+  "cards": [
+    {
+      "id": "82f7",
+      "userID": "e9k8",
+      "cardType": {
+        "name": "მიმდინარე"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "c552",
+      "userID": "f4j7",
+      "cardType": {
+        "name": "მიმდინარე"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        }
+      ],
+      "isActive": "true"
+    }
   ]
 }

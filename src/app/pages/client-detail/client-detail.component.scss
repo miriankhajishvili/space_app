@@ -1,0 +1,27 @@
+.add-card {
+  display: flex;
+
+  border: none;
+  text-decoration: none;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+
+  &__button {
+    font-size: 1rem;
+  }
+}
+.dialog-buttons {
+  margin-top: 7rem;
+}
+
+.active {
+  color: green;
+}
+
+.deactivated {
+  color: red;
+}
+.deactivated-card {
+  opacity: 0.3;
+}

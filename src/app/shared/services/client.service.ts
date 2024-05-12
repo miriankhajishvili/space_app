@@ -36,4 +36,6 @@ export class ClientService extends BaseService {
   deleteClient(id: string): Observable<IClient> {
     return this.delete<IClient>(`clients/${id}`);
   }
+
+  
 }
