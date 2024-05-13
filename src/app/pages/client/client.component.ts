@@ -41,7 +41,7 @@ import { CardService } from '../../shared/services/card.service';
   providers: [],
 })
 export class ClientComponent implements OnInit, OnDestroy {
-  mySub$ = new Subject<null>();
+  mySub$ = new Subject();
   allClients$!: IClient[];
   totalRecords?: number;
 
@@ -78,9 +78,6 @@ export class ClientComponent implements OnInit, OnDestroy {
       queryParamsHandling: 'merge',
     });
 
-   console.log(this.page)
-   console.log()
-
     this.allcients = this.clientService.updatedClientList$.pipe(
       switchMap(() => {
         return this.clientService.getClients(this.pagination);
@@ -109,19 +106,25 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: any) {
+    console.log('Event PAge', event.page);
+
+    console.log('Pagination PAge', this.pagination.page);
+    if (event.page + 1 == this.pagination.page) return;
     this.inputValueChange();
 
-
     this.pagination.page = event.page + 1 || 0;
+    console.log('Current Query', this.page);
+    console.log(this.first);
 
-    if (this.page !== this.first) {
-      this.clientService.updatedClientList$.next(true);
-    }
+    this.clientService.updatedClientList$.next(true);
+
     this.router.navigate([], {
       relativeTo: this.activatedRouter,
       queryParams: { page: event.page + 1 },
       queryParamsHandling: 'merge',
     });
+
+    console.log(this.page, this.first);
   }
 
   onDelete(id: number) {

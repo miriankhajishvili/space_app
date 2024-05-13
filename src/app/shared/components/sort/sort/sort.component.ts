@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { IClient } from '../../../interfaces/client.interface';
-import { Router } from '@angular/router';
-
 
 interface sortProp {
   name: string;
@@ -37,10 +35,6 @@ export class SortComponent {
 
   sortClient!: IClient;
 
-
-
-  constructor(private router: Router) { }
-
   sortProperties: sortProp[] | undefined = [
     { name: 'First Name', key: 'firstname' },
     { name: 'Last Name', key: 'lastname' },
@@ -50,15 +44,12 @@ export class SortComponent {
 
   selectedProperty: sortProp | undefined;
 
+  constructor() {}
+
   ngOnInit() {}
-
-
 
   onSaveClick() {
     this.visible.value = false;
- 
     this.sortValue.emit(this.selectedProperty?.key);
-
-    
   }
 }

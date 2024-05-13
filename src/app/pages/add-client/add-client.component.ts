@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,11 +8,11 @@ import {
 } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
-import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
-import { map, mergeMap, of, switchMap, timeout } from 'rxjs';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { singleLanguageValidator } from '../../shared/regex/georgianLettersValidator';
 import { NgToastService } from 'ng-angular-popup';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
 import { ImageService } from '../../shared/services/image.service';
 
@@ -29,7 +29,9 @@ import { ImageService } from '../../shared/services/image.service';
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
 })
-export class AddClientComponent implements OnInit {
+export class AddClientComponent implements OnInit, OnDestroy {
+  mySub$ = new Subject();
+
   form: FormGroup = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -141,28 +143,22 @@ export class AddClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ActivatedRoute.params
-      .pipe(
-        mergeMap((params) => {
-          if (params['id']) {
-            return this.ClientService.getCurrentClient(params['id']);
-          } else return of(null);
-        }),
-        map((res) => {
-          if (res) {
-            this.clientId = res.id;
-            this.form.patchValue(res);
-          }
-        })
-      )
-      .subscribe();
+    this.ActivatedRoute.data.pipe(takeUntil(this.mySub$)).subscribe((res) => {
+      const clientInfo = res['client'];
+
+      if (clientInfo) {
+        this.clientId = clientInfo.id;
+        this.form.patchValue(clientInfo);
+      }
+    });
   }
 
   onSubmit() {
     if (this.form.valid) {
       if (this.isEdit) {
-        this.ClientService.editClient(this.clientId, this.form.value).subscribe(
-          {
+        this.ClientService.editClient(this.clientId, this.form.value)
+          .pipe(takeUntil(this.mySub$))
+          .subscribe({
             next: () => {
               this.NgToastService.success({
                 detail: 'Success Messege',
@@ -176,25 +172,26 @@ export class AddClientComponent implements OnInit {
                 summary: 'Client edited unsuccessfully',
               });
             },
-          }
-        );
+          });
       } else {
-        this.ClientService.addClient(this.form.value).subscribe({
-          next: () => {
-            this.NgToastService.success({
-              detail: 'Success Messege',
-              summary: 'Client edited successfully',
-            });
+        this.ClientService.addClient(this.form.value)
+          .pipe(takeUntil(this.mySub$))
+          .subscribe({
+            next: () => {
+              this.NgToastService.success({
+                detail: 'Success Messege',
+                summary: 'Client edited successfully',
+              });
 
-            this.Router.navigate(['/']);
-          },
-          error: () => {
-            this.NgToastService.error({
-              detail: 'Error Messege',
-              summary: 'Client edited unsuccessfully',
-            });
-          },
-        });
+              this.Router.navigate(['/']);
+            },
+            error: () => {
+              this.NgToastService.error({
+                detail: 'Error Messege',
+                summary: 'Client edited unsuccessfully',
+              });
+            },
+          });
       }
       {
       }
@@ -234,7 +231,9 @@ export class AddClientComponent implements OnInit {
     // uploadImage($event: any) {
     //   console.log($event);
     //   this.file = $event.target.files[0];
+  }
 
-    
+  ngOnDestroy(): void {
+    this.mySub$.next(null), this.mySub$.complete();
   }
 }

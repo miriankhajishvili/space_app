@@ -1,35 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  Router,
-  RouterLink,
-  RouterModule,
-} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ClientService } from '../../shared/services/client.service';
-import { Observable, tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { IClient } from '../../shared/interfaces/client.interface';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
-  NgModel,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { MultiSelect, MultiSelectModule } from 'primeng/multiselect';
+import { MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
 import { ICard } from '../../shared/interfaces/card.interface';
 import { CardService } from '../../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 
-interface CardTypes {
+interface OptionsType {
   name: string;
 }
 @Component({
@@ -50,7 +43,8 @@ interface CardTypes {
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
 })
-export class ClientDetailComponent implements OnInit {
+export class ClientDetailComponent implements OnInit, OnDestroy {
+  mySub$ = new Subject();
   cardForm!: FormGroup;
 
   activeId!: number;
@@ -60,9 +54,13 @@ export class ClientDetailComponent implements OnInit {
   visible: boolean = false;
   currentUSerCards: any[] = [];
 
-  types: CardTypes[] = [];
-  currency: CardTypes[] = [];
-  selectedCurrency!: CardTypes[];
+  types: OptionsType[] = [
+    { name: 'მიმდინარე' },
+    { name: 'შემნახველი' },
+    { name: 'დაგროვებითი' },
+  ];
+  currency: OptionsType[] = [{ name: 'USD' }, { name: 'GEL' }, { name: 'EUR' }];
+  selectedCurrency!: OptionsType[];
   isEditing: boolean = false;
   cardToEdit: ICard | null = null;
 
@@ -83,15 +81,8 @@ export class ClientDetailComponent implements OnInit {
 
     this.clientService
       .getCurrentClient(this.activeId)
+      .pipe(takeUntil(this.mySub$))
       .subscribe((res: IClient) => (this.currentClient = res));
-
-    this.types = [
-      { name: 'მიმდინარე' },
-      { name: 'შემნახველი' },
-      { name: 'დაგროვებითი' },
-    ];
-
-    this.currency = [{ name: 'USD' }, { name: 'GEL' }, { name: 'EUR' }];
   }
   getImageSource(cardType: string) {
     const basePath = 'assets/images/';
@@ -127,16 +118,18 @@ export class ClientDetailComponent implements OnInit {
 
   getCards() {
     const activeId = this.activateRoute.snapshot.params['id'];
-    this.cardService.getCards().subscribe((res) => {
-      res.forEach((eachCard: ICard) => {
-        if (eachCard.userID === activeId) {
-          this.currentUSerCards.push(eachCard);
-        }
+    this.cardService
+      .getCards()
+      .pipe(takeUntil(this.mySub$))
+      .subscribe((res) => {
+        res.forEach((eachCard: ICard) => {
+          if (eachCard.userID === activeId) {
+            this.currentUSerCards.push(eachCard);
+          }
+        });
       });
-    });
   }
   showDialog(card?: ICard) {
-   
     if (card) {
       this.isEditing = true;
       this.cardToEdit = card;
@@ -159,8 +152,6 @@ export class ClientDetailComponent implements OnInit {
   }
 
   onSubmit(visible: boolean) {
-  
-
     if (this.cardForm.invalid)
       return this.NgToastService.error({
         detail: 'Error Messege',
@@ -177,18 +168,21 @@ export class ClientDetailComponent implements OnInit {
         currencies: formData.currencies,
         isActive: formData.isActive,
       };
-      this.cardService.editCard(editedCard).subscribe(() => {
-         this.NgToastService.success({
-        detail: 'Success Messege',
-        summary: 'Card was eddited successfully',
-      });
-        const index = this.currentUSerCards.findIndex(
-          (card) => card.id === editedCard.id
-        );
-        if (index !== -1) {
-          this.currentUSerCards[index] = editedCard;
-        }
-      });
+      this.cardService
+        .editCard(editedCard)
+        .pipe(takeUntil(this.mySub$))
+        .subscribe(() => {
+          this.NgToastService.success({
+            detail: 'Success Messege',
+            summary: 'Card was eddited successfully',
+          });
+          const index = this.currentUSerCards.findIndex(
+            (card) => card.id === editedCard.id
+          );
+          if (index !== -1) {
+            this.currentUSerCards[index] = editedCard;
+          }
+        });
     } else {
       const newCard = {
         userID: this.currentClient?.id,
@@ -196,13 +190,16 @@ export class ClientDetailComponent implements OnInit {
         currencies: formData.currencies,
         isActive: 'true',
       };
-      this.cardService.addCard(newCard).subscribe((addedCard) => {
-        if (!this.currentUSerCards.find((card) => card.id === addedCard.id)) {
-          this.currentUSerCards.push(addedCard);
-        }
-        this.cardForm.reset();
-        this.cardForm.markAllAsTouched();
-      });
+      this.cardService
+        .addCard(newCard)
+        .pipe(takeUntil(this.mySub$))
+        .subscribe((addedCard) => {
+          if (!this.currentUSerCards.find((card) => card.id === addedCard.id)) {
+            this.currentUSerCards.push(addedCard);
+          }
+          this.cardForm.reset();
+          this.cardForm.markAllAsTouched();
+        });
       this.NgToastService.success({
         detail: 'Success Messege',
         summary: 'Card added successfully',
@@ -219,14 +216,20 @@ export class ClientDetailComponent implements OnInit {
   }
 
   deleteCard(id: number) {
-    this.cardService.deleteCard(id).subscribe(() => {
-      this.NgToastService.success({
-        detail: 'Success Messege',
-        summary: 'Card deleted successfully',
+    this.cardService
+      .deleteCard(id)
+      .pipe(takeUntil(this.mySub$))
+      .subscribe(() => {
+        this.NgToastService.success({
+          detail: 'Success Messege',
+          summary: 'Card deleted successfully',
+        });
+        this.currentUSerCards = this.currentUSerCards.filter(
+          (card) => card.id !== id
+        );
       });
-      this.currentUSerCards = this.currentUSerCards.filter(
-        (card) => card.id !== id
-      );
-    });
+  }
+  ngOnDestroy(): void {
+    this.mySub$.next(null), this.mySub$.complete();
   }
 }

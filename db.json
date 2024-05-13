@@ -1,197 +1,7 @@
 {
   "clients": [
     {
-      "firstname": "GELA",
-      "lastname": "GELA",
-      "personalid": "98765432109",
-      "gender": "Male",
-      "phonenumber": "599999999",
-      "address": {
-        "address": "666 Pine Street",
-        "city": "Pinetown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "777 Maple Avenue",
-        "currentCity": "Mapletown",
-        "currentCountry": "Canada"
-      },
-      "img": "C:\\fakepath\\1.png.jpg",
-      "id": "13"
-    },
-    {
-      "id": "14",
-      "firstname": "Mia",
-      "lastname": "Rodriguez",
-      "personalid": "98765432110",
-      "gender": "Female",
-      "phonenumber": "222222222",
-      "address": {
-        "address": "888 Cedar Lane",
-        "city": "Cedartown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "111 Oak Lane",
-        "currentCity": "Oaktown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\14.png.jpg"
-    },
-    {
-      "id": "15",
-      "firstname": "Alexander",
-      "lastname": "Lopez",
-      "personalid": "98765432111",
-      "gender": "Male",
-      "phonenumber": "111111111",
-      "address": {
-        "address": "999 Elm Street",
-        "city": "Elmtown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "222 Pine Street",
-        "currentCity": "Pinetown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\15.png.jpg"
-    },
-    {
-      "id": "16",
-      "firstname": "Ava",
-      "lastname": "Hernandez",
-      "personalid": "98765432112",
-      "gender": "Female",
-      "phonenumber": "333333333",
-      "address": {
-        "address": "333 Maple Street",
-        "city": "Mapletown",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "444 Cedar Avenue",
-        "currentCity": "Cedartown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\16.png.jpg"
-    },
-    {
-      "id": "17",
-      "firstname": "Noah",
-      "lastname": "Gonzalez",
-      "personalid": "98765432113",
-      "gender": "Male",
-      "phonenumber": "444444444",
-      "address": {
-        "address": "555 Oak Lane",
-        "city": "Oaktown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "666 Elm Street",
-        "currentCity": "Elmtown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\17.png.jpg"
-    },
-    {
-      "id": "18",
-      "firstname": "Charlotte",
-      "lastname": "Rodriguez",
-      "personalid": "98765432114",
-      "gender": "Female",
-      "phonenumber": "555555555",
-      "address": {
-        "address": "777 Pine Street",
-        "city": "Pinetown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "888 Maple Avenue",
-        "currentCity": "Mapletown",
-        "currentCountry": "Canada"
-      },
-      "img": "C:\\fakepath\\18.png.jpg"
-    },
-    {
-      "id": "19",
-      "firstname": "Liam",
-      "lastname": "Martinez",
-      "personalid": "98765432115",
-      "gender": "Male",
-      "phonenumber": "666666666",
-      "address": {
-        "address": "999 Cedar Lane",
-        "city": "Cedartown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "111 Oak Lane",
-        "currentCity": "Oaktown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\19.png.jpg"
-    },
-    {
-      "id": "20",
-      "firstname": "Amelia",
-      "lastname": "Garcia",
-      "personalid": "98765432116",
-      "gender": "Female",
-      "phonenumber": "888888888",
-      "address": {
-        "address": "222 Elm Street",
-        "city": "Elmtown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "333 Pine Street",
-        "currentCity": "Pinetown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\20.png.jpg"
-    },
-    {
-      "id": "21",
-      "firstname": "Benjamin",
-      "lastname": "Lopez",
-      "personalid": "98765432117",
-      "gender": "Male",
-      "phonenumber": "999999999",
-      "address": {
-        "address": "444 Maple Street",
-        "city": "Mapletown",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "555 Cedar Avenue",
-        "currentCity": "Cedartown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\21.png.jpg"
-    },
-    {
-      "id": "22",
-      "firstname": "Harper",
-      "lastname": "Hernandez",
-      "personalid": "98765432118",
-      "gender": "Female",
-      "phonenumber": "222222222",
-      "address": {
-        "address": "666 Oak Lane",
-        "city": "Oaktown",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "777 Elm Street",
-        "currentCity": "Elmtown",
-        "currentCountry": "USA"
-      },
-      "img": "C:\\fakepath\\22.png.jpg"
-    },
-    {
-      "id": "4",
+      "id": "5",
       "firstname": "Mirian",
       "lastname": "Khajishvili",
       "personalid": "61004068063",
@@ -200,15 +10,585 @@
       "address": {
         "address": "TBS-1475545, 1622 E Ayre street",
         "city": "Wilmington",
-        "country": "aasdasdA"
+        "country": "Hi"
       },
       "currentAddress": {
-        "currentAddress": "aasdasdA",
-        "currentCity": "aasdasdA",
-        "currentCountry": "aasdasdA"
+        "currentAddress": "Hi",
+        "currentCity": "Hi",
+        "currentCountry": "Hi"
+      },
+      "img": "C:\\fakepath\\1.png.jpg"
+    },
+    {
+      "id": "1",
+      "firstname": "John",
+      "lastname": "Doe",
+      "personalid": "1234567890",
+      "gender": "Male",
+      "phonenumber": "123456789",
+      "address": {
+          "address": "123 Main Street",
+          "city": "Anytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Elm Street",
+          "currentCity": "Othertown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\1.png.jpg"
+  },
+  {
+      "id": "2",
+      "firstname": "Jane",
+      "lastname": "Doe",
+      "personalid": "0987654321",
+      "gender": "Female",
+      "phonenumber": "987654321",
+      "address": {
+          "address": "456 Oak Avenue",
+          "city": "Smalltown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "789 Maple Drive",
+          "currentCity": "Tinytown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\2.png.jpg"
+  },
+  {
+      "id": "3",
+      "firstname": "Michael",
+      "lastname": "Smith",
+      "personalid": "2468013579",
+      "gender": "Male",
+      "phonenumber": "456789012",
+      "address": {
+          "address": "789 Pine Road",
+          "city": "Villagetown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Cedar Lane",
+          "currentCity": "Ruraltown",
+          "currentCountry": "USA"
       },
       "img": "C:\\fakepath\\3.png.jpg"
-    }
+  },
+  {
+      "id": "4",
+      "firstname": "Emily",
+      "lastname": "Johnson",
+      "personalid": "1357924680",
+      "gender": "Female",
+      "phonenumber": "654321098",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\4.png.jpg"
+  },
+  {
+      "id": "5",
+      "firstname": "David",
+      "lastname": "Brown",
+      "personalid": "3141592653",
+      "gender": "Male",
+      "phonenumber": "789012345",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\5.png.jpg"
+  },
+  {
+      "id": "6",
+      "firstname": "Mary",
+      "lastname": "Johnson",
+      "personalid": "9876543210",
+      "gender": "Female",
+      "phonenumber": "9876543210",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\6.png.jpg"
+  },
+  {
+      "id": "7",
+      "firstname": "James",
+      "lastname": "Smith",
+      "personalid": "1230987654",
+      "gender": "Male",
+      "phonenumber": "1230987654",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\7.png.jpg"
+  },
+  {
+      "id": "8",
+      "firstname": "Sarah",
+      "lastname": "Williams",
+      "personalid": "4567890123",
+      "gender": "Female",
+      "phonenumber": "4567890123",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\8.png.jpg"
+  },
+  {
+      "id": "9",
+      "firstname": "Christopher",
+      "lastname": "Jones",
+      "personalid": "3141592653",
+      "gender": "Male",
+      "phonenumber": "3141592653",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\9.png.jpg"
+  },
+  {
+      "id": "10",
+      "firstname": "Amanda",
+      "lastname": "Brown",
+      "personalid": "0000000001",
+      "gender": "Female",
+      "phonenumber": "0000000001",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\10.png.jpg"
+  },
+  {
+      "id": "11",
+      "firstname": "Kevin",
+      "lastname": "Taylor",
+      "personalid": "1111111111",
+      "gender": "Male",
+      "phonenumber": "1111111111",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\11.png.jpg"
+  },
+  {
+      "id": "12",
+      "firstname": "Jessica",
+      "lastname": "Martinez",
+      "personalid": "2222222222",
+      "gender": "Female",
+      "phonenumber": "2222222222",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\12.png.jpg"
+  },
+  {
+      "id": "13",
+      "firstname": "Daniel",
+      "lastname": "Garcia",
+      "personalid": "3333333333",
+      "gender": "Male",
+      "phonenumber": "3333333333",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\13.png.jpg"
+  },
+  {
+      "id": "14",
+      "firstname": "Ashley",
+      "lastname": "Rodriguez",
+      "personalid": "4444444444",
+      "gender": "Female",
+      "phonenumber": "4444444444",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\14.png.jpg"
+  },
+  {
+      "id": "15",
+      "firstname": "David",
+      "lastname": "Lopez",
+      "personalid": "5555555555",
+      "gender": "Male",
+      "phonenumber": "5555555555",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\15.png.jpg"
+  },
+  {
+      "id": "16",
+      "firstname": "Brittany",
+      "lastname": "Perez",
+      "personalid": "6666666666",
+      "gender": "Female",
+      "phonenumber": "6666666666",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\16.png.jpg"
+  },
+  {
+      "id": "17",
+      "firstname": "Joshua",
+      "lastname": "Gonzalez",
+      "personalid": "7777777777",
+      "gender": "Male",
+      "phonenumber": "7777777777",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\17.png.jpg"
+  },
+  {
+      "id": "18",
+      "firstname": "Brandon",
+      "lastname": "Hernandez",
+      "personalid": "8888888888",
+      "gender": "Male",
+      "phonenumber": "8888888888",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\18.png.jpg"
+  },
+  {
+      "id": "19",
+      "firstname": "Megan",
+      "lastname": "Lopez",
+      "personalid": "9999999999",
+      "gender": "Female",
+      "phonenumber": "9999999999",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\19.png.jpg"
+  },
+  {
+      "id": "20",
+      "firstname": "Eric",
+      "lastname": "Martinez",
+      "personalid": "0000000000",
+      "gender": "Male",
+      "phonenumber": "0000000000",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\20.png.jpg"
+  },
+  {
+      "id": "21",
+      "firstname": "Lauren",
+      "lastname": "Gonzalez",
+      "personalid": "1111111111",
+      "gender": "Female",
+      "phonenumber": "1111111111",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\21.png.jpg"
+  },
+  {
+      "id": "22",
+      "firstname": "Matthew",
+      "lastname": "Hernandez",
+      "personalid": "2222222222",
+      "gender": "Male",
+      "phonenumber": "2222222222",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\22.png.jpg"
+  },
+  {
+      "id": "23",
+      "firstname": "Samantha",
+      "lastname": "Lopez",
+      "personalid": "3333333333",
+      "gender": "Female",
+      "phonenumber": "3333333333",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\23.png.jpg"
+  },
+  {
+      "id": "24",
+      "firstname": "Taylor",
+      "lastname": "Martinez",
+      "personalid": "4444444444",
+      "gender": "Male",
+      "phonenumber": "4444444444",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\24.png.jpg"
+  },
+  {
+      "id": "25",
+      "firstname": "Emily",
+      "lastname": "Gonzalez",
+      "personalid": "5555555555",
+      "gender": "Female",
+      "phonenumber": "5555555555",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\25.png.jpg"
+  },
+  {
+      "id": "26",
+      "firstname": "Jacob",
+      "lastname": "Hernandez",
+      "personalid": "6666666666",
+      "gender": "Male",
+      "phonenumber": "6666666666",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\26.png.jpg"
+  },
+  {
+      "id": "27",
+      "firstname": "Olivia",
+      "lastname": "Lopez",
+      "personalid": "7777777777",
+      "gender": "Female",
+      "phonenumber": "7777777777",
+      "address": {
+          "address": "789 Maple Drive",
+          "city": "Tinytown",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "012 Pine Road",
+          "currentCity": "Villagetown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\27.png.jpg"
+  },
+  {
+      "id": "28",
+      "firstname": "Andrew",
+      "lastname": "Martinez",
+      "personalid": "8888888888",
+      "gender": "Male",
+      "phonenumber": "8888888888",
+      "address": {
+          "address": "345 Birch Street",
+          "city": "Cityville",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "678 Willow Avenue",
+          "currentCity": "Metropolis",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\28.png.jpg"
+  },
+  {
+      "id": "29",
+      "firstname": "Gabriel",
+      "lastname": "Gonzalez",
+      "personalid": "9999999999",
+      "gender": "Male",
+      "phonenumber": "9999999999",
+      "address": {
+          "address": "901 Cedar Street",
+          "city": "Suburbia",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "234 Redwood Lane",
+          "currentCity": "Outskirts",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\29.png.jpg"
+  },
+  {
+      "id": "30",
+      "firstname": "Emma",
+      "lastname": "Hernandez",
+      "personalid": "0000000000",
+      "gender": "Female",
+      "phonenumber": "0000000000",
+      "address": {
+          "address": "123 Elm Street",
+          "city": "Springfield",
+          "country": "USA"
+      },
+      "currentAddress": {
+          "currentAddress": "456 Oak Avenue",
+          "currentCity": "Smalltown",
+          "currentCountry": "USA"
+      },
+      "img": "C:\\fakepath\\30.png.jpg"
+  }
   ],
   "cards": []
 }

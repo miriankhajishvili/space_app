@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import {
-  BehaviorSubject,
-  Observable,
-  ReplaySubject,
-  Subject,
-  share,
-} from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 
 @Injectable({
@@ -20,9 +14,7 @@ export class ClientService extends BaseService {
   getClients(pageRequest: pageRequest): Observable<myData> {
     const { page, search, sort } = pageRequest;
 
-   
     let pageDetail = `?_page=${page}`;
-   
 
     return this.get<myData>(
       `clients${pageDetail}&firstname=${search}&_sort=${sort}`
