@@ -36,8 +36,8 @@ import { CardService } from '../../shared/services/card.service';
     DialogModule,
     SortComponent,
   ],
-  templateUrl: './client.component.html',
-  styleUrl: './client.component.scss',
+  templateUrl: './clients-list.component.html',
+  styleUrl: './clients-list.component.scss',
   providers: [],
 })
 export class ClientComponent implements OnInit, OnDestroy {

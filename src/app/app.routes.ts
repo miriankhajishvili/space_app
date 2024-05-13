@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ClientComponent } from './pages/client/client.component';
+import { ClientComponent } from './pages/clients-list/clients-list.component';
 import { clientDetailResolver } from './core/resolver/client-detail.resolver';
 
 export const routes: Routes = [
@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: 'clients',
     loadComponent: () =>
-      import('./pages/client/client.component').then((m) => m.ClientComponent),
+      import('./pages/clients-list/clients-list.component').then((m) => m.ClientComponent),
   },
   {
     path: 'add-client',
