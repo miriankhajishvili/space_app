@@ -8,10 +8,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ImageService {
   constructor(private http: HttpClient) {}
-  uploadImage(data: any) {
-    const headers = new HttpHeaders();
-    return this.http.post(environment.apiUrl + 'clients', data, {
-      headers: headers,
-    });
-  }
+  // uploadImage(formData: FormData) {
+  //   return this.http.post<any>('http://localhost:3000/uploads', formData);
+  // }
+
+  
 }

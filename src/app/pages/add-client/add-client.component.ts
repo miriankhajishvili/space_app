@@ -32,6 +32,9 @@ import { ImageService } from '../../shared/services/image.service';
 export class AddClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
 
+  selectedFile!: File;
+  imageUrl: string | ArrayBuffer | null = null;
+
   form: FormGroup = new FormGroup({
     firstname: new FormControl('', [
       Validators.required,
@@ -132,14 +135,14 @@ export class AddClientComponent implements OnInit, OnDestroy {
     return this.form.controls['img'];
   }
 
-  selectedFile!: File;
+  
 
   constructor(
     private ClientService: ClientService,
     private ActivatedRoute: ActivatedRoute,
-    private Router: Router,
+    private router: Router,
     private NgToastService: NgToastService,
-    private ImageService: ImageService
+    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -153,7 +156,37 @@ export class AddClientComponent implements OnInit, OnDestroy {
     });
   }
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    // Preview the selected image
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.imageUrl = e.target.result;
+    };
+    reader.readAsDataURL(this.selectedFile);
+  }
+
   onSubmit() {
+
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('image', this.selectedFile, this.selectedFile.name);
+  
+      // this.imageService.uploadImage(formData).subscribe(
+      //   (res) => {
+      //     // Handle response, e.g., store image URL in a variable
+      //     const imageUrl = res.imageUrl;
+      //     console.log(res.imageUrl) // Assuming your server returns the URL of the uploaded image
+      //     // Navigate to the next component and pass the image URL as a parameter
+      //     this.router.navigate(['/'], { queryParams: { imageUrl } });
+      //   },
+      //   (error) => {
+      //     // Handle error, e.g., show error message
+      //     console.error('Image upload failed', error);
+      //   }
+      // );
+    }
+
     if (this.form.valid) {
       if (this.isEdit) {
         this.ClientService.editClient(this.clientId, this.form.value)
@@ -164,7 +197,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
                 detail: 'Success Messege',
                 summary: 'Client edited successfully',
               });
-              this.Router.navigate(['/']);
+              this.router.navigate(['/']);
             },
             error: () => {
               this.NgToastService.error({
@@ -183,7 +216,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
                 summary: 'Client edited successfully',
               });
 
-              this.Router.navigate(['/']);
+              this.router.navigate(['/']);
             },
             error: () => {
               this.NgToastService.error({
@@ -232,6 +265,8 @@ export class AddClientComponent implements OnInit, OnDestroy {
     //   console.log($event);
     //   this.file = $event.target.files[0];
   }
+
+
 
   ngOnDestroy(): void {
     this.mySub$.next(null), this.mySub$.complete();
