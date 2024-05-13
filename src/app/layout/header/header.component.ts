@@ -4,10 +4,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -24,7 +22,15 @@ import {
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  queryParams = {
+    page: 1,
+  };
+
+  onClick() {
+    this.router.navigate(['/clients'], { queryParams: this.queryParams });
+  }
 
   ngOnInit() {}
 }

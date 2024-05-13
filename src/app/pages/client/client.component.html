@@ -10,7 +10,11 @@
             placeholder="Search client by firstname"
           />
         </span>
-        <p-button class="myBtnm" (click)="visible.value = true" label="Sorting" />
+        <p-button
+          class="myBtnm"
+          (click)="visible.value = true"
+          label="Sorting"
+        />
       </div>
       <app-sort
         (sortValue)="receiveValue($event)"
@@ -39,11 +43,16 @@
                   <strong>{{ client.firstname }} {{ client.lastname }}</strong>
                 </h4>
                 <p>For more detailed information, please visit my profile</p>
-                <div style="display: flex; gap: 10px;">
-           
-                 <p-button  [routerLink]="['/client-detail', client.id]" label="Show Profile"></p-button>
-                 <p-button [style]="{'background-color': '#CD1010',  'border': 'none'}" [routerLink]="['/client-detail', client.id]" label="Delete Client" (onClick)="onDelete(client.id)"></p-button>
-          
+                <div style="display: flex; gap: 10px">
+                  <p-button
+                    [routerLink]="['/client-detail', client.id]"
+                    label="Show Profile"
+                  ></p-button>
+                  <p-button
+                    [style]="{ 'background-color': '#CD1010', border: 'none' }"
+                    label="Delete Client"
+                    (onClick)="onDelete(client.id)"
+                  ></p-button>
                 </div>
               </div>
             </div>
@@ -52,7 +61,7 @@
       </div>
     </div>
   </div>
-  <div class="card flex justify-content-center">
+  <div *ngIf="" class="card flex justify-content-center">
     <p-paginator
       [first]="first"
       [rows]="10"

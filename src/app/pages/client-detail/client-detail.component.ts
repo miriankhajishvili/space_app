@@ -136,7 +136,7 @@ export class ClientDetailComponent implements OnInit {
     });
   }
   showDialog(card?: ICard) {
-    console.log(this.cardType);
+   
     if (card) {
       this.isEditing = true;
       this.cardToEdit = card;
@@ -159,7 +159,7 @@ export class ClientDetailComponent implements OnInit {
   }
 
   onSubmit(visible: boolean) {
-    console.log(this.cardType);
+  
 
     if (this.cardForm.invalid)
       return this.NgToastService.error({

@@ -50,13 +50,12 @@ export class ClientComponent implements OnInit, OnDestroy {
     searchinput: new FormControl(null),
   });
 
-  page: number = +this.activatedRouter.snapshot.queryParams['page'] + 1 || 0;
-  first: number = 10
-
+  page: number = +this.activatedRouter.snapshot.queryParams['page'] || 1;
+  first: number = this.page * 10 - 10;
 
   pagination: pageRequest = {
-    page: +this.activatedRouter.snapshot.queryParams['page'] || 0,
-    row : 10,
+    page: this.page,
+    row: 10,
     search: '',
     sort: '',
   };
@@ -73,9 +72,17 @@ export class ClientComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.allcients = this.clientService.updatedClientLis$.pipe(
+    this.router.navigate([], {
+      relativeTo: this.activatedRouter,
+      queryParams: { page: this.page },
+      queryParamsHandling: 'merge',
+    });
+
+   console.log(this.page)
+   console.log()
+
+    this.allcients = this.clientService.updatedClientList$.pipe(
       switchMap(() => {
-       
         return this.clientService.getClients(this.pagination);
       }),
       map((res) => {
@@ -93,28 +100,28 @@ export class ClientComponent implements OnInit, OnDestroy {
       .subscribe((value) => {
         this.pagination = {
           ...this.pagination,
-          page: 0,
+          page: 1,
           search: value.searchinput,
         };
 
-        this.clientService.updatedClientLis$.next(true);
+        this.clientService.updatedClientList$.next(true);
       });
   }
 
   onPageChange(event: any) {
     this.inputValueChange();
 
-    this.pagination.page = event.page  || 0;
-    this.clientService.updatedClientLis$.next(true);
 
+    this.pagination.page = event.page + 1 || 0;
+
+    if (this.page !== this.first) {
+      this.clientService.updatedClientList$.next(true);
+    }
     this.router.navigate([], {
       relativeTo: this.activatedRouter,
       queryParams: { page: event.page + 1 },
       queryParamsHandling: 'merge',
     });
-
-    console.log(event.first);
-    console.log(event.row);
   }
 
   onDelete(id: number) {
@@ -127,13 +134,13 @@ export class ClientComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((res) => {
-        this.clientService.updatedClientLis$.next(true);
+        this.clientService.updatedClientList$.next(true);
       });
   }
 
   receiveValue($event: string) {
     this.pagination.sort = $event;
-    this.clientService.updatedClientLis$.next(true);
+    this.clientService.updatedClientList$.next(true);
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);

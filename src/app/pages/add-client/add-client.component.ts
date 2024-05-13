@@ -235,6 +235,6 @@ export class AddClientComponent implements OnInit {
     //   console.log($event);
     //   this.file = $event.target.files[0];
 
-    console.log('hi');
+    
   }
 }

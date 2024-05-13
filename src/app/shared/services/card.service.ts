@@ -28,10 +28,7 @@ export class CardService extends BaseService {
     
   }
 
-  deleteClient(id: number | undefined): Observable<IClient> {
-    if (id === undefined) {
-      throw new Error('ID cannot be undefined');
-    }
+  deleteClient(id: number): Observable<IClient> {
     return this.getCards().pipe(
       mergeMap(cards => {
         const clientCards = cards.filter(card => card.userID === id);
@@ -39,14 +36,16 @@ export class CardService extends BaseService {
         clientCards.forEach(card => {
           deleteRequests.push(this.deleteCard(card.id));
         });
-        return forkJoin(deleteRequests);
-      }),
-      mergeMap(() => {
-        return this.delete<IClient>(`clients/${id}`);
+        if (deleteRequests.length === 0) {
+          return this.delete<IClient>(`clients/${id}`);
+        } else {
+          return forkJoin(deleteRequests).pipe(
+            mergeMap(() => this.delete<IClient>(`clients/${id}`))
+          );
+        }
       })
     );
   }
-
   deleteCard(id: number | undefined): Observable<ICard> {
     return this.delete<ICard>(`cards/${id}`);
   }
