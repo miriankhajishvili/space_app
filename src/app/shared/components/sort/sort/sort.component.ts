@@ -37,10 +37,7 @@ export class SortComponent {
 
   sortClient!: IClient;
 
-   myQueryParams = {
-    param1: 'value1',
-    param2: 'value2'
-  };
+
 
   constructor(private router: Router) { }
 
@@ -62,6 +59,6 @@ export class SortComponent {
  
     this.sortValue.emit(this.selectedProperty?.key);
 
-    this.router.navigate(['/home', , { queryParams: this.myQueryParams.param1 }])
+    
   }
 }

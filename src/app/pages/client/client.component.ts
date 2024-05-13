@@ -15,7 +15,6 @@ import {
 } from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
 import { PaginatorModule } from 'primeng/paginator';
-import { LazyLoadEvent } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -52,6 +51,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   });
 
   page: number = +this.activatedRouter.snapshot.queryParams['page'] + 1 || 0;
+  first: number = 10
 
 
   pagination: pageRequest = {

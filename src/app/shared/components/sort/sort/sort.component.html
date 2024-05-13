@@ -11,8 +11,8 @@
         >Sort client by :
       </label>
 
-      <p-dropdown
-        
+      <p-dropdown [style]="{'margin-top': '15px'}"
+        appendTo="body"
         [options]="sortProperties"
         [(ngModel)]="selectedProperty"
         optionLabel="name"

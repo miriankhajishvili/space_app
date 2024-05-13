@@ -1,5 +1,5 @@
 {
-  "clients":[
+  "clients": [
     {
       "id": "1",
       "firstname": "Mirian",
@@ -569,8 +569,46 @@
         "currentCountry": "USA"
       },
       "img": "C:\\fakepath\\30.png.jpg"
+    },
+    {
+      "id": "3",
+      "firstname": "asdasda",
+      "lastname": "dasdasd",
+      "personalid": "56464646464",
+      "gender": "Female",
+      "phonenumber": "564646464",
+      "address": {
+        "address": "adasda",
+        "city": "adasdasda",
+        "country": "asdadasd"
+      },
+      "currentAddress": {
+        "currentAddress": "adad",
+        "currentCity": "asdasd",
+        "currentCountry": "asdasd"
+      },
+      "img": "C:\\fakepath\\1.png.jpg"
     }
   ],
-  
-  "cards": []
+  "cards": [
+    {
+      "id": "3",
+      "userID": "1",
+      "cardType": {
+        "name": "მიმდინარე"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
+    }
+  ]
 }

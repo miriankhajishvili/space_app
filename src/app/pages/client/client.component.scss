@@ -10,7 +10,16 @@
     margin-top: 2%;
     background: #e80d0d;
   }
-  
+
+  .p-toolbar-group-center {
+    justify-content: center;
+
+    input {
+      width: 300px;
+    }
+    
+    }
+
   /* Link styling */
   a {
     color: #f96332;
@@ -99,3 +108,12 @@
   }
   
 
+  :host ::ng-deep .p-ripple.p-element.p-button.p-component { 
+    border-radius: 15px;
+
+    
+}
+
+:host ::ng-deep .p-button-labeb {
+  background-color: red;
+}

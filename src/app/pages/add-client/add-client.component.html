@@ -31,7 +31,7 @@
                     Please enter a value, empty space is not allowed.</span
                   >
                   <span *ngIf="firstname?.errors?.['pattern']">
-                   Please enter a value, empty space is not allowed.
+                    Please enter a value, empty space is not allowed.
                   </span>
                   <span *ngIf="firstname?.errors?.['singleLanguage']">
                     Please write in English or In Georgian
@@ -56,7 +56,7 @@
                     Please enter a value, empty space is not allowed.</span
                   >
                   <span *ngIf="lastname?.errors?.['pattern']">
-                   Please enter a value, empty space is not allowed.
+                    Please enter a value, empty space is not allowed.
                   </span>
                   <span *ngIf="lastname?.errors?.['singleLanguage']">
                     Please write in English or In Georgian
@@ -79,7 +79,7 @@
                     <br />
                     <span *ngIf="personalid?.errors?.['pattern']">
                       Please enter only digits.
-                     </span>
+                    </span>
                     <span
                       *ngIf="personalid?.errors?.['minlength'] || personalid?.errors?.['maxlength']"
                     >
@@ -255,16 +255,16 @@
                   id="formFileLg"
                   type="file"
                   accept="image/jpeg, image/png, image/jpg"
-          
                 />
               </div>
 
               <button
+                [style]="{ 'margin-top': '20px' }"
                 type="button"
                 (click)="onSubmit()"
                 class="btn btn-primary btn-lg"
               >
-                {{ isEdit ? "Edit" : "Register client" }}
+                {{ isEdit ? "Edit Client" : "Register Client" }}
               </button>
             </form>
           </div>

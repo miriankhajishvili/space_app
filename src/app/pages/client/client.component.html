@@ -5,23 +5,23 @@
         <span class="p-input-icon-left">
           <i class="pi pi-search"></i>
           <input
-          formControlName="searchinput"
-          pInputText
-            placeholder="Search"
-            />
-          </span>
-          
-        </div>
-        <app-sort (sortValue)="receiveValue($event)" [visible]="visible" ></app-sort>
-        <p-button (click)="visible.value = true" label="Sorting" />
-
-      </form>
-      <div class="row">
-        <div
+            formControlName="searchinput"
+            pInputText
+            placeholder="Search client by firstname"
+          />
+        </span>
+        <p-button class="myBtnm" (click)="visible.value = true" label="Sorting" />
+      </div>
+      <app-sort
+        (sortValue)="receiveValue($event)"
+        [visible]="visible"
+      ></app-sort>
+    </form>
+    <div class="row">
+      <div
         class="col-xl-6 col-lg-7 col-md-12"
-        *ngFor="let client of ( allcients | async) "
-        >
-    
+        *ngFor="let client of allcients | async"
+      >
         <div class="card profile-header">
           <div class="body">
             <div class="row">
@@ -39,20 +39,11 @@
                   <strong>{{ client.firstname }} {{ client.lastname }}</strong>
                 </h4>
                 <p>For more detailed information, please visit my profile</p>
-                <div>
-                  <button
-                    class="btn btn-round btn-gray"
-                    [routerLink]="['/client-detail', client.id]"
-                  >
-                    Show Profile
-                  </button>
-                  <button
-                    class="btn btn-round btn-red"
-                    color="red"
-                    (click)="onDelete(client.id)"
-                  >
-                    Delete User
-                  </button>
+                <div style="display: flex; gap: 10px;">
+           
+                 <p-button  [routerLink]="['/client-detail', client.id]" label="Show Profile"></p-button>
+                 <p-button [style]="{'background-color': '#CD1010',  'border': 'none'}" [routerLink]="['/client-detail', client.id]" label="Delete Client" (onClick)="onDelete(client.id)"></p-button>
+          
                 </div>
               </div>
             </div>
@@ -63,8 +54,7 @@
   </div>
   <div class="card flex justify-content-center">
     <p-paginator
-    
-      [first]="page * 10"
+      [first]="first"
       [rows]="10"
       [totalRecords]="totalRecords"
       (onPageChange)="onPageChange($event)"
