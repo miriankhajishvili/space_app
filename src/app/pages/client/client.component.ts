@@ -4,7 +4,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   Observable,
   Subject,
@@ -51,60 +51,70 @@ export class ClientComponent implements OnInit, OnDestroy {
     searchinput: new FormControl(null),
   });
 
-  first: number = 0;
-  rows: number = 10;
+  page: number = +this.activatedRouter.snapshot.queryParams['page'] + 1 || 0;
+
 
   pagination: pageRequest = {
-    first: 0,
-    rows: 10,
+    page: +this.activatedRouter.snapshot.queryParams['page'] || 0,
+    row : 10,
     search: '',
     sort: '',
   };
 
-  constructor(private clientService: ClientService, private cardService: CardService) {}
+  visible = {
+    value: false,
+  };
+
+  constructor(
+    private clientService: ClientService,
+    private cardService: CardService,
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.allcients = this.clientService.updatedClientLis$.pipe(
       switchMap(() => {
-        return this.clientService.getClients(this.pagination).pipe(
-          map((res) => {
-            this.totalRecords = res.items;
-            return res.data;
-          })
-        );
+       
+        return this.clientService.getClients(this.pagination);
+      }),
+      map((res) => {
+        this.totalRecords = res.items;
+        return res.data;
       })
     );
-
-    // this.clientService
-    //   .getClients(this.pagination)
-    //   .pipe(takeUntil(this.mySub$))
-    //   .subscribe((res) => {
-    //     this.allClients$ = res.data;
-    //     this.totalRecords = res.items;
-    //   });
-
-    this.clientService.updatedClientLis$.next(null);
 
     this.inputValueChange();
   }
 
   inputValueChange() {
-    this.form.valueChanges.pipe(debounceTime(1000)).subscribe((value) => {
-      this.pagination = {
-        ...this.pagination,
-        first: 0,
-        search: value.searchinput,
-      };
+    this.form.valueChanges
+      .pipe(takeUntil(this.mySub$), debounceTime(1000))
+      .subscribe((value) => {
+        this.pagination = {
+          ...this.pagination,
+          page: 0,
+          search: value.searchinput,
+        };
 
-      this.clientService.updatedClientLis$.next(null);
-    });
+        this.clientService.updatedClientLis$.next(true);
+      });
   }
 
-  onPageChange(event: LazyLoadEvent) {
+  onPageChange(event: any) {
     this.inputValueChange();
 
-    this.pagination.first = event.first || 0;
-    this.clientService.updatedClientLis$.next(null);
+    this.pagination.page = event.page  || 0;
+    this.clientService.updatedClientLis$.next(true);
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRouter,
+      queryParams: { page: event.page + 1 },
+      queryParamsHandling: 'merge',
+    });
+
+    console.log(event.first);
+    console.log(event.row);
   }
 
   onDelete(id: number) {
@@ -117,8 +127,13 @@ export class ClientComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe((res) => {
-        this.clientService.updatedClientLis$.next(null);
+        this.clientService.updatedClientLis$.next(true);
       });
+  }
+
+  receiveValue($event: string) {
+    this.pagination.sort = $event;
+    this.clientService.updatedClientLis$.next(true);
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);

@@ -29,8 +29,8 @@ export interface IClient {
 
 
 export interface pageRequest {
-  first: number;
-  rows: number;
+  page: number;
+  row: number
   search: string | undefined | null;
   sort:string
  

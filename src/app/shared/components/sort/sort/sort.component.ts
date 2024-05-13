@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -6,10 +6,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { IClient } from '../../../interfaces/client.interface';
+import { Router } from '@angular/router';
 
-interface City {
+
+interface sortProp {
   name: string;
-  key: string
+  key: string;
 }
 
 @Component({
@@ -27,32 +29,39 @@ interface City {
   styleUrl: './sort.component.scss',
 })
 export class SortComponent {
-  visible: boolean = false;
+  @Input() visible = {
+    value: false,
+  };
 
-  sortClient!: IClient
+  @Output() sortValue = new EventEmitter<string>();
 
-  showDialog() {
-    this.visible = true;
-  }
+  sortClient!: IClient;
 
-  properties: City[] | undefined;
+   myQueryParams = {
+    param1: 'value1',
+    param2: 'value2'
+  };
 
-  selectedProperty: City | undefined;
+  constructor(private router: Router) { }
 
-  ngOnInit() {
-    this.properties = [
-      { name: 'First Name',key: 'firstname'  },
-      { name: 'Last Name', key: 'lastname' },
-      { name: 'Gender', key: 'gender' },
-      { name: 'Phone Number' , key: 'phonenumber' },
+  sortProperties: sortProp[] | undefined = [
+    { name: 'First Name', key: 'firstname' },
+    { name: 'Last Name', key: 'lastname' },
+    { name: 'Gender', key: 'gender' },
+    { name: 'Phone Number', key: 'phonenumber' },
+  ];
 
-    ];
-  }
+  selectedProperty: sortProp | undefined;
 
-  onSaveClick(){
+  ngOnInit() {}
 
-    this.visible = false
-    console.log(this.selectedProperty?.key)
-    
+
+
+  onSaveClick() {
+    this.visible.value = false;
+ 
+    this.sortValue.emit(this.selectedProperty?.key);
+
+    this.router.navigate(['/home', , { queryParams: this.myQueryParams.param1 }])
   }
 }

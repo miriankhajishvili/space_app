@@ -12,8 +12,9 @@
           </span>
           
         </div>
-        <app-sort ></app-sort>
-        
+        <app-sort (sortValue)="receiveValue($event)" [visible]="visible" ></app-sort>
+        <p-button (click)="visible.value = true" label="Sorting" />
+
       </form>
       <div class="row">
         <div
@@ -62,8 +63,9 @@
   </div>
   <div class="card flex justify-content-center">
     <p-paginator
-      [first]="first"
-      [rows]="rows"
+    
+      [first]="page * 10"
+      [rows]="10"
       [totalRecords]="totalRecords"
       (onPageChange)="onPageChange($event)"
     />

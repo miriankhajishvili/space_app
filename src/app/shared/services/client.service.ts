@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable, ReplaySubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject, share } from 'rxjs';
 import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ClientService extends BaseService {
-  currentClient$ = new ReplaySubject<IClient | undefined>();
+;
   private readonly localStorageKey = 'clientLastNumericId';
   lastNumericId: number = 0;
-  updatedClientLis$ = new ReplaySubject<myData | null>();
+  updatedClientLis$ = new BehaviorSubject<boolean>(false);
 
   getClients(pageRequest: pageRequest): Observable<myData> {
-    const { first, rows, search, sort } = pageRequest;
-    const page = first / rows + 1;
-    let pageDetail = `?_page=${page}`;
-
+    const { page, row ,search, sort } = pageRequest;
+    
+ 
+ 
+    let pageDetail = `?_page=${page + 1}`;
+    // console.log(page, pageDetail)
+    // console.log('before request')
     return this.get<myData>(
       `clients${pageDetail}&firstname=${search}&_sort=${sort}`
-    );
+    )
   }
 
   getCurrentClient(id: number): Observable<IClient> {
