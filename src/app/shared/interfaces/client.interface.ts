@@ -1,7 +1,7 @@
 export interface myData {
   first: number;
-  prev: any;
-  next: any;
+  prev: number;
+  next: number;
   last: number;
   pages: number;
   items: number;
@@ -25,6 +25,7 @@ export interface IClient {
     currentCountry: string;
   };
   img: string;
+ 
 }
 
 

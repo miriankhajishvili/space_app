@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IClient, myData, pageRequest } from '../interfaces/client.interface';
 
 @Injectable({
@@ -10,6 +10,8 @@ export class ClientService extends BaseService {
   private readonly localStorageKey = 'clientLastNumericId';
   lastNumericId: number = 0;
   updatedClientList$ = new BehaviorSubject<boolean>(false);
+
+
 
   getClients(pageRequest: pageRequest): Observable<myData> {
     const { page, search, sort } = pageRequest;

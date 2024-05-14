@@ -14,7 +14,6 @@ import { singleLanguageValidator } from '../../shared/regex/georgianLettersValid
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClientModule } from '@angular/common/http';
 import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
-import { ImageService } from '../../shared/services/image.service';
 
 @Component({
   selector: 'app-add-client',
@@ -73,14 +72,14 @@ export class AddClientComponent implements OnInit, OnDestroy {
       currentCountry: new FormControl('', Validators.required),
     }),
     img: new FormControl(''),
+  
   });
 
   clientId?: number;
   isEdit: boolean = this.ActivatedRoute.snapshot.url[0].path === 'edit-client';
-  file: any;
-  data: any;
+
   submitted = false;
-  base64: any;
+  base64!: ArrayBuffer | string | null;
 
   radioChangeHandler(value: any) {
     if (value.target.value) {
@@ -140,7 +139,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
     private ClientService: ClientService,
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
-    private NgToastService: NgToastService,
+    private NgToastService: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -150,18 +149,16 @@ export class AddClientComponent implements OnInit, OnDestroy {
       if (clientInfo) {
         this.clientId = clientInfo.id;
         this.form.patchValue(clientInfo);
-        console.log(clientInfo)
+
+        this.form.get('img')?.setValue(clientInfo.img);
       }
     });
 
-    console.log(this.form.value)
-
-    console.log(this.img)
+    this.base64;
   }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
-    // Preview the selected image
     const reader = new FileReader();
     reader.onload = (e: any) => {
       this.imageUrl = e.target.result;
@@ -182,10 +179,8 @@ export class AddClientComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    this.form.get('img')?.setValue(this.base64);
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('image', this.selectedFile, this.selectedFile.name);
+    if (this.base64) {
+      this.form.get('img')?.setValue(this.base64);
     }
 
     if (this.form.valid) {

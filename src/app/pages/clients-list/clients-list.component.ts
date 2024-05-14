@@ -20,6 +20,9 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { SortComponent } from '../../shared/components/sort/sort/sort.component';
 import { CardService } from '../../shared/services/card.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-client',
@@ -35,10 +38,12 @@ import { CardService } from '../../shared/services/card.service';
     ReactiveFormsModule,
     DialogModule,
     SortComponent,
+    ConfirmDialogModule,
+    ToastModule,
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
-  providers: [],
+  providers: [ConfirmationService, MessageService],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
@@ -68,7 +73,9 @@ export class ClientComponent implements OnInit, OnDestroy {
     private clientService: ClientService,
     private cardService: CardService,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -106,15 +113,14 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: any) {
-    console.log('Event PAge', event.page);
+   
 
-    console.log('Pagination PAge', this.pagination.page);
+   
     if (event.page + 1 == this.pagination.page) return;
     this.inputValueChange();
 
     this.pagination.page = event.page + 1 || 0;
-    console.log('Current Query', this.page);
-    console.log(this.first);
+   
 
     this.clientService.updatedClientList$.next(true);
 
@@ -124,21 +130,40 @@ export class ClientComponent implements OnInit, OnDestroy {
       queryParamsHandling: 'merge',
     });
 
-    console.log(this.page, this.first);
+ 
   }
 
-  onDelete(id: number) {
-    this.cardService
-      .deleteClient(id)
-      .pipe(
-        takeUntil(this.mySub$),
-        switchMap((res) => {
-          return this.clientService.getClients(this.pagination);
-        })
-      )
-      .subscribe((res) => {
-        this.clientService.updatedClientList$.next(true);
-      });
+  onDelete(id: number, event: Event) {
+    this.confirmationService.confirm({
+      message: 'Are you sure to delete client?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      target: event.target as EventTarget,
+
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      accept: () => {
+       
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Record deleted',
+        });
+        this.cardService
+          .deleteClient(id)
+          .pipe(
+            takeUntil(this.mySub$),
+            switchMap((res) => {
+              return this.clientService.getClients(this.pagination);
+            })
+          )
+          .subscribe((res) => {
+            this.clientService.updatedClientList$.next(true);
+          });
+      },
+    });
   }
 
   receiveValue($event: string) {
