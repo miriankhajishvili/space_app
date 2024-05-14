@@ -248,10 +248,15 @@
               <div class="row"></div>
               <div class="col-md-9 pe-5">
                 <h4>Upload Photo</h4>
-                <img  width="140px" *ngIf="selectedFile" [src]="imageUrl" width="100" height="100" alt="Selected Image" />
+                <img
+                
+                  *ngIf="selectedFile"
+                  [src]="imageUrl"
+               
+                  alt="Selected Image"
+                />
                 <input
-                (change)="onFileSelected($event)" accept="image/*" 
-                  formControlName="img"
+                  (change)="onInputChanged($event)"
                   class="form-control form-control-lg"
                   id="formFileLg"
                   type="file"
@@ -262,7 +267,7 @@
               <button
                 [style]="{ 'margin-top': '20px' }"
                 type="button"
-                (click)="onSubmit()"
+                (click)="submit()"
                 class="btn btn-primary btn-lg"
               >
                 {{ isEdit ? "Edit Client" : "Register Client" }}

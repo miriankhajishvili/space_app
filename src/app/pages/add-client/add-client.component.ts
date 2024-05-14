@@ -72,7 +72,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
       currentCity: new FormControl('', Validators.required),
       currentCountry: new FormControl('', Validators.required),
     }),
-    img: new FormControl('', [Validators.required]),
+    img: new FormControl(''),
   });
 
   clientId?: number;
@@ -80,6 +80,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
   file: any;
   data: any;
   submitted = false;
+  base64: any;
 
   radioChangeHandler(value: any) {
     if (value.target.value) {
@@ -135,14 +136,11 @@ export class AddClientComponent implements OnInit, OnDestroy {
     return this.form.controls['img'];
   }
 
-  
-
   constructor(
     private ClientService: ClientService,
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
     private NgToastService: NgToastService,
-    private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -152,8 +150,13 @@ export class AddClientComponent implements OnInit, OnDestroy {
       if (clientInfo) {
         this.clientId = clientInfo.id;
         this.form.patchValue(clientInfo);
+        console.log(clientInfo)
       }
     });
+
+    console.log(this.form.value)
+
+    console.log(this.img)
   }
 
   onFileSelected(event: any) {
@@ -166,25 +169,23 @@ export class AddClientComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(this.selectedFile);
   }
 
-  onSubmit() {
+  onInputChanged(e: any) {
+    const targetEvent = e.target;
+    const file: File = targetEvent.files[0];
 
+    const fileReader: FileReader = new FileReader();
+
+    fileReader.onload = (e) => {
+      this.base64 = fileReader.result;
+    };
+    fileReader.readAsDataURL(file);
+  }
+
+  submit() {
+    this.form.get('img')?.setValue(this.base64);
     if (this.selectedFile) {
       const formData = new FormData();
       formData.append('image', this.selectedFile, this.selectedFile.name);
-  
-      // this.imageService.uploadImage(formData).subscribe(
-      //   (res) => {
-      //     // Handle response, e.g., store image URL in a variable
-      //     const imageUrl = res.imageUrl;
-      //     console.log(res.imageUrl) // Assuming your server returns the URL of the uploaded image
-      //     // Navigate to the next component and pass the image URL as a parameter
-      //     this.router.navigate(['/'], { queryParams: { imageUrl } });
-      //   },
-      //   (error) => {
-      //     // Handle error, e.g., show error message
-      //     console.error('Image upload failed', error);
-      //   }
-      // );
     }
 
     if (this.form.valid) {
@@ -235,38 +236,7 @@ export class AddClientComponent implements OnInit, OnDestroy {
     });
 
     this.form.markAllAsTouched();
-
-    //   const formData = new FormData();
-    //   formData.append('image', this.file, this.file.name);
-
-    //   this.ImageService.uploadImage(formData).subscribe((res) => {
-    //     this.data = res;
-    //     if ((this.data.status = true)) {
-    //       JSON.stringify(this.data.Messege),
-    //         '',
-    //         {
-    //           timeout: 2000,
-    //           progressBar: true,
-    //         };
-    //     } else {
-    //       JSON.stringify(this.data.Messege),
-    //         '',
-    //         {
-    //           timeout: 2000,
-    //           progressBar: true,
-    //         };
-    //     }
-    //     this.submitted = false;
-    //     this.img.reset();
-    //   });
-    // }
-
-    // uploadImage($event: any) {
-    //   console.log($event);
-    //   this.file = $event.target.files[0];
   }
-
-
 
   ngOnDestroy(): void {
     this.mySub$.next(null), this.mySub$.complete();
