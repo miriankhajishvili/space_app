@@ -24,7 +24,7 @@
       "lastname": "Anderson",
       "personalid": "12345678910",
       "gender": "Female",
-      "phonenumber": "5551234567",
+      "phonenumber": "551234567",
       "address": {
         "address": "123 Main Street",
         "city": "Springfield",
@@ -41,9 +41,9 @@
     {
       "firstname": "John",
       "lastname": "Doe",
-      "personalid": "9876543210",
+      "personalid": "55576543210",
       "gender": "Male",
-      "phonenumber": "5559876543",
+      "phonenumber": "555987654",
       "address": {
         "address": "789 Elm Street",
         "city": "Riverside",
@@ -62,7 +62,7 @@
       "lastname": "Smith",
       "personalid": "11122233344",
       "gender": "Female",
-      "phonenumber": "5557778888",
+      "phonenumber": "557778888",
       "address": {
         "address": "456 Maple Street",
         "city": "Maplewood",
@@ -138,7 +138,7 @@
       "lastname": "Martinez",
       "personalid": "88877766655",
       "gender": "Female",
-      "phonenumber": "5553334444",
+      "phonenumber": "553334444",
       "address": {
         "address": "123 Main Street",
         "city": "Springfield",
@@ -328,7 +328,7 @@
       "lastname": "Tran",
       "personalid": "65432198700",
       "gender": "Female",
-      "phonenumber": "5551112222",
+      "phonenumber": "555111222",
       "address": {
         "address": "456 Oak Avenue",
         "city": "Springfield",
@@ -385,7 +385,7 @@
       "lastname": "Lam",
       "personalid": "12312312312",
       "gender": "Male",
-      "phonenumber": "5555555555",
+      "phonenumber": "555555555",
       "address": {
         "address": "789 Pine Avenue",
         "city": "Riverside",
