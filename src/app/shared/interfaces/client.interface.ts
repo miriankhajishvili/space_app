@@ -28,6 +28,11 @@ export interface IClient {
  
 }
 
+export interface IClientState {
+  clients: IClient[]
+  items: number
+}
+
 
 export interface pageRequest {
   page: number;

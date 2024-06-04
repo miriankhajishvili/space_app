@@ -24,7 +24,7 @@
     <div class="row">
       <div
         class="col-xl-6 col-lg-7 col-md-12"
-        *ngFor="let client of allcients | async"
+        *ngFor="let client of allClients$ | async"
       >
         <div class="card profile-header">
           <div class="body">
@@ -68,7 +68,7 @@
     <p-paginator
       [first]="first"
       [rows]="10"
-      [totalRecords]="totalRecords"
+      [totalRecords]="items$ | async"
       (onPageChange)="onPageChange($event)"
     />
   </div>

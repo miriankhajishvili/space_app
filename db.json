@@ -1,25 +1,6 @@
 {
   "clients": [
     {
-      "firstname": "Poul",
-      "lastname": "Stmith",
-      "personalid": "99999999999",
-      "gender": "Male",
-      "phonenumber": "589898989",
-      "address": {
-        "address": "TBS-1475545, 1622 E Ayre street",
-        "city": "Wilmington",
-        "country": "Georgia"
-      },
-      "currentAddress": {
-        "currentAddress": "Ishkhnelebi str",
-        "currentCity": "Wilmington",
-        "currentCountry": "Georgia"
-      },
-      "img": "https://t4.ftcdn.net/jpg/03/85/28/41/240_F_385284186_bYFVnjX6YOIXsIrC6aaGAKz7mNuB7rsY.jpg",
-      "id": "1"
-    },
-    {
       "firstname": "Sophie",
       "lastname": "Anderson",
       "personalid": "12345678910",
@@ -37,25 +18,6 @@
       },
       "img": "https://img.freepik.com/free-photo/brunette-young-woman-white-t-shirt_273609-7017.jpg?t=st=1715692287~exp=1715695887~hmac=9ce8b24c18a9562eda221fbfeae085cd58d76bb09ad1c6374262e14ef84f668d&w=1060",
       "id": "2"
-    },
-    {
-      "firstname": "John",
-      "lastname": "Doe",
-      "personalid": "55576543210",
-      "gender": "Male",
-      "phonenumber": "555987654",
-      "address": {
-        "address": "789 Elm Street",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "321 Pine Avenue",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/free-photo/young-bearded-man-with-white-t-shirt_273609-7187.jpg?t=st=1715692181~exp=1715695781~hmac=24d472a2ba075c20662292389d977d82d856c1cc0b9f29b93724460b7120ccd0&w=2000",
-      "id": "3"
     },
     {
       "firstname": "Emma",
@@ -153,25 +115,6 @@
       "id": "8"
     },
     {
-      "firstname": "James",
-      "lastname": "Lopez",
-      "personalid": "77788899900",
-      "gender": "Male",
-      "phonenumber": "5552223333",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/free-photo/pleased-attractive-european-woman-makes-wish-win-raises-hands-with-crossed-fingers-waits-lottery-results-closes-eyes_273609-17580.jpg?t=st=1715692492~exp=1715696092~hmac=a687c18a272b93a5efaf578ce7583eeb6f1a1c9ae186687fd55e7b8c3d218c9c&w=1060",
-      "id": "9"
-    },
-    {
       "firstname": "Amelia",
       "lastname": "Hernandez",
       "personalid": "65432198700",
@@ -189,63 +132,6 @@
       },
       "img": "https://img.freepik.com/free-photo/horizontal-shot-positive-dark-skinned-woman-shows-biceps-demonstrates-strong-hand-has-slim-figure-wears-sport-bra-smiles-pleasantly-isolated-white-background_273609-32320.jpg?t=st=1715692616~exp=1715696216~hmac=51c86d06e80c0b2259420c796a9c5843158035b835d2245998f1efbccf49e7d2&w=1060",
       "id": "10"
-    },
-    {
-      "firstname": "Benjamin",
-      "lastname": "Moreno",
-      "personalid": "98765432101",
-      "gender": "Male",
-      "phonenumber": "5558889999",
-      "address": {
-        "address": "123 Elm Street",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "456 Pine Avenue",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/free-photo/photo-attractive-bearded-young-man-with-cherful-expression-makes-okay-gesture-with-both-hands-likes-something-dressed-red-casual-t-shirt-poses-against-white-wall-gestures-indoor_273609-16239.jpg?t=st=1715692596~exp=1715696196~hmac=e67f46715192c5a472e82e9553a209e24870fede77c26693b79ce8c0d2460a1a&w=1060",
-      "id": "11"
-    },
-    {
-      "firstname": "Mia",
-      "lastname": "Garcia",
-      "personalid": "11122233344",
-      "gender": "Female",
-      "phonenumber": "5557778888",
-      "address": {
-        "address": "456 Maple Street",
-        "city": "Maplewood",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "789 Oak Lane",
-        "currentCity": "Maplewood",
-        "currentCountry": "USA"
-      },
-      "img": "https://img.freepik.com/free-photo/cunning-brunette-girl-smiling-chuckling-looking-aside-thoughtful-raising-finger-up-having-idea-standing-pensive-with-good-plan_176420-43744.jpg?t=st=1715692695~exp=1715696295~hmac=2aa6bfb4ac979d58b47842f33be880c347cbd98b1c9929e832c4a481f62b81e1&w=1060",
-      "id": "12"
-    },
-    {
-      "firstname": "Ethan",
-      "lastname": "Perez",
-      "personalid": "12312312312",
-      "gender": "Male",
-      "phonenumber": "5555555555",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/premium-photo/young-handsome-man-laughing-happily-with-arms-crossed-with-relaxed-positive-satisfied-pose_1194-164868.jpg?w=1060",
-      "id": "13"
     },
     {
       "firstname": "Harper",

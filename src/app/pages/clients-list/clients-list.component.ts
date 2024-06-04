@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
@@ -23,6 +23,9 @@ import { CardService } from '../../shared/services/card.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { Store } from '@ngrx/store';
+import { getAllClients } from '../../store/action';
+import { selectClients, selectItems } from '../../store/reducer';
 
 @Component({
   selector: 'app-client',
@@ -40,6 +43,7 @@ import { ToastModule } from 'primeng/toast';
     SortComponent,
     ConfirmDialogModule,
     ToastModule,
+    AsyncPipe,
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
@@ -47,10 +51,10 @@ import { ToastModule } from 'primeng/toast';
 })
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
-  allClients$!: IClient[];
+  allClients$: Observable<IClient[]> = this.store.select(selectClients);
+  items$: Observable<number> = this.store.select(selectItems);
   totalRecords?: number;
 
-  allcients!: Observable<any>;
   form = new FormGroup({
     searchinput: new FormControl(null),
   });
@@ -69,33 +73,44 @@ export class ClientComponent implements OnInit, OnDestroy {
     value: false,
   };
 
+  count$!: Observable<any>;
+
   constructor(
     private clientService: ClientService,
     private cardService: CardService,
     private router: Router,
     private activatedRouter: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    this.router.navigate([], {
-      relativeTo: this.activatedRouter,
-      queryParams: { page: this.page },
-      queryParamsHandling: 'merge',
-    });
+    this.getAllClientts();
 
-    this.allcients = this.clientService.updatedClientList$.pipe(
-      switchMap(() => {
-        return this.clientService.getClients(this.pagination);
-      }),
-      map((res) => {
-        this.totalRecords = res.items;
-        return res.data;
-      })
-    );
+    // this.router.navigate([], {
+    //   relativeTo: this.activatedRouter,
+    //   queryParams: { currentPage: 1011 },
+    //   queryParamsHandling: 'merge',
+    // });
+
+    // this.allcients = this.clientService.updatedClientList$.pipe(
+    //   switchMap(() => {
+    //     return this.clientService.getClients(this.pagination);
+    //   }),
+    //   map((res) => {
+    //     this.totalRecords = res.items;
+    //     return res.data;
+    //   })
+    // );
 
     this.inputValueChange();
+  }
+
+  getAllClientts() {
+    this.store.dispatch(
+      getAllClients.getAllClientsAction({ pageRequest: this.pagination })
+    );
   }
 
   inputValueChange() {
@@ -113,24 +128,23 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   onPageChange(event: any) {
-   
-
-   
     if (event.page + 1 == this.pagination.page) return;
+
     this.inputValueChange();
 
-    this.pagination.page = event.page + 1 || 0;
-   
+    this.pagination = {
+      ...this.pagination,
+      page: event.page + 1,
+    };
 
-    this.clientService.updatedClientList$.next(true);
+    this.getAllClientts();
+
 
     this.router.navigate([], {
       relativeTo: this.activatedRouter,
       queryParams: { page: event.page + 1 },
       queryParamsHandling: 'merge',
     });
-
- 
   }
 
   onDelete(id: number, event: Event) {
@@ -145,7 +159,6 @@ export class ClientComponent implements OnInit, OnDestroy {
       acceptIcon: 'none',
       rejectIcon: 'none',
       accept: () => {
-       
         this.messageService.add({
           severity: 'info',
           summary: 'Confirmed',
