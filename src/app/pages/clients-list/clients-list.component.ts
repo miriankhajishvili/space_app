@@ -24,7 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Store } from '@ngrx/store';
-import { getAllClients } from '../../store/action';
+import { deleteClient, getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
 
 @Component({
@@ -94,16 +94,6 @@ export class ClientComponent implements OnInit, OnDestroy {
     //   queryParamsHandling: 'merge',
     // });
 
-    // this.allcients = this.clientService.updatedClientList$.pipe(
-    //   switchMap(() => {
-    //     return this.clientService.getClients(this.pagination);
-    //   }),
-    //   map((res) => {
-    //     this.totalRecords = res.items;
-    //     return res.data;
-    //   })
-    // );
-
     this.inputValueChange();
   }
 
@@ -139,7 +129,6 @@ export class ClientComponent implements OnInit, OnDestroy {
 
     this.getAllClientts();
 
-
     this.router.navigate([], {
       relativeTo: this.activatedRouter,
       queryParams: { page: event.page + 1 },
@@ -164,17 +153,7 @@ export class ClientComponent implements OnInit, OnDestroy {
           summary: 'Confirmed',
           detail: 'Record deleted',
         });
-        this.cardService
-          .deleteClient(id)
-          .pipe(
-            takeUntil(this.mySub$),
-            switchMap((res) => {
-              return this.clientService.getClients(this.pagination);
-            })
-          )
-          .subscribe((res) => {
-            this.clientService.updatedClientList$.next(true);
-          });
+        this.store.dispatch(deleteClient.deleteClientAction({ id: id }));
       },
     });
   }

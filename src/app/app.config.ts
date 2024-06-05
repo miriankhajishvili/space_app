@@ -11,6 +11,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { clientsReducer } from './store/reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as getAllClientEffect from './store/effects';
+import * as deleteClientEffect from './store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,7 +20,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideAnimationsAsync(),
-    provideEffects(getAllClientEffect),
+    provideEffects(getAllClientEffect, deleteClientEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode,
@@ -28,6 +29,6 @@ export const appConfig: ApplicationConfig = {
       traceLimit: 75,
     }),
     provideStore(),
-    provideState({ name: 'getAllClients', reducer: clientsReducer }),
+    provideState({ name: 'clients', reducer: clientsReducer }),
   ],
 };

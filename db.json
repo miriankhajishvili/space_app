@@ -436,25 +436,6 @@
       },
       "img": "https://t4.ftcdn.net/jpg/01/42/20/17/240_F_142201762_qMCuIAolgpz4NbF5T5m66KQJzYzrEbUv.jpg",
       "id": "29"
-    },
-    {
-      "firstname": "Sophia",
-      "lastname": "Gomez",
-      "personalid": "99988877766",
-      "gender": "Female",
-      "phonenumber": "5556667777",
-      "address": {
-        "address": "789 Oak Lane",
-        "city": "Maplewood",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "456 Maple Street",
-        "currentCity": "Maplewood",
-        "currentCountry": "USA"
-      },
-      "img": "https://t4.ftcdn.net/jpg/02/31/85/37/240_F_231853711_SFLlCsDy7FtzEcVSaJshDyqCH1fCMlwe.jpg",
-      "id": "30"
     }
   ],
   "cards": []

@@ -7,7 +7,15 @@ export const getAllClients = createActionGroup({
     getAllClientsAction: props<{ pageRequest: pageRequest }>(),
     getAllClientsSuccess: props<{
       clients: IClient[];
-      items: number
+      items: number;
     }>(),
+  },
+});
+
+export const deleteClient = createActionGroup({
+  source: 'deleteClient',
+  events: {
+    deleteClientAction: props<{ id: number }>(),
+    deleteClientActionSuccess: props<{ id: number }>(),
   },
 });
