@@ -379,63 +379,6 @@
       },
       "img": "https://t4.ftcdn.net/jpg/02/71/39/23/240_F_271392341_LPZUI00chhSiztNoYUoAgIVXI3WroWS0.jpg",
       "id": "26"
-    },
-    {
-      "firstname": "Liam",
-      "lastname": "Garcia",
-      "personalid": "98765432101",
-      "gender": "Male",
-      "phonenumber": "5558889999",
-      "address": {
-        "address": "123 Elm Street",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "456 Pine Avenue",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://t3.ftcdn.net/jpg/01/18/12/44/240_F_118124400_dJVcyLOxzDViOg57o19suHnfbXjRsT1M.jpg",
-      "id": "27"
-    },
-    {
-      "firstname": "Olivia",
-      "lastname": "Nguyen",
-      "personalid": "11122233344",
-      "gender": "Female",
-      "phonenumber": "5557778888",
-      "address": {
-        "address": "456 Maple Street",
-        "city": "Maplewood",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "789 Oak Lane",
-        "currentCity": "Maplewood",
-        "currentCountry": "USA"
-      },
-      "img": "https://t4.ftcdn.net/jpg/04/51/06/89/240_F_451068953_76iT8VopM89Xmfxy05VVQYZ3ogGf03Lo.jpg",
-      "id": "28"
-    },
-    {
-      "firstname": "Lucas",
-      "lastname": "Gonzalez",
-      "personalid": "12312312312",
-      "gender": "Male",
-      "phonenumber": "5555555555",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://t4.ftcdn.net/jpg/01/42/20/17/240_F_142201762_qMCuIAolgpz4NbF5T5m66KQJzYzrEbUv.jpg",
-      "id": "29"
     }
   ],
   "cards": []

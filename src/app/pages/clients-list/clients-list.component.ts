@@ -90,7 +90,7 @@ export class ClientComponent implements OnInit, OnDestroy {
 
     // this.router.navigate([], {
     //   relativeTo: this.activatedRouter,
-    //   queryParams: { currentPage: 1011 },
+    //   queryParams: { page: this.page },
     //   queryParamsHandling: 'merge',
     // });
 
@@ -112,8 +112,9 @@ export class ClientComponent implements OnInit, OnDestroy {
           page: 1,
           search: value.searchinput,
         };
-
-        this.clientService.updatedClientList$.next(true);
+        this.store.dispatch(
+          getAllClients.getAllClientsAction({ pageRequest: this.pagination })
+        );
       });
   }
 
@@ -159,8 +160,15 @@ export class ClientComponent implements OnInit, OnDestroy {
   }
 
   receiveValue($event: string) {
-    this.pagination.sort = $event;
-    this.clientService.updatedClientList$.next(true);
+    this.pagination = {
+      ...this.pagination,
+      sort: $event,
+    };
+
+    this.store.dispatch(
+      getAllClients.getAllClientsAction({ pageRequest: this.pagination })
+    );
+    console.log($event);
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);
