@@ -9,8 +9,6 @@ import {
   Observable,
   Subject,
   debounceTime,
-  map,
-  switchMap,
   takeUntil,
 } from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
@@ -26,6 +24,8 @@ import { ToastModule } from 'primeng/toast';
 import { Store } from '@ngrx/store';
 import { deleteClient, getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-client',
@@ -47,7 +47,7 @@ import { selectClients, selectItems } from '../../store/reducer';
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
-  providers: [ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService,MatButtonModule],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();

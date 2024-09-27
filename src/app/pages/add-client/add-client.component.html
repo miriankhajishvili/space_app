@@ -1,275 +1,124 @@
-<section class="vh-70 gradient-custom">
-  <div class="container py-5 h-100">
-    <div class="row justify-content-center align-items-center h-100">
-      <div class="col-12 col-lg-9 col-xl-7">
-        <div
-          class="card shadow-2-strong card-registration"
-          style="border-radius: 15px"
-        >
-          <div class="card-body p-4 p-md-5">
-            <form [formGroup]="form">
-              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">
-                {{ isEdit ? "Edit Form" : "Registration Form" }}
-              </h3>
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">First Name</label>
-                    <input
-                      formControlName="firstname"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span *ngIf="firstname?.errors?.['minlength']">
-                    Minlengh mast be at least 2 charachters.</span
-                  >
-                  <span *ngIf="firstname?.errors?.['maxlength']">
-                    Maxlength mast be max 50 charachters.</span
-                  >
-                  <span *ngIf="firstname?.touched && firstname.value === ''">
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                  <span *ngIf="firstname?.errors?.['pattern']">
-                    Please enter a value, empty space is not allowed.
-                  </span>
-                  <span *ngIf="firstname?.errors?.['singleLanguage']">
-                    Please write in English or In Georgian
-                  </span>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">Last Name</label>
-                    <input
-                      formControlName="lastname"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span *ngIf="lastname?.errors?.['minlength']">
-                    Minlengh mast be at least 2 charachters</span
-                  >
-                  <span *ngIf="lastname?.errors?.['maxlength']">
-                    Maxlength mast be max 50 charachters</span
-                  >
-                  <span *ngIf="lastname?.touched && lastname.value === ''">
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                  <span *ngIf="lastname?.errors?.['pattern']">
-                    Please enter a value, empty space is not allowed.
-                  </span>
-                  <span *ngIf="lastname?.errors?.['singleLanguage']">
-                    Please write in English or In Georgian
-                  </span>
-                </div>
-              </div>
+<section class="form-container">
+  <div class="form-card">
+    <form [formGroup]="form">
+      <h3 class="form-title">{{ isEdit ? "Edit Form" : "Registration Form" }}</h3>
 
-              <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-                  <div
-                    data-mdb-input-init
-                    class="form-outline datepicker w-100"
-                  >
-                    <label class="form-label">Personal ID</label>
-                    <input
-                      formControlName="personalid"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                    <br />
-                    <span *ngIf="personalid?.errors?.['pattern']">
-                      Please enter only digits.
-                    </span>
-                    <span
-                      *ngIf="personalid?.errors?.['minlength'] || personalid?.errors?.['maxlength']"
-                    >
-                      Length mast be at 11 charachters</span
-                    >
-                    <span
-                      *ngIf="personalid?.touched && personalid.value === ''"
-                    >
-                      Please enter a value, empty space is not allowed.</span
-                    >
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <h6 class="mb-2 pb-1">Gender:</h6>
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="maleRadio">Male</label>
-                    <input
-                      [value]="'Male'"
-                      (change)="radioChangeHandler($event)"
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="maleRadio"
-                      [checked]="gender.value === 'Male'"
-                    />
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input
-                      [value]="'Female'"
-                      (change)="radioChangeHandler($event)"
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="femaleRadio"
-                      [checked]="gender.value === 'Famale'"
-                    />
-                    <label class="form-check-label" for="femaleRadio"
-                      >Female</label
-                    >
-                  </div>
-                </div>
-                <div data-mdb-input-init class="form-outline">
-                  <label class="form-label">Phone Number</label>
-                  <input
-                    formControlName="phonenumber"
-                    type="tel"
-                    class="form-control form-control-lg"
-                  />
-                </div>
-              </div>
-
-              <span *ngIf="phonenumber?.errors?.['pattern']">
-                Please enter a value, empty space is not allowed.
-              </span>
-
-              <span *ngIf="phonenumber?.touched && phonenumber.value === ''">
-                Please enter a value, empty space is not allowed.</span
-              >
-
-              <span *ngIf="phonenumber?.errors?.['startsWithFive']">
-                Please enter number starting with 5.
-              </span>
-              <span *ngIf="phonenumber?.errors?.['invalidDigits']">
-                Mobile number should consist of 9 digits.
-              </span>
-
-              <div formGroupName="address" class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">Address</label>
-                    <input
-                      formControlName="address"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span *ngIf="myAddress?.touched && myAddress.value === ''">
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label"> City</label>
-                    <input
-                      formControlName="city"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span *ngIf="myCity?.touched && myCity.value === ''">
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">County</label>
-                    <input
-                      formControlName="country"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span *ngIf="myCountry?.touched && myCountry.value === ''">
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-              </div>
-
-              <div formGroupName="currentAddress" class="row">
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">Current Address</label>
-                    <input
-                      formControlName="currentAddress"
-                      type="tel"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span
-                    *ngIf="
-                      myCurrentAddress?.touched && myCurrentAddress.value === ''
-                    "
-                  >
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">Current City</label>
-                    <input
-                      formControlName="currentCity"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span
-                    *ngIf="myCurrentCity?.touched && myCurrentCity.value === ''"
-                  >
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-
-                <div class="col-md-6 mb-4 pb-2">
-                  <div data-mdb-input-init class="form-outline">
-                    <label class="form-label">Current Country</label>
-                    <input
-                      formControlName="currentCountry"
-                      type="text"
-                      class="form-control form-control-lg"
-                    />
-                  </div>
-                  <span
-                    *ngIf="
-                      myCurrentCountry?.touched && myCurrentCountry.value === ''
-                    "
-                  >
-                    Please enter a value, empty space is not allowed.</span
-                  >
-                </div>
-              </div>
-
-              <div class="row"></div>
-              <div class="col-md-9 pe-5">
-                <h4>Upload Photo</h4>
-                <input
-                  (change)="onInputChanged($event)"
-                  class="form-control form-control-lg"
-                  id="formFileLg"
-                  type="file"
-                  accept="image/jpeg, image/png, image/jpg"
-                
-                />
-              </div>
-
-              <button
-                [style]="{ 'margin-top': '20px' }"
-                type="button"
-                (click)="submit()"
-                class="btn btn-primary btn-lg"
-              >
-                {{ isEdit ? "Edit Client" : "Register Client" }}
-              </button>
-            </form>
-          </div>
+      <div class="form-row">
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstname" type="text" />
+            <mat-error *ngIf="firstname?.hasError('minlength')">Min 2 characters.</mat-error>
+            <mat-error *ngIf="firstname?.hasError('maxlength')">Max 50 characters.</mat-error>
+            <mat-error *ngIf="firstname?.hasError('pattern') && !firstname.hasError('minlength') && !firstname.hasError('maxlength')" >Only letters are allowed.</mat-error>
+            <mat-error *ngIf="firstname?.touched && firstname.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="firstname?.touched && firstname.hasError('singleLanguage') && !firstname.hasError('required') && !firstname.hasError('minlength') && !firstname.hasError('maxlength')">
+              Please write in English or in Georgian.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastname" type="text" />
+            <mat-error *ngIf="lastname?.hasError('minlength')">Min 2 characters.</mat-error>
+            <mat-error *ngIf="lastname?.hasError('maxlength')">Max 50 characters.</mat-error>
+            <mat-error *ngIf="lastname?.hasError('pattern') && !lastname.hasError('minlength') && !lastname.hasError('maxlength')" >Only letters are allowed.</mat-error>
+            <mat-error *ngIf="lastname?.touched && lastname.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="lastname?.touched && lastname.hasError('singleLanguage') && !lastname.hasError('required') && !lastname.hasError('minlength') && !lastname.hasError('maxlength')">
+              Please write in English or in Georgian.
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
-    </div>
+
+      <div class="form-row">
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Personal ID</mat-label>
+            <input matInput formControlName="personalid" type="text" />
+            <mat-error *ngIf="personalid?.touched && (personalid?.hasError('minlength') || personalid?.hasError('maxlength'))">
+              ID must be exactly 11 characters.
+            </mat-error>
+            <mat-error *ngIf="personalid?.touched && personalid?.hasError('pattern') && !personalid?.hasError('minlength') && !personalid?.hasError('maxlength')">
+              Only digits are allowed.
+            </mat-error>
+          </mat-form-field>
+          
+        </div>
+        <div class="form-col">
+          <h6 class="form-subtitle">Gender</h6>
+          <mat-radio-group class="radio-group" formControlName="gender">
+            <mat-radio-button class="radio-button" value="Male">Male</mat-radio-button>
+            <mat-radio-button class="radio-button" value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phonenumber" type="tel" />
+            <mat-error *ngIf="phonenumber?.hasError('pattern')">Invalid format.</mat-error>
+            <mat-error *ngIf="phonenumber?.touched && phonenumber.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="phonenumber?.errors?.['startsWithFive']">
+              Please enter number starting with 5.
+            </mat-error>
+            <mat-error *ngIf="phonenumber?.errors?.['invalidDigits']">
+              Mobile number should consist of 9 digits.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div formGroupName="address" class="form-row">
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address" type="text" />
+            <mat-error *ngIf="myAddress?.touched && myAddress.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="myAddress?.hasError('singleLanguage')">Please write in English or in Georgian. </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>City</mat-label>
+            <input matInput formControlName="city" type="text" />
+            <mat-error *ngIf="myCity?.touched && myCity.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="myCity?.hasError('pattern')" >Only letters are allowed.</mat-error>
+            <mat-error *ngIf="myCity?.hasError('singleLanguage')">Please write in English or in Georgian. </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div class="form-col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" type="text" />
+            <mat-error *ngIf="myCountry?.touched && myCountry.value === ''">This field is required.</mat-error>
+            <mat-error *ngIf="myCountry?.hasError('singleLanguage')">Please write in English or in Georgian. </mat-error>
+
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-col">
+          <h4>Upload Photo</h4>
+          <input
+            (change)="onInputChanged($event)"
+            class="form-control form-control-lg"
+            type="file"
+            accept="image/jpeg, image/png, image/jpg"
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" (click)="submit()">
+          {{ isEdit ? "Edit Client" : "Register Client" }}
+        </button>
+      </div>
+    </form>
   </div>
 </section>

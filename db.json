@@ -1,7 +1,7 @@
 {
   "clients": [
     {
-      "firstname": "Sophie",
+      "firstname": "Sophiee",
       "lastname": "Anderson",
       "personalid": "12345678910",
       "gender": "Female",
@@ -18,63 +18,6 @@
       },
       "img": "https://img.freepik.com/free-photo/brunette-young-woman-white-t-shirt_273609-7017.jpg?t=st=1715692287~exp=1715695887~hmac=9ce8b24c18a9562eda221fbfeae085cd58d76bb09ad1c6374262e14ef84f668d&w=1060",
       "id": "2"
-    },
-    {
-      "firstname": "Emma",
-      "lastname": "Smith",
-      "personalid": "11122233344",
-      "gender": "Female",
-      "phonenumber": "557778888",
-      "address": {
-        "address": "456 Maple Street",
-        "city": "Maplewood",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "789 Oak Lane",
-        "currentCity": "Maplewood",
-        "currentCountry": "USA"
-      },
-      "img": "https://img.freepik.com/premium-photo/portrait-thoughtful-brunette-woman-wearing-casual-t-shirt-looking-aside-copyspace-isolated-gray-wall_171337-105889.jpg?w=1060",
-      "id": "4"
-    },
-    {
-      "firstname": "William",
-      "lastname": "Johnson",
-      "personalid": "12312312312",
-      "gender": "Male",
-      "phonenumber": "5555555555",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/free-photo/image-hesitant-unshaven-european-man-with-thick-beard-holds-chin-purses-lips-with-clueless-expressions_273609-17361.jpg?t=st=1715692526~exp=1715696126~hmac=819555e8ccd35dbcaaf6618176a644a651b3b91468f17f7bea3e199520e43581&w=1060",
-      "id": "5"
-    },
-    {
-      "firstname": "Olivia",
-      "lastname": "Brown",
-      "personalid": "99988877766",
-      "gender": "Female",
-      "phonenumber": "5556667777",
-      "address": {
-        "address": "789 Oak Lane",
-        "city": "Maplewood",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "456 Maple Street",
-        "currentCity": "Maplewood",
-        "currentCountry": "USA"
-      },
-      "img": "https://img.freepik.com/premium-photo/portrait-young-happy-smiling-handsome-man-isolated-white_1258-14285.jpg?w=1060",
-      "id": "6"
     },
     {
       "firstname": "Alexander",
@@ -153,44 +96,6 @@
       "id": "14"
     },
     {
-      "firstname": "Michael",
-      "lastname": "Torres",
-      "personalid": "11100099988",
-      "gender": "Male",
-      "phonenumber": "5554445555",
-      "address": {
-        "address": "456 Elm Street",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "789 Pine Avenue",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://img.freepik.com/premium-photo/young-man-isolated-white-thinking-looking-up-being-reflective-contemplating-having-fantasy_1187-114533.jpg?w=1060",
-      "id": "15"
-    },
-    {
-      "firstname": "Evelyn",
-      "lastname": "Martinez",
-      "personalid": "88877766655",
-      "gender": "Female",
-      "phonenumber": "5553334444",
-      "address": {
-        "address": "123 Main Street",
-        "city": "Springfield",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "456 Oak Avenue",
-        "currentCity": "Springfield",
-        "currentCountry": "USA"
-      },
-      "img": "https://img.freepik.com/premium-photo/with-fingers-lips-keeping-secret_1187-339114.jpg?w=1060",
-      "id": "16"
-    },
-    {
       "firstname": "Noah",
       "lastname": "Nguyen",
       "personalid": "77788899900",
@@ -267,25 +172,6 @@
       "id": "20"
     },
     {
-      "firstname": "Lucas",
-      "lastname": "Lam",
-      "personalid": "12312312312",
-      "gender": "Male",
-      "phonenumber": "555555555",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://t4.ftcdn.net/jpg/06/62/37/25/240_F_662372537_JaW3CcpsJ76VGOJpHrnk5E0OKMfUH4UU.jpg",
-      "id": "21"
-    },
-    {
       "firstname": "Sophia",
       "lastname": "Lopez",
       "personalid": "99988877766",
@@ -341,44 +227,6 @@
       },
       "img": "https://img.freepik.com/free-photo/saleswoman-making-decision-showing-thumbs-up-down-thinking-how-avaluate-standing-white_176420-41084.jpg?t=st=1715692976~exp=1715696576~hmac=017a6413260418b465346e8f58e7332787f43958f8c394748a67bc0ec3673c9c&w=1060",
       "id": "24"
-    },
-    {
-      "firstname": "Benjamin",
-      "lastname": "Nguyen",
-      "personalid": "77788899900",
-      "gender": "Male",
-      "phonenumber": "5552223333",
-      "address": {
-        "address": "789 Pine Avenue",
-        "city": "Riverside",
-        "country": "Canada"
-      },
-      "currentAddress": {
-        "currentAddress": "123 Elm Street",
-        "currentCity": "Riverside",
-        "currentCountry": "Canada"
-      },
-      "img": "https://t4.ftcdn.net/jpg/03/23/62/57/240_F_323625729_DMj4Bthhy3msajZk0dIqiWU5GELsjRpm.jpg",
-      "id": "25"
-    },
-    {
-      "firstname": "Charlotte",
-      "lastname": "Tran",
-      "personalid": "65432198700",
-      "gender": "Female",
-      "phonenumber": "5551112222",
-      "address": {
-        "address": "456 Oak Avenue",
-        "city": "Springfield",
-        "country": "USA"
-      },
-      "currentAddress": {
-        "currentAddress": "789 Maple Street",
-        "currentCity": "Springfield",
-        "currentCountry": "USA"
-      },
-      "img": "https://t4.ftcdn.net/jpg/02/71/39/23/240_F_271392341_LPZUI00chhSiztNoYUoAgIVXI3WroWS0.jpg",
-      "id": "26"
     }
   ],
   "cards": []

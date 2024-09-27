@@ -14,6 +14,11 @@ import { singleLanguageValidator } from '../../shared/regex/georgianLettersValid
 import { NgToastService } from 'ng-angular-popup';
 import { HttpClientModule } from '@angular/common/http';
 import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
+import { Store } from '@ngrx/store';
+import { addClient } from '../../store/action';
+import { MatInputModule } from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @Component({
   selector: 'app-add-client',
@@ -24,6 +29,8 @@ import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
     ButtonModule,
     RouterModule,
     HttpClientModule,
+    MatInputModule,
+    MatRadioModule
   ],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
@@ -40,14 +47,18 @@ export class AddClientComponent implements OnInit, OnDestroy {
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/),
+      Validators.pattern('^[^0-9]*$'),
+
+    
     ]),
     lastname: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(50),
       singleLanguageValidator(),
-      Validators.pattern(/^\S+$/),
+      Validators.pattern('^[^0-9]*$'),
+
+      
     ]),
     personalid: new FormControl('', [
       Validators.required,
@@ -62,17 +73,11 @@ export class AddClientComponent implements OnInit, OnDestroy {
       phoneNumberValidator(),
     ]),
     address: new FormGroup({
-      address: new FormControl('', Validators.required),
-      city: new FormControl('', Validators.required),
-      country: new FormControl('', Validators.required),
-    }),
-    currentAddress: new FormGroup({
-      currentAddress: new FormControl('', Validators.required),
-      currentCity: new FormControl('', Validators.required),
-      currentCountry: new FormControl('', Validators.required),
+      address: new FormControl('',[Validators.required, singleLanguageValidator()]),
+      city: new FormControl('', [Validators.required, Validators.pattern('^[^0-9]*$'),singleLanguageValidator()]),
+      country: new FormControl('', [Validators.required, Validators.pattern('^[^0-9]*$'),singleLanguageValidator()]),
     }),
     img: new FormControl(''),
-  
   });
 
   clientId?: number;
@@ -118,19 +123,6 @@ export class AddClientComponent implements OnInit, OnDestroy {
     return this.address.controls['country'];
   }
 
-  get currentAddress() {
-    return this.form.controls['currentAddress'] as FormGroup;
-  }
-
-  get myCurrentAddress() {
-    return this.currentAddress.controls['currentAddress'];
-  }
-  get myCurrentCity() {
-    return this.currentAddress.controls['currentCity'];
-  }
-  get myCurrentCountry() {
-    return this.currentAddress.controls['currentCountry'];
-  }
   get img() {
     return this.form.controls['img'];
   }
@@ -139,7 +131,8 @@ export class AddClientComponent implements OnInit, OnDestroy {
     private ClientService: ClientService,
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
-    private NgToastService: NgToastService
+    private NgToastService: NgToastService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -203,24 +196,9 @@ export class AddClientComponent implements OnInit, OnDestroy {
             },
           });
       } else {
-        this.ClientService.addClient(this.form.value)
-          .pipe(takeUntil(this.mySub$))
-          .subscribe({
-            next: () => {
-              this.NgToastService.success({
-                detail: 'Success Messege',
-                summary: 'Client edited successfully',
-              });
-
-              this.router.navigate(['/']);
-            },
-            error: () => {
-              this.NgToastService.error({
-                detail: 'Error Messege',
-                summary: 'Client edited unsuccessfully',
-              });
-            },
-          });
+        this.store.dispatch(
+          addClient.addClientAction({ data: this.form.value })
+        );
       }
       {
       }

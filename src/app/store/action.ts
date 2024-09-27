@@ -12,6 +12,15 @@ export const getAllClients = createActionGroup({
   },
 });
 
+
+export const addClient = createActionGroup({
+  source: 'addClient',
+  events: {
+    addClientAction: props<{ data: IClient }>(),
+    addClientActionSuccess: props<{ data: IClient }>(),
+  },
+})
+
 export const deleteClient = createActionGroup({
   source: 'deleteClient',
   events: {

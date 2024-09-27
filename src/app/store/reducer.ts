@@ -1,6 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { IClientState } from '../shared/interfaces/client.interface';
-import { deleteClient, getAllClients } from './action';
+import { addClient, deleteClient, getAllClients } from './action';
 
 const initialState: IClientState = {
   clients: [],
@@ -23,6 +23,11 @@ const clients = createFeature({
       const upladtedClients = state.clients.filter(
         (clients) => clients.id !== action.id
       );
+      return { ...state, clients: upladtedClients };
+    }),
+
+    on(addClient.addClientAction, (state, action) => {
+      const upladtedClients = [...state.clients, action.data];
       return { ...state, clients: upladtedClients };
     })
   ),
