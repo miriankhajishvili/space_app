@@ -5,12 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import {
-  Observable,
-  Subject,
-  debounceTime,
-  takeUntil,
-} from 'rxjs';
+import { Observable, Subject, debounceTime, takeUntil } from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
@@ -25,7 +20,6 @@ import { Store } from '@ngrx/store';
 import { deleteClient, getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
 import { MatButtonModule } from '@angular/material/button';
-
 
 @Component({
   selector: 'app-client',
@@ -47,7 +41,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
-  providers: [ConfirmationService, MessageService,MatButtonModule],
+  providers: [ConfirmationService, MessageService, MatButtonModule],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
@@ -149,11 +143,6 @@ export class ClientComponent implements OnInit, OnDestroy {
       acceptIcon: 'none',
       rejectIcon: 'none',
       accept: () => {
-        this.messageService.add({
-          severity: 'info',
-          summary: 'Confirmed',
-          detail: 'Record deleted',
-        });
         this.store.dispatch(deleteClient.deleteClientAction({ id: id }));
       },
     });

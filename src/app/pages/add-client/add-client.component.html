@@ -51,6 +51,8 @@
           <mat-radio-group class="radio-group" formControlName="gender">
             <mat-radio-button class="radio-button" value="Male">Male</mat-radio-button>
             <mat-radio-button class="radio-button" value="Female">Female</mat-radio-button>
+            <mat-error *ngIf="gender?.touched && gender.value === ''">This field is required.</mat-error>
+
           </mat-radio-group>
         </div>
       </div>
@@ -62,12 +64,8 @@
             <input matInput formControlName="phonenumber" type="tel" />
             <mat-error *ngIf="phonenumber?.hasError('pattern')">Invalid format.</mat-error>
             <mat-error *ngIf="phonenumber?.touched && phonenumber.value === ''">This field is required.</mat-error>
-            <mat-error *ngIf="phonenumber?.errors?.['startsWithFive']">
-              Please enter number starting with 5.
-            </mat-error>
-            <mat-error *ngIf="phonenumber?.errors?.['invalidDigits']">
-              Mobile number should consist of 9 digits.
-            </mat-error>
+            <mat-error *ngIf="phonenumber?.errors?.['startsWithFive']">Please enter number starting with 5.</mat-error>
+            <mat-error *ngIf="phonenumber?.errors?.['invalidDigits']">Mobile number should consist of 9 digits. </mat-error>
           </mat-form-field>
         </div>
       </div>

@@ -15,10 +15,10 @@ import { NgToastService } from 'ng-angular-popup';
 import { HttpClientModule } from '@angular/common/http';
 import { phoneNumberValidator } from '../../shared/regex/phoneNumberValidator';
 import { Store } from '@ngrx/store';
-import { addClient } from '../../store/action';
+import { addClient, editClient } from '../../store/action';
 import { MatInputModule } from '@angular/material/input';
-import {MatRadioModule} from '@angular/material/radio';
-
+import { MatRadioModule } from '@angular/material/radio';
+import e from 'express';
 
 @Component({
   selector: 'app-add-client',
@@ -30,7 +30,7 @@ import {MatRadioModule} from '@angular/material/radio';
     RouterModule,
     HttpClientModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   templateUrl: './add-client.component.html',
   styleUrl: './add-client.component.scss',
@@ -48,8 +48,6 @@ export class AddClientComponent implements OnInit, OnDestroy {
       Validators.maxLength(50),
       singleLanguageValidator(),
       Validators.pattern('^[^0-9]*$'),
-
-    
     ]),
     lastname: new FormControl('', [
       Validators.required,
@@ -57,8 +55,6 @@ export class AddClientComponent implements OnInit, OnDestroy {
       Validators.maxLength(50),
       singleLanguageValidator(),
       Validators.pattern('^[^0-9]*$'),
-
-      
     ]),
     personalid: new FormControl('', [
       Validators.required,
@@ -73,9 +69,20 @@ export class AddClientComponent implements OnInit, OnDestroy {
       phoneNumberValidator(),
     ]),
     address: new FormGroup({
-      address: new FormControl('',[Validators.required, singleLanguageValidator()]),
-      city: new FormControl('', [Validators.required, Validators.pattern('^[^0-9]*$'),singleLanguageValidator()]),
-      country: new FormControl('', [Validators.required, Validators.pattern('^[^0-9]*$'),singleLanguageValidator()]),
+      address: new FormControl('', [
+        Validators.required,
+        singleLanguageValidator(),
+      ]),
+      city: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[^0-9]*$'),
+        singleLanguageValidator(),
+      ]),
+      country: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[^0-9]*$'),
+        singleLanguageValidator(),
+      ]),
     }),
     img: new FormControl(''),
   });
@@ -136,6 +143,10 @@ export class AddClientComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.takeCurrentUser();
+  }
+
+  takeCurrentUser() {
     this.ActivatedRoute.data.pipe(takeUntil(this.mySub$)).subscribe((res) => {
       const clientInfo = res['client'];
 
@@ -178,23 +189,12 @@ export class AddClientComponent implements OnInit, OnDestroy {
 
     if (this.form.valid) {
       if (this.isEdit) {
-        this.ClientService.editClient(this.clientId, this.form.value)
-          .pipe(takeUntil(this.mySub$))
-          .subscribe({
-            next: () => {
-              this.NgToastService.success({
-                detail: 'Success Messege',
-                summary: 'Client edited successfully',
-              });
-              this.router.navigate(['/']);
-            },
-            error: () => {
-              this.NgToastService.error({
-                detail: 'Error Messege',
-                summary: 'Client edited unsuccessfully',
-              });
-            },
-          });
+        this.store.dispatch(
+          editClient.editClientAction({
+            id: this.clientId,
+            data: this.form.value,
+          })
+        );
       } else {
         this.store.dispatch(
           addClient.addClientAction({ data: this.form.value })
