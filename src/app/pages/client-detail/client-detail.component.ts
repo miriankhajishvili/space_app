@@ -21,6 +21,13 @@ import { CardModule } from 'primeng/card';
 import { ICard } from '../../shared/interfaces/card.interface';
 import { CardService } from '../../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
+import { InputTextModule } from 'primeng/inputtext';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatInputModule} from '@angular/material/input';
 
 interface OptionsType {
   name: string;
@@ -39,6 +46,13 @@ interface OptionsType {
     RadioButtonModule,
     MultiSelectModule,
     CardModule,
+    InputTextModule,
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatInputModule
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
@@ -55,9 +69,9 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   currentUSerCards: any[] = [];
 
   types: OptionsType[] = [
-    { name: 'მიმდინარე' },
-    { name: 'შემნახველი' },
-    { name: 'დაგროვებითი' },
+    { name: 'Freespin' },
+    { name: 'Freebet' },
+    { name: 'Money' },
   ];
   currency: OptionsType[] = [{ name: 'USD' }, { name: 'GEL' }, { name: 'EUR' }];
   selectedCurrency!: OptionsType[];
@@ -86,16 +100,13 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   }
   getImageSource(cardType: string) {
     const basePath = 'assets/images/';
+    const cardTypeImages: { [key: string]: string } = {
+      Freespin: 'freeSpin.jpg',
+      Freebet: 'freeBet.jpg',
+      Money: 'money.jpg',
+    };
 
-    if (cardType === 'მიმდინარე') {
-      return basePath + '1.png';
-    } else if (cardType === 'შემნახველი') {
-      return basePath + '2.png';
-    } else if (cardType === 'დაგროვებითი') {
-      return basePath + '3.png';
-    } else {
-      return basePath + 'default.jpg';
-    }
+    return basePath + (cardTypeImages[cardType] || 'default.jpg');
   }
 
   initForm(): void {
@@ -137,7 +148,7 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
       this.cardForm.patchValue({
         cardType: card.cardType,
         currencies: card.currencies,
-        isActive: card.isActive,
+    
       });
     } else {
       this.cardForm.reset();

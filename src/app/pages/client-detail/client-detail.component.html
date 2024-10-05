@@ -1,153 +1,167 @@
-<div class="container"  >
-    <div class="main-body">
-    
-          <div  class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div  class="d-flex flex-column align-items-center text-center">
-                    <img   style="width: 140px; height: 160px;   object-fit: fill;" [src]="currentClient?.img" alt="Admin" class="rounded-circle">
-                    <div class="mt-3">
-                    
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-      
-                    
-                    </div>
-                  </div>
-                  <div class="d-flex flex-column mt-3">
-                  
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <h6 class="mb-0">Current Address:</h6>
-                      </div>
-                      <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentAddress?.currentAddress}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <h6 class="mb-0">Current City:</h6>
-                      </div>
-                      <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentAddress?.currentCity}}
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <h6 class="mb-0">Current Country:</h6>
-                      </div>
-                      <div class="col-sm-6 text-secondary">
-                          {{currentClient?.currentAddress?.currentCountry}}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+<div class="container">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                style="width: 140px; height: 160px; object-fit: fill"
+                [src]="currentClient?.img"
+                alt="Admin"
+                class="rounded-circle"
+              />
+              <div class="mt-3">
+                <p class="text-secondary mb-1">Full Stack Developer</p>
               </div>
-          
             </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                     {{currentClient?.firstname +' '+ currentClient?.lastname}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Gender</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                   {{currentClient?.gender}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Personal ID</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                   {{currentClient?.id}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mobile Number</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                     {{currentClient?.phonenumber}}
-                    </div>
-                  </div>
-                  <hr>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0"> Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{currentClient?.address?.address}}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Legal City</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{currentClient?.address?.city}}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Legal Country</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{currentClient?.address?.country}}
-                    </div>
-                  </div>
-          
-           
-                  <hr>
-           
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-9">
-                   
-                      <p-button [style]="{'border-radius' : '15px' }" (onClick)="onEdit(currentClient.id)" label="Edit Client"></p-button>
-                    </div>
-                    <div  class="col-sm-3 add-card">
-                      <p-button 
-                      [style]="{'border-radius' : '15px'}"
-                      (click)="showDialog()"
-                      class="add-card__button"
-                      icon="pi pi-plus-circle"
-                      label="Add Card" 
-                      severity="secondary"/>
-                      
-                    </div>
-                  </div>
+            <div class="d-flex flex-column mt-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0">Current Address:</h6>
+                </div>
+                <div class="col-sm-6 text-secondary">
+                  {{ currentClient?.currentAddress?.currentAddress }}
                 </div>
               </div>
-
-              <p-dialog 
-              
-              [formGroup]="cardForm"
-              [modal]="true"
-              [(visible)]="visible" 
-              [style]="{ width: '25rem', height: '30rem' }">
-              
-              <ng-template  pTemplate="header">
-                {{ isEditing ? 'Edit Card Status' : 'Add Card' }}
-              </ng-template>
-              <div class="flex align-items-center gap-3 mb-3">
-                <p-dropdown [style]="{'margin-top': '20px'}" appendTo="body" formControlName="cardType" [options]="types" optionLabel="name"  [disabled]="isEditing" placeholder="Select Type of card"></p-dropdown>
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0">Current City:</h6>
+                </div>
+                <div class="col-sm-6 text-secondary">
+                  {{ currentClient?.currentAddress?.currentCity }}
+                </div>
               </div>
-              
-              <div class="flex align-items-center gap-3 mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h6 class="mb-0">Current Country:</h6>
+                </div>
+                <div class="col-sm-6 text-secondary">
+                  {{ currentClient?.currentAddress?.currentCountry }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.firstname + " " + currentClient?.lastname }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Gender</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.gender }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Personal ID</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.id }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Mobile Number</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.phonenumber }}
+              </div>
+            </div>
+            <hr />
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Address</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.address?.address }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Legal City</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.address?.city }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Legal Country</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ currentClient?.address?.country }}
+              </div>
+            </div>
+
+            <hr />
+
+            <hr />
+            <div class="row">
+              <div class="col-sm-9">
+                <p-button
+                  [style]="{ 'border-radius': '15px' }"
+                  (onClick)="onEdit(currentClient.id)"
+                  label="Edit Client"
+                ></p-button>
+              </div>
+              <div class="col-sm-3 add-card">
+                <p-button
+                  [style]="{ 'border-radius': '15px' }"
+                  (click)="showDialog()"
+                  class="add-card__button"
+                  icon="pi pi-plus-circle"
+                  label="Add Bonus"
+                  severity="secondary"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p-dialog
+          [formGroup]="cardForm"
+          [modal]="true"
+          [(visible)]="visible"
+          [style]="{ width: '25rem', height: '30rem' }"
+        >
+          <ng-template pTemplate="header">
+            {{ isEditing ? "Edit Bonus Card" : "Add Bonus" }}
+          </ng-template>
+          <div class="flex align-items-center gap-3 mb-3">
+            <p-dropdown
+              [style]="{ 'margin-top': '20px' }"
+              appendTo="body"
+              formControlName="cardType"
+              [options]="types"
+              optionLabel="name"
+              [disabled]="isEditing"
+              placeholder="Select Type of Bonus"
+            ></p-dropdown>
+          </div>
+          <div class="flex align-items-center gap-3 mb-3">
+
+          </div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+          </mat-form-field>
+          <!-- <div class="flex align-items-center gap-3 mb-3">
                 <p-multiSelect 
                 [disabled]="isEditing"
                 formControlName="currencies" 
@@ -155,50 +169,59 @@
                 [(ngModel)]="selectedCurrency" 
                 optionLabel="name" 
                 placeholder="Select Currency"></p-multiSelect>
-              </div>
-
-              <div class="flex align-items-center gap-3 mb-3 mt-4" *ngIf="isEditing">
-                <p-radioButton a formControlName="isActive" value="true" label="Active"></p-radioButton>
-                <p-radioButton formControlName="isActive" value="false" label="Inactive"></p-radioButton>
-              </div>
-              
-              <div class="dialog-buttons flex justify-content-center gap-2 " >
-                  <p-button [style]="{'border-radius': '15px'}" label="Cancel" severity="secondary" (click)="cancel(false)" />
-                  <p-button [style]="{'border-radius': '15px', 'margin-left' : '15px'}" label="Save" (click)="onSubmit(false)" />
-              </div>
-               </p-dialog>
-
-          
-              <div class="row gutters-sm" >
-                <div class="col-sm-6 mb-3" *ngFor="let card of currentUSerCards">
-                    <p-card [header]="card.cardType.name" >
-                      <ng-template pTemplate="header">
-                          <img [ngClass]="{'deactivated-card': card.isActive !== 'true'}" alt="Card" [src]="getImageSource(card.cardType.name)" />
-                      </ng-template>
-                      <div class="row">
-                        <div class="col" *ngFor="let currency of card.currencies">
-                          <p>
-                            {{ currency.name }}
-                          </p>
-                        </div>
-                      </div>
-                      <p [ngClass]="{'active': card.isActive === 'true', 'deactivated': card.isActive === 'false'}">
-                        {{ card.isActive === 'true' ? "Active" : "Deactivated" }}
-                      </p>
-                      <ng-template pTemplate="footer">
-                          <div class="flex gap-3 mt-1" class="buttons">
-                              <p-button  (click)="showDialog(card)" label="Edit Card Status" severity="secondary" class="w-full mr-3 " styleClass="w-full" />
-                              <p-button  (click)="deleteCard(card.id)"  severity="danger" label="Delete Card"class="w-full " styleClass="w-full" ></p-button>
-                          </div>
-                      </ng-template>
-                  </p-card>
-                </div>
-              </div>
+              </div> -->
 
 
-
-            </div>
+          <div class="dialog-buttons flex justify-content-center gap-2">
+            <p-button
+              [style]="{ 'border-radius': '15px' }"
+              label="Cancel"
+              severity="secondary"
+              (click)="cancel(false)"
+            />
+            <p-button
+              [style]="{ 'border-radius': '15px', 'margin-left': '15px' }"
+              label="Save"
+              (click)="onSubmit(false)"
+            />
           </div>
+        </p-dialog>
 
+        <div class="row gutters-sm">
+          <div class="col-sm-6 mb-3" *ngFor="let card of currentUSerCards">
+            <p-card [header]="card.cardType.name">
+              <ng-template pTemplate="header">
+                <img
+                  [ngClass]="{ 'deactivated-card': card.isActive !== 'true' }"
+                  alt="Card"
+                  [src]="getImageSource(card.cardType.name)"
+                />
+              </ng-template>
+              <div class="row">
+                <label for="">Quantity</label>
+              </div>
+              <ng-template pTemplate="footer">
+                <div class="flex gap-3 mt-1" class="buttons">
+                  <p-button
+                    (click)="showDialog(card)"
+                    label="Edit Bonus Card"
+                    severity="secondary"
+                    class="w-full mr-3"
+                    styleClass="w-full"
+                  />
+                  <p-button
+                    (click)="deleteCard(card.id)"
+                    severity="danger"
+                    label="Delete Card"
+                    class="w-full"
+                    styleClass="w-full"
+                  ></p-button>
+                </div>
+              </ng-template>
+            </p-card>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
