@@ -1,7 +1,14 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ClientService } from '../shared/services/client.service';
-import { addClient, deleteClient, editClient, getAllClients } from './action';
+import {
+  addBonusCard,
+  addClient,
+  deleteClient,
+  editClient,
+  getAllClients,
+  getBonusCards,
+} from './action';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { CardService } from '../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -123,6 +130,58 @@ export const deleteClientEffect = createEffect(
           }),
           catchError((err) => {
             return of(deleteClient.deleteClientActionFailure({ error: err }));
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const getBonusCardEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    cardService = inject(CardService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(getBonusCards.getBonusCardsAction),
+      switchMap(() => {
+        return cardService.getCards().pipe(
+          map((res) => {
+            return getBonusCards.getBonusCardsActionSuccess({
+              bonusCards: res,
+            });
+          }),
+          catchError((err) => {
+            return of(getBonusCards.getBonusCardsActionFailure({ error: err }));
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const addBonusCardEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    cardService = inject(CardService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(addBonusCard.addBonusCardAction),
+      switchMap(({ bonusCard }) => {
+        return cardService.addCard(bonusCard).pipe(
+          map((_) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Bonus card added successfully',
+            });
+            return addBonusCard.addBonusCardActionSuccess({ bonusCard });
+          }),
+          catchError((err) => {
+            return of(addBonusCard.addBonusCardActionFailure({ error: err }));
           })
         );
       })

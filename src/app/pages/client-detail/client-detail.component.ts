@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ClientService } from '../../shared/services/client.service';
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { IClient } from '../../shared/interfaces/client.interface';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -22,12 +22,15 @@ import { ICard } from '../../shared/interfaces/card.interface';
 import { CardService } from '../../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 import { InputTextModule } from 'primeng/inputtext';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatInputModule} from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
+import { Store } from '@ngrx/store';
+import { addBonusCard, getBonusCards } from '../../store/action';
+import { selectBonusCards } from '../../store/reducer';
 
 interface OptionsType {
   name: string;
@@ -52,7 +55,7 @@ interface OptionsType {
     MatFormFieldModule,
     MatSelectModule,
     MatRadioModule,
-    MatInputModule
+    MatInputModule,
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
@@ -60,7 +63,7 @@ interface OptionsType {
 export class ClientDetailComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
   cardForm!: FormGroup;
-
+  bonusCards$: Observable<any> = this.store.select(selectBonusCards);
   activeId!: number;
 
   currentClient!: IClient;
@@ -84,7 +87,8 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private fb: FormBuilder,
     private cardService: CardService,
-    private NgToastService: NgToastService
+    private NgToastService: NgToastService,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
@@ -128,17 +132,19 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   }
 
   getCards() {
-    const activeId = this.activateRoute.snapshot.params['id'];
-    this.cardService
-      .getCards()
-      .pipe(takeUntil(this.mySub$))
-      .subscribe((res) => {
-        res.forEach((eachCard: ICard) => {
-          if (eachCard.userID === activeId) {
-            this.currentUSerCards.push(eachCard);
-          }
-        });
-      });
+    // const activeId = this.activateRoute.snapshot.params['id'];
+    // this.cardService
+    //   .getCards()
+    //   .pipe(takeUntil(this.mySub$))
+    //   .subscribe((res) => {
+    //     res.forEach((eachCard: ICard) => {
+    //       if (eachCard.userID === activeId) {
+    //         this.currentUSerCards.push(eachCard);
+    //       }
+    //     });
+    //   });
+
+    this.store.dispatch(getBonusCards.getBonusCardsAction());
   }
   showDialog(card?: ICard) {
     if (card) {
@@ -148,7 +154,6 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
       this.cardForm.patchValue({
         cardType: card.cardType,
         currencies: card.currencies,
-    
       });
     } else {
       this.cardForm.reset();
@@ -201,20 +206,24 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
         currencies: formData.currencies,
         isActive: 'true',
       };
-      this.cardService
-        .addCard(newCard)
-        .pipe(takeUntil(this.mySub$))
-        .subscribe((addedCard) => {
-          if (!this.currentUSerCards.find((card) => card.id === addedCard.id)) {
-            this.currentUSerCards.push(addedCard);
-          }
-          this.cardForm.reset();
-          this.cardForm.markAllAsTouched();
-        });
-      this.NgToastService.success({
-        detail: 'Success Messege',
-        summary: 'Card added successfully',
-      });
+      // this.cardService
+      //   .addCard(newCard)
+      //   .pipe(takeUntil(this.mySub$))
+      //   .subscribe((addedCard) => {
+      //     if (!this.currentUSerCards.find((card) => card.id === addedCard.id)) {
+      //       this.currentUSerCards.push(addedCard);
+      //     }
+      //     this.cardForm.reset();
+      //     this.cardForm.markAllAsTouched();
+      //   });
+      // this.NgToastService.success({
+      //   detail: 'Success Messege',
+      //   summary: 'Card added successfully',
+      // });
+
+      this.store.dispatch(
+        addBonusCard.addBonusCardAction({ bonusCard: newCard })
+      );
     }
   }
 

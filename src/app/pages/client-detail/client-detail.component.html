@@ -154,23 +154,18 @@
               placeholder="Select Type of Bonus"
             ></p-dropdown>
           </div>
+          <div class="flex align-items-center gap-3 mb-3"></div>
+
           <div class="flex align-items-center gap-3 mb-3">
-
+            <p-multiSelect
+              [disabled]="isEditing"
+              formControlName="currencies"
+              [options]="currency"
+              [(ngModel)]="selectedCurrency"
+              optionLabel="name"
+              placeholder="Select Currency"
+            ></p-multiSelect>
           </div>
-          <mat-form-field class="example-full-width">
-            <mat-label>Favorite food</mat-label>
-            <input matInput placeholder="Ex. Pizza" value="Sushi">
-          </mat-form-field>
-          <!-- <div class="flex align-items-center gap-3 mb-3">
-                <p-multiSelect 
-                [disabled]="isEditing"
-                formControlName="currencies" 
-                [options]="currency" 
-                [(ngModel)]="selectedCurrency" 
-                optionLabel="name" 
-                placeholder="Select Currency"></p-multiSelect>
-              </div> -->
-
 
           <div class="dialog-buttons flex justify-content-center gap-2">
             <p-button
@@ -188,37 +183,38 @@
         </p-dialog>
 
         <div class="row gutters-sm">
-          <div class="col-sm-6 mb-3" *ngFor="let card of currentUSerCards">
-            <p-card [header]="card.cardType.name">
-              <ng-template pTemplate="header">
-                <img
-                  [ngClass]="{ 'deactivated-card': card.isActive !== 'true' }"
-                  alt="Card"
-                  [src]="getImageSource(card.cardType.name)"
-                />
-              </ng-template>
-              <div class="row">
-                <label for="">Quantity</label>
-              </div>
-              <ng-template pTemplate="footer">
-                <div class="flex gap-3 mt-1" class="buttons">
-                  <p-button
-                    (click)="showDialog(card)"
-                    label="Edit Bonus Card"
-                    severity="secondary"
-                    class="w-full mr-3"
-                    styleClass="w-full"
+          <div class="col-sm-6 mb-3" *ngFor="let card of bonusCards$ | async">
+            <ng-container *ngIf="card.userID === currentClient.id">
+              <p-card [header]="card.cardType.name">
+                <ng-template pTemplate="header">
+                  <img
+                    [ngClass]="{ 'deactivated-card': card.isActive !== 'true' }"
+                    alt="Card"
+                    [src]="getImageSource(card.cardType.name)"
                   />
-                  <p-button
-                    (click)="deleteCard(card.id)"
-                    severity="danger"
-                    label="Delete Card"
-                    class="w-full"
-                    styleClass="w-full"
-                  ></p-button>
+                </ng-template>
+                <div class="row">
+                  <label for="">Quantity</label>
                 </div>
-              </ng-template>
-            </p-card>
+                <ng-template pTemplate="footer">
+                  <div class="flex gap-3 mt-1" class="buttons">
+                    <p-button
+                      (click)="showDialog(card)"
+                      label="Edit Bonus Card"
+                      severity="secondary"
+                      class="w-full mr-3"
+                      styleClass="w-full"
+                    />
+                    <p-button
+                      (click)="deleteCard(card.id)"
+                      severity="danger"
+                      label="Delete Card"
+                      class="w-full"
+                      styleClass="w-full"
+                    ></p-button>
+                  </div>
+                </ng-template> </p-card
+            ></ng-container>
           </div>
         </div>
       </div>

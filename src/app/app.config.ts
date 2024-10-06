@@ -12,6 +12,7 @@ import { clientsReducer } from './store/reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as getAllClientEffect from './store/effects';
 import * as deleteClientEffect from './store/effects';
+import * as addBonusCardEffect from './store/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideAnimationsAsync(),
-    provideEffects(getAllClientEffect, deleteClientEffect),
+    provideEffects(getAllClientEffect, deleteClientEffect, addBonusCardEffect),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode,

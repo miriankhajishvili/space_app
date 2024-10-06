@@ -150,19 +150,61 @@
   ],
   "cards": [
     {
-      "id": "8",
-      "firstname": "asdsa",
-      "lastname": "asd",
-      "personalid": "61004068063",
-      "gender": "Male",
-      "phonenumber": "595580404",
-      "address": {
-        "address": "adsasd",
-        "city": "adasd",
-        "country": "asdasd"
+      "id": "176",
+      "userID": "18",
+      "cardType": {
+        "name": "Freebet"
       },
-      "img": ""
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "177",
+      "userID": "18",
+      "cardType": {
+        "name": "Freebet"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
+    },
+    {
+      "id": "178",
+      "userID": "18",
+      "cardType": {
+        "name": "Freebet"
+      },
+      "currencies": [
+        {
+          "name": "USD"
+        },
+        {
+          "name": "GEL"
+        },
+        {
+          "name": "EUR"
+        }
+      ],
+      "isActive": "true"
     }
-  ],
-  "cards": []
+  ]
 }

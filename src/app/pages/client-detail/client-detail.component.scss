@@ -9,12 +9,10 @@
 
   &__button {
     font-size: 1rem;
-    
   }
 }
 :host ::ng-deep.dialog-buttons {
   margin-top: 7rem;
- 
 }
 
 :host ::ng-deep.active {
@@ -28,20 +26,19 @@
   opacity: 0.3;
 }
 
-:host ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
-
+:host
+  ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
   border-radius: 15px;
 }
 
-:host ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
-
+:host
+  ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
   border-radius: 15px;
 }
 
-:host ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-danger.w-full{
+:host ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-danger.w-full {
   border-radius: 15px;
   margin-left: 10px;
-
 }
 
 .example-form {

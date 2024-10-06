@@ -30,6 +30,7 @@ export interface IClient {
 
 export interface IClientState {
   clients: IClient[]
+  bonusCards: any[]
   items: number
 }
 

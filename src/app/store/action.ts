@@ -1,4 +1,4 @@
-import { createActionGroup, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { IClient, pageRequest } from '../shared/interfaces/client.interface';
 
 export const getAllClients = createActionGroup({
@@ -29,7 +29,7 @@ export const editClient = createActionGroup({
     editClientActionSuccess: props<{ id: number | undefined; data: IClient }>(),
     editClientActionFailure: props<{ error: string }>(),
   },
-})
+});
 
 export const deleteClient = createActionGroup({
   source: 'deleteClient',
@@ -37,5 +37,23 @@ export const deleteClient = createActionGroup({
     deleteClientAction: props<{ id: number }>(),
     deleteClientActionSuccess: props<{ id: number }>(),
     deleteClientActionFailure: props<{ error: string }>(),
+  },
+});
+
+export const getBonusCards = createActionGroup({
+  source: 'getBonusCards',
+  events: {
+    getBonusCardsAction: emptyProps(),
+    getBonusCardsActionSuccess: props<{ bonusCards: any }>(),
+    getBonusCardsActionFailure: props<{ error: string }>(),
+  },
+});
+
+export const addBonusCard = createActionGroup({
+  source: 'addBonusCard',
+  events: {
+    addBonusCardAction: props<{ bonusCard: any }>(),
+    addBonusCardActionSuccess: props<{ bonusCard: any }>(),
+    addBonusCardActionFailure: props<{ error: string }>(),
   },
 });

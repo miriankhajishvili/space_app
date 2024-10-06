@@ -1,10 +1,19 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { IClientState } from '../shared/interfaces/client.interface';
-import { addClient, deleteClient, editClient, getAllClients } from './action';
+import {
+  addBonusCard,
+  addClient,
+  deleteClient,
+  editClient,
+  getAllClients,
+  getBonusCards,
+} from './action';
+import { get } from 'http';
 
 const initialState: IClientState = {
   clients: [],
   items: 0,
+  bonusCards: [],
 };
 
 const clients = createFeature({
@@ -26,7 +35,7 @@ const clients = createFeature({
         }
         return clients;
       });
-      return { ...state, clients: upladtedClients };  
+      return { ...state, clients: upladtedClients };
     }),
 
     on(deleteClient.deleteClientAction, (state, action) => {
@@ -39,7 +48,18 @@ const clients = createFeature({
     on(addClient.addClientAction, (state, action) => {
       const upladtedClients = [...state.clients, action.data];
       return { ...state, clients: upladtedClients };
-    })
+    }),
+
+    on(addBonusCard.addBonusCardAction, (state, action) => {
+      const upladtedBonusCards = [...state.bonusCards, action.bonusCard];
+      return { ...state, bonusCards: upladtedBonusCards };
+    }),
+
+    on(getBonusCards.getBonusCardsAction, (state) => ({ ...state })),
+    on(getBonusCards.getBonusCardsActionSuccess, (state, action) => ({
+      ...state,
+      bonusCards: action.bonusCards,
+    }))
   ),
 });
 
@@ -48,4 +68,5 @@ export const {
   reducer: clientsReducer,
   selectClients,
   selectItems,
+  selectBonusCards,
 } = clients;
