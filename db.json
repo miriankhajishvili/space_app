@@ -150,93 +150,19 @@
   ],
   "cards": [
     {
-      "id": "15",
-      "userID": "18",
-      "cardType": {
-        "name": "Freespin"
+      "id": "8",
+      "firstname": "asdsa",
+      "lastname": "asd",
+      "personalid": "61004068063",
+      "gender": "Male",
+      "phonenumber": "595580404",
+      "address": {
+        "address": "adsasd",
+        "city": "adasd",
+        "country": "asdasd"
       },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "16",
-      "userID": "18",
-      "cardType": {
-        "name": "Freebet"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "17",
-      "userID": "18",
-      "cardType": {
-        "name": "Freebet"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "18",
-      "userID": "18",
-      "cardType": {
-        "name": "Money"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "19",
-      "userID": "17",
-      "cardType": {
-        "name": "Freespin"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
+      "img": ""
     }
-  ]
+  ],
+  "cards": []
 }
