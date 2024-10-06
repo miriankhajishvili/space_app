@@ -3,7 +3,9 @@ import { IClientState } from '../shared/interfaces/client.interface';
 import {
   addBonusCard,
   addClient,
+  deleteBonusCard,
   deleteClient,
+  editBonusCard,
   editClient,
   getAllClients,
   getBonusCards,
@@ -59,7 +61,23 @@ const clients = createFeature({
     on(getBonusCards.getBonusCardsActionSuccess, (state, action) => ({
       ...state,
       bonusCards: action.bonusCards,
-    }))
+    })),
+
+    on(deleteBonusCard.deleteBonusCardAction, (state, action) => {
+      const upladtedBonusCards = state.bonusCards.filter(
+        (bonusCard) => bonusCard.id !== action.id
+      );
+      return { ...state, bonusCards: upladtedBonusCards };
+    }),
+    on(editBonusCard.editBonusCardAction, (state, action) => {
+      const upladtedBonusCards = state.bonusCards.map((bonusCard) => {
+        if (bonusCard.id === action.bonusCard.id) {
+          return action.bonusCard;
+        }
+        return bonusCard;
+      });
+      return { ...state, bonusCards: upladtedBonusCards };  
+    })
   ),
 });
 

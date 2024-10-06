@@ -4,7 +4,9 @@ import { ClientService } from '../shared/services/client.service';
 import {
   addBonusCard,
   addClient,
+  deleteBonusCard,
   deleteClient,
+  editBonusCard,
   editClient,
   getAllClients,
   getBonusCards,
@@ -13,6 +15,7 @@ import { catchError, map, of, switchMap } from 'rxjs';
 import { CardService } from '../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 export const getAllClientEffect = createEffect(
   (
@@ -167,7 +170,8 @@ export const addBonusCardEffect = createEffect(
   (
     actions$ = inject(Actions),
     cardService = inject(CardService),
-    ngToastService = inject(NgToastService)
+    ngToastService = inject(NgToastService),
+    dialog = inject(MatDialog)
   ) => {
     return actions$.pipe(
       ofType(addBonusCard.addBonusCardAction),
@@ -178,6 +182,7 @@ export const addBonusCardEffect = createEffect(
               detail: 'Success Message',
               summary: 'Bonus card added successfully',
             });
+            dialog.closeAll();
             return addBonusCard.addBonusCardActionSuccess({ bonusCard });
           }),
           catchError((err) => {
@@ -188,4 +193,58 @@ export const addBonusCardEffect = createEffect(
     );
   },
   { functional: true }
+);
+
+export const editBonusCardEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    cardService = inject(CardService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(editBonusCard.editBonusCardAction),
+      switchMap(({ bonusCard }) => {
+        return cardService.editCard(bonusCard).pipe(
+          map((_) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Bonus card edited successfully',
+            });
+            return editBonusCard.editBonusCardActionSuccess({  bonusCard });
+          }),
+          catchError((err) => {
+            return of(editBonusCard.editBonusCardActionFailure({ error: err }));
+          })
+        );
+      })  
+    );
+  },
+  { functional: true }
+)
+
+export const deleteBonusCardEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    cardService = inject(CardService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(deleteBonusCard.deleteBonusCardAction),
+      switchMap(({ id }) => {
+        return cardService.deleteCard(id).pipe(
+          map(() => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Bonus card deleted successfully',
+            });
+            return deleteBonusCard.deleteBonusCardActionSuccess({ id });
+          }),
+          catchError((err) => {
+            return of(deleteBonusCard.deleteBonusCardActionFailure({ error: err }));
+          })
+        );
+      })
+    );
+  },
+  { functional: true }  
 );

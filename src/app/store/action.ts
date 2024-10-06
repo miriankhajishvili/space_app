@@ -57,3 +57,21 @@ export const addBonusCard = createActionGroup({
     addBonusCardActionFailure: props<{ error: string }>(),
   },
 });
+
+export const editBonusCard = createActionGroup({
+  source: 'editBonusCard',
+  events: {
+    editBonusCardAction: props<{ bonusCard: any }>(),
+    editBonusCardActionSuccess: props<{  bonusCard: any }>(),
+    editBonusCardActionFailure: props<{ error: string }>(),
+  },
+})
+
+export const deleteBonusCard = createActionGroup({
+  source: 'deleteBonusCard',
+  events: {
+    deleteBonusCardAction: props<{ id: number }>(),
+    deleteBonusCardActionSuccess: props<{ id: number }>(),
+    deleteBonusCardActionFailure: props<{ error: string }>(),
+  },
+});

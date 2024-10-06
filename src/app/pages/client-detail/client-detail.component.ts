@@ -23,14 +23,20 @@ import { CardService } from '../../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import { addBonusCard, getBonusCards } from '../../store/action';
+import {
+  addBonusCard,
+  deleteBonusCard,
+  editBonusCard,
+  getBonusCards,
+} from '../../store/action';
 import { selectBonusCards } from '../../store/reducer';
+import { BonusCardComponent } from '../../shared/components/bouns-card/bouns-card.component';
 
 interface OptionsType {
   name: string;
@@ -56,6 +62,7 @@ interface OptionsType {
     MatSelectModule,
     MatRadioModule,
     MatInputModule,
+    BonusCardComponent,
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
@@ -88,7 +95,8 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private cardService: CardService,
     private NgToastService: NgToastService,
-    private store: Store
+    private store: Store,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -132,18 +140,6 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   }
 
   getCards() {
-    // const activeId = this.activateRoute.snapshot.params['id'];
-    // this.cardService
-    //   .getCards()
-    //   .pipe(takeUntil(this.mySub$))
-    //   .subscribe((res) => {
-    //     res.forEach((eachCard: ICard) => {
-    //       if (eachCard.userID === activeId) {
-    //         this.currentUSerCards.push(eachCard);
-    //       }
-    //     });
-    //   });
-
     this.store.dispatch(getBonusCards.getBonusCardsAction());
   }
   showDialog(card?: ICard) {
@@ -160,7 +156,11 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
       this.isEditing = false;
       this.cardToEdit = null;
     }
-    this.visible = true;
+    // this.visible = true;
+
+    this.dialog.open(BonusCardComponent, {
+      data: { currentClient: this.currentClient, card: card },
+    });
   }
 
   onEdit(clientId: number | undefined) {
@@ -173,10 +173,11 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
         detail: 'Error Messege',
         summary: 'Please fill all needed fields.',
       });
-    this.visible = visible;
     const formData = this.cardForm.value;
+    console.log(this.isEditing);
+    console.log(this.cardToEdit);
 
-    if (this.isEditing && this.cardToEdit) {
+    if (!this.isEditing && this.cardToEdit) {
       const editedCard = {
         id: this.cardToEdit.id,
         userID: this.cardToEdit.userID,
@@ -184,21 +185,25 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
         currencies: formData.currencies,
         isActive: formData.isActive,
       };
-      this.cardService
-        .editCard(editedCard)
-        .pipe(takeUntil(this.mySub$))
-        .subscribe(() => {
-          this.NgToastService.success({
-            detail: 'Success Messege',
-            summary: 'Card was eddited successfully',
-          });
-          const index = this.currentUSerCards.findIndex(
-            (card) => card.id === editedCard.id
-          );
-          if (index !== -1) {
-            this.currentUSerCards[index] = editedCard;
-          }
-        });
+      // this.cardService
+      //   .editCard(editedCard)
+      //   .pipe(takeUntil(this.mySub$))
+      //   .subscribe(() => {
+      //     this.NgToastService.success({
+      //       detail: 'Success Messege',
+      //       summary: 'Card was eddited successfully',
+      //     });
+      //     const index = this.currentUSerCards.findIndex(
+      //       (card) => card.id === editedCard.id
+      //     );
+      //     if (index !== -1) {
+      //       this.currentUSerCards[index] = editedCard;
+      //     }
+      //   });
+
+      this.store.dispatch(
+        editBonusCard.editBonusCardAction({ bonusCard: editedCard })
+      );
     } else {
       const newCard = {
         userID: this.currentClient?.id,
@@ -236,18 +241,7 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   }
 
   deleteCard(id: number) {
-    this.cardService
-      .deleteCard(id)
-      .pipe(takeUntil(this.mySub$))
-      .subscribe(() => {
-        this.NgToastService.success({
-          detail: 'Success Messege',
-          summary: 'Card deleted successfully',
-        });
-        this.currentUSerCards = this.currentUSerCards.filter(
-          (card) => card.id !== id
-        );
-      });
+    this.store.dispatch(deleteBonusCard.deleteBonusCardAction({ id: id }));
   }
   ngOnDestroy(): void {
     this.mySub$.next(null), this.mySub$.complete();

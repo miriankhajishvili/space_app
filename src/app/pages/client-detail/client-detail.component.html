@@ -134,67 +134,17 @@
           </div>
         </div>
 
-        <p-dialog
-          [formGroup]="cardForm"
-          [modal]="true"
-          [(visible)]="visible"
-          [style]="{ width: '25rem', height: '30rem' }"
-        >
-          <ng-template pTemplate="header">
-            {{ isEditing ? "Edit Bonus Card" : "Add Bonus" }}
-          </ng-template>
-          <div class="flex align-items-center gap-3 mb-3">
-            <p-dropdown
-              [style]="{ 'margin-top': '20px' }"
-              appendTo="body"
-              formControlName="cardType"
-              [options]="types"
-              optionLabel="name"
-              [disabled]="isEditing"
-              placeholder="Select Type of Bonus"
-            ></p-dropdown>
-          </div>
-          <div class="flex align-items-center gap-3 mb-3"></div>
-
-          <div class="flex align-items-center gap-3 mb-3">
-            <p-multiSelect
-              [disabled]="isEditing"
-              formControlName="currencies"
-              [options]="currency"
-              [(ngModel)]="selectedCurrency"
-              optionLabel="name"
-              placeholder="Select Currency"
-            ></p-multiSelect>
-          </div>
-
-          <div class="dialog-buttons flex justify-content-center gap-2">
-            <p-button
-              [style]="{ 'border-radius': '15px' }"
-              label="Cancel"
-              severity="secondary"
-              (click)="cancel(false)"
-            />
-            <p-button
-              [style]="{ 'border-radius': '15px', 'margin-left': '15px' }"
-              label="Save"
-              (click)="onSubmit(false)"
-            />
-          </div>
-        </p-dialog>
-
         <div class="row gutters-sm">
           <div class="col-sm-6 mb-3" *ngFor="let card of bonusCards$ | async">
             <ng-container *ngIf="card.userID === currentClient.id">
-              <p-card [header]="card.cardType.name">
+              <p-card [header]="card.cardType">
                 <ng-template pTemplate="header">
-                  <img
-                    [ngClass]="{ 'deactivated-card': card.isActive !== 'true' }"
-                    alt="Card"
-                    [src]="getImageSource(card.cardType.name)"
-                  />
+                  <img alt="Card" [src]="getImageSource(card.cardType)" />
                 </ng-template>
                 <div class="row">
-                  <label for="">Quantity</label>
+                  <label *ngIf="card.currencies" for="">Curenency : {{ card.currencies }}</label>
+
+                  <label for="">Quantity : {{ card.quantity }}</label>
                 </div>
                 <ng-template pTemplate="footer">
                   <div class="flex gap-3 mt-1" class="buttons">

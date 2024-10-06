@@ -205,6 +205,13 @@
         }
       ],
       "isActive": "true"
+    },
+    {
+      "id": "198",
+      "userID": "17",
+      "cardType": "Freebet",
+      "currencies": "",
+      "quantity": 1
     }
   ]
 }

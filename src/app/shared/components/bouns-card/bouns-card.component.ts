@@ -25,6 +25,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ICard } from '../../interfaces/card.interface';
 import { CardService } from '../../services/card.service';
 import { Store } from '@ngrx/store';
+import { addBonusCard } from '../../../store/action';
 
 @Component({
   selector: 'app-bonus-card',
@@ -124,7 +125,7 @@ export class BonusCardComponent implements OnInit {
       
       };
       console.log()
-      // this.store.dispatch(addBonusCard.addBonusCardAction({ data: newCard }));
+      this.store.dispatch(addBonusCard.addBonusCardAction({ bonusCard: newCard }));
     }
   }
 
