@@ -1,0 +1,29 @@
+<div class="card flex justify-content-center">
+  <mat-dialog-content class="sorting-dialog">
+    <h2 mat-dialog-title>Sorting Clients</h2>
+
+    <div class="sort-section">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Sort client by:</mat-label>
+        <mat-select
+          [(ngModel)]="selectedProperty"
+          placeholder="Select a Property"
+        >
+          <mat-option
+            *ngFor="let option of sortProperties"
+            [value]="option.key"
+          >
+            {{ option.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="dialog-actions">
+      <button mat-button color="warn" (click)="onCancelClick()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="onSaveClick()">
+        Save
+      </button>
+    </div>
+  </mat-dialog-content>
+</div>

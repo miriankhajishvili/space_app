@@ -21,7 +21,9 @@ import { deleteClient, getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialog } from '@angular/material/dialog';
+import { SortingComponent } from '../../shared/components/sorting/sorting.component';
 
 @Component({
   selector: 'app-client',
@@ -42,7 +44,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AsyncPipe,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    SortingComponent,
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
@@ -75,24 +78,15 @@ export class ClientComponent implements OnInit, OnDestroy {
   count$!: Observable<any>;
 
   constructor(
-    private clientService: ClientService,
-    private cardService: CardService,
     private router: Router,
     private activatedRouter: ActivatedRoute,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private store: Store
+    private store: Store,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.getAllClientts();
-
-    // this.router.navigate([], {
-    //   relativeTo: this.activatedRouter,
-    //   queryParams: { page: this.page },
-    //   queryParamsHandling: 'merge',
-    // });
-
     this.inputValueChange();
   }
 
@@ -163,6 +157,10 @@ export class ClientComponent implements OnInit, OnDestroy {
       getAllClients.getAllClientsAction({ pageRequest: this.pagination })
     );
     console.log($event);
+  }
+
+  openSortDialog() {
+    this.dialog.open(SortingComponent);
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);
