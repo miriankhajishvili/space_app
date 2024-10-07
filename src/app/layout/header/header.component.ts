@@ -6,6 +6,12 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -17,6 +23,11 @@ import { Router } from '@angular/router';
     InputTextModule,
     ReactiveFormsModule,
     FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatMenuModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
@@ -33,4 +44,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {}
+  onProfile(){}
+  onLogout(){}
 }

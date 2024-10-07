@@ -1,8 +1,50 @@
-:host ::ng-deep .p-toolbar {
-  justify-content: start;
+.header-toolbar {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+  background-color: #121010;
 }
 
-:host ::ng-deep .p-ripple.p-element.p-button.p-component { 
-    border-radius: 15px;
+.logo {
+  margin-right: 16px;
+  cursor: pointer;
 }
 
+.logo-img {
+  height: 63px; /* Adjust logo size as needed */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ecf0f1; /* Light gray text color */
+  margin-right: auto;
+}
+
+.spacer {
+  flex: 1 1 auto; /* This will push the buttons to the right */
+}
+
+.search-field {
+  margin-right: 16px;
+}
+
+mat-toolbar {
+  height: 64px; /* Adjust height if needed */
+}
+
+mat-icon-button {
+  color: #ecf0f1; /* Light gray color for icon buttons */
+}
+
+button.mat-button {
+  color: #ecf0f1; /* Light gray color for text buttons */
+}
+
+button.mat-button:hover {
+  background-color: rgba(236, 240, 241, 0.2); /* Light hover effect */
+}
+
+mat-icon {
+  color: #ecf0f1; /* Light gray color for icons */
+}

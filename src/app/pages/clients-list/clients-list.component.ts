@@ -20,6 +20,8 @@ import { Store } from '@ngrx/store';
 import { deleteClient, getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @Component({
   selector: 'app-client',
@@ -38,6 +40,9 @@ import { MatButtonModule } from '@angular/material/button';
     ConfirmDialogModule,
     ToastModule,
     AsyncPipe,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',

@@ -1,9 +1,27 @@
-<p-toolbar>
-  <div class="p-toolbar-group-start">
-    <p-button (onClick)="onClick()" label="Home"> </p-button>
-  </div>
-  <div class="p-toolbar-group-start">
-    <p-button  routerLink="/add-client" label="Add Client" icon="pi pi-plus">
-    </p-button>
-  </div>
-</p-toolbar>
+<mat-toolbar color="primary" class="header-toolbar">
+  <span class="logo">
+    <img
+      [routerLink]="['/cients']"
+      src="assets/images/logo.png"
+      alt="Logo"
+      class="logo-img"
+    />
+  </span>
+
+  <span class="spacer"></span>
+
+  <button mat-button (click)="onClick()" color="accent">Home</button>
+
+  <button mat-button [routerLink]="['/add-client']" color="accent">
+    <mat-icon>add</mat-icon> Add Client
+  </button>
+
+  <mat-menu #userMenu="matMenu">
+    <button mat-menu-item (click)="onProfile()">Profile</button>
+    <button mat-menu-item (click)="onLogout()">Logout</button>
+  </mat-menu>
+
+  <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User Menu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
