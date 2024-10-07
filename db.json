@@ -176,13 +176,6 @@
       "cardType": "Freebet",
       "currencies": "",
       "quantity": 2
-    },
-    {
-      "id": "226",
-      "userID": "19",
-      "cardType": "Money",
-      "currencies": "GEL",
-      "quantity": 2
     }
   ]
 }

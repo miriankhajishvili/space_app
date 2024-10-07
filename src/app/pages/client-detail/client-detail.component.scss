@@ -137,12 +137,6 @@ button.mat-raised-button.mat-accent {
   margin-top: 20px; /* Space between the image and the information */
 }
 
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px; /* Space between each info row */
-}
-
 .info-label {
   font-weight: bold;
   color: #333; /* Darker text for labels */
@@ -150,4 +144,23 @@ button.mat-raised-button.mat-accent {
 
 .info-value {
   color: #555; /* Lighter text for values */
+}
+
+.info-icon {
+  color: #3f51b5; /* Change color to match your theme */
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 1.2rem; /* Adjust icon size */
+}
+
+.info-row {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: flex-start; /* Align items to the left */
+  margin-bottom: 10px; /* Space between each info row */
+}
+
+.info-icon {
+  color: #3f51b5; /* Change color to match your theme */
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 1.2rem; /* Adjust icon size */
 }
