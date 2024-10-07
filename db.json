@@ -150,68 +150,39 @@
   ],
   "cards": [
     {
-      "id": "176",
-      "userID": "18",
-      "cardType": {
-        "name": "Freebet"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
+      "id": "215",
+      "userID": "20",
+      "cardType": "Money",
+      "currencies": "GEL",
+      "quantity": 1
     },
     {
-      "id": "177",
-      "userID": "18",
-      "cardType": {
-        "name": "Freebet"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "178",
-      "userID": "18",
-      "cardType": {
-        "name": "Freebet"
-      },
-      "currencies": [
-        {
-          "name": "USD"
-        },
-        {
-          "name": "GEL"
-        },
-        {
-          "name": "EUR"
-        }
-      ],
-      "isActive": "true"
-    },
-    {
-      "id": "203",
+      "id": "218",
       "userID": "17",
       "cardType": "Freebet",
+      "currencies": "",
+      "quantity": 2
+    },
+    {
+      "id": "224",
+      "userID": "19",
+      "cardType": "Money",
       "currencies": "EUR",
-      "quantity": 3
+      "quantity": 2
+    },
+    {
+      "id": "225",
+      "userID": "19",
+      "cardType": "Freebet",
+      "currencies": "",
+      "quantity": 2
+    },
+    {
+      "id": "226",
+      "userID": "19",
+      "cardType": "Money",
+      "currencies": "GEL",
+      "quantity": 2
     }
   ]
 }

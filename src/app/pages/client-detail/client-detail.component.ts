@@ -7,19 +7,11 @@ import { IClient } from '../../shared/interfaces/client.interface';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { CardModule } from 'primeng/card';
 import { ICard } from '../../shared/interfaces/card.interface';
-import { CardService } from '../../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,14 +21,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
 import { Store } from '@ngrx/store';
-import {
-  addBonusCard,
-  deleteBonusCard,
-  editBonusCard,
-  getBonusCards,
-} from '../../store/action';
+import { deleteBonusCard, getBonusCards } from '../../store/action';
 import { selectBonusCards } from '../../store/reducer';
 import { BonusCardComponent } from '../../shared/components/bouns-card/bouns-card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 interface OptionsType {
   name: string;
@@ -62,20 +52,18 @@ interface OptionsType {
     MatSelectModule,
     MatRadioModule,
     MatInputModule,
+    MatButtonModule,
+    MatCardModule,
     BonusCardComponent,
+    MatDividerModule
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',
 })
 export class ClientDetailComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
-
   bonusCards$: Observable<any> = this.store.select(selectBonusCards);
-  activeId!: number;
-
   currentClient!: IClient;
-
-  visible: boolean = false;
   currentUSerCards: any[] = [];
 
   types: OptionsType[] = [
@@ -86,7 +74,6 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
   currency: OptionsType[] = [{ name: 'USD' }, { name: 'GEL' }, { name: 'EUR' }];
   selectedCurrency!: OptionsType[];
   isEditing: boolean = false;
-  cardToEdit: ICard | null = null;
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -99,14 +86,14 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCards();
+    this.getCurrentClient();
+  }
 
-    this.activeId = parseInt(this.activateRoute.snapshot.params['id'], 10);
-
+  getCurrentClient() {
     this.clientService
-      .getCurrentClient(this.activeId)
+      .getCurrentClient(parseInt(this.activateRoute.snapshot.params['id'], 10))
       .pipe(takeUntil(this.mySub$))
       .subscribe((res: IClient) => {
-        console.log(res);
         this.currentClient = res;
       });
   }
@@ -130,12 +117,9 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
     console.log(card);
     if (card) {
       this.isEditing = true;
-      this.cardToEdit = card;
     } else {
       this.isEditing = false;
-      this.cardToEdit = null;
     }
-    // this.visible = true;
 
     this.dialog.open(BonusCardComponent, {
       data: {
@@ -150,8 +134,7 @@ export class ClientDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/edit-client', clientId]);
   }
 
-  cancel(visible: boolean) {
-    this.visible = visible;
+  cancel() {
     this.NgToastService.warning({
       detail: 'Error Messege',
       summary: 'Edit card was cancelled !',

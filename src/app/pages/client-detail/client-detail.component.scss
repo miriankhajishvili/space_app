@@ -1,16 +1,13 @@
 :host ::ng-deep.add-card {
   display: flex;
-
-  border: none;
-  text-decoration: none;
-  padding: 0;
   justify-content: center;
   align-items: center;
-
-  &__button {
-    font-size: 1rem;
-  }
 }
+
+:host ::ng-deep.add-card__button {
+  font-size: 1rem;
+}
+
 :host ::ng-deep.dialog-buttons {
   margin-top: 7rem;
 }
@@ -22,22 +19,17 @@
 :host ::ng-deep.deactivated {
   color: red;
 }
+
 :host ::ng-deep.deactivated-card {
   opacity: 0.3;
 }
 
-:host
-  ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
+:host ::ng-deep.p-button.p-component.p-button-secondary.w-full,
+:host ::ng-deep.p-button.p-component.p-button-danger.w-full {
   border-radius: 15px;
 }
 
-:host
-  ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-secondary.w-full {
-  border-radius: 15px;
-}
-
-:host ::ng-deep.p-ripple.p-element.p-button.p-component.p-button-danger.w-full {
-  border-radius: 15px;
+:host ::ng-deep.p-button.p-component.p-button-danger.w-full {
   margin-left: 10px;
 }
 
@@ -49,4 +41,113 @@
 
 .example-full-width {
   width: 100%;
+}
+
+.custom-card {
+  max-width: 320px; /* A good size for small, visually appealing cards */
+  margin-bottom: 20px;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for elevation */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden; /* Ensure content doesn't overflow */
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.custom-card img {
+  width: 100%;
+  height: 150px; /* Fixed height to avoid stretching */
+  object-fit: cover; /* Ensures the image fits inside the card without distortion */
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px; /* Ensures the image has rounded top corners */
+}
+
+.custom-card .mat-card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.custom-card .mat-card-content .info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.custom-card .mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.action-button {
+  border-radius: 8px;
+  width: 48%; /* Adjust button size to fit nicely */
+}
+
+button.mat-raised-button.mat-warn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+button.mat-raised-button.mat-accent {
+  background-color: #3f51b5;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    max-width: 100%;
+  }
+}
+.add-bonus-button {
+  width: 100%; /* Make the button full width */
+  padding: 12px; /* Add padding for better touch target */
+  font-size: 1rem; /* Adjust font size */
+  text-transform: uppercase; /* Keep text uppercase */
+  border-radius: 30px; /* Keep the rounded corners */
+}
+
+.action-button {
+  border-radius: 30px; /* Keep uniformity in button style */
+  font-weight: bold; /* Make text bold */
+  text-transform: uppercase; /* Ensure text is uppercase */
+}
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img {
+  width: 140px;
+  height: 140px; /* Maintain a consistent aspect ratio */
+  object-fit: cover; /* Ensure image covers the element */
+  border: 4px solid #3f51b5; /* Add a border for emphasis */
+  border-radius: 50%; /* Make the image circular */
+}
+
+.profile-info {
+  margin-top: 20px; /* Space between the image and the information */
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px; /* Space between each info row */
+}
+
+.info-label {
+  font-weight: bold;
+  color: #333; /* Darker text for labels */
+}
+
+.info-value {
+  color: #555; /* Lighter text for values */
 }
