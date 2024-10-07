@@ -1,9 +1,8 @@
 <div class="main-container">
-  <h2 mat-dialog-title>Add Bonus {{ data.currentClient.name }}</h2>
+  <h2 mat-dialog-title>{{data.isEditing ? 'Edit Bonus' : 'Add Bonus' }} </h2>
 
   <form [formGroup]="cardForm">
     <mat-dialog-content class="dialog-content">
-
       <!-- Bonus Type Dropdown -->
       <mat-form-field appearance="fill" class="form-field full-width">
         <mat-label>Bonus Type</mat-label>
@@ -24,7 +23,11 @@
       </mat-form-field>
 
       <!-- Currency Dropdown (Shown only when "Money" is selected) -->
-      <mat-form-field *ngIf="showCurrency" appearance="fill" class="form-field full-width">
+      <mat-form-field
+        *ngIf="showCurrency || cardForm.get('cardType')?.value === 'Money'"
+        appearance="fill"
+        class="form-field full-width"
+      >
         <mat-label>Currency</mat-label>
         <mat-select formControlName="currencies">
           <mat-option *ngFor="let curr of currency" [value]="curr.name">
@@ -32,7 +35,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
     </mat-dialog-content>
 
     <mat-dialog-actions class="dialog-actions">

@@ -25,7 +25,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { ICard } from '../../interfaces/card.interface';
 import { CardService } from '../../services/card.service';
 import { Store } from '@ngrx/store';
-import { addBonusCard } from '../../../store/action';
+import { addBonusCard, editBonusCard } from '../../../store/action';
 
 @Component({
   selector: 'app-bonus-card',
@@ -56,8 +56,6 @@ export class BonusCardComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
   bonusType: string = 'freespin'; // default value
   currentUSerCards: any[] = [];
-  isEditing: boolean = false;
-  cardToEdit: ICard | null = null;
   currency: any[] = [{ name: 'USD' }, { name: 'GEL' }, { name: 'EUR' }];
   showCurrency = false; // Control to show/hide the currency field
 
@@ -70,7 +68,10 @@ export class BonusCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.store.select;
+
+    if (this.data.isEditing) {
+      this.cardForm.patchValue(this.data.card);
+    }
   }
 
   getImageSource(cardType: string) {
@@ -93,39 +94,28 @@ export class BonusCardComponent implements OnInit {
 
     const formData = this.cardForm.value;
 
-    if (this.isEditing && this.cardToEdit) {
+    if (this.data.isEditing) {
       const editedCard = {
-        id: this.cardToEdit.id,
-        userID: this.cardToEdit.userID,
+        id: this.data.card.id,
+        userID: this.data.card.userID,
         cardType: formData.cardType,
         currencies: formData.currencies,
-        isActive: formData.isActive,
+        quantity: formData.quantity,
       };
-      this.cardService
-        .editCard(editedCard)
-        .pipe(takeUntil(this.mySub$))
-        .subscribe(() => {
-          this.NgToastService.success({
-            detail: 'Success Messege',
-            summary: 'Card was eddited successfully',
-          });
-          const index = this.currentUSerCards.findIndex(
-            (card) => card.id === editedCard.id
-          );
-          if (index !== -1) {
-            this.currentUSerCards[index] = editedCard;
-          }
-        });
+      this.store.dispatch(
+        editBonusCard.editBonusCardAction({ bonusCard: editedCard })
+      );
     } else {
       const newCard = {
         userID: this.data.currentClient?.id,
         cardType: formData.cardType,
         currencies: formData.currencies,
         quantity: formData.quantity,
-      
       };
-      console.log()
-      this.store.dispatch(addBonusCard.addBonusCardAction({ bonusCard: newCard }));
+      console.log();
+      this.store.dispatch(
+        addBonusCard.addBonusCardAction({ bonusCard: newCard })
+      );
     }
   }
 

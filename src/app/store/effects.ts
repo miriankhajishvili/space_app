@@ -199,7 +199,8 @@ export const editBonusCardEffect = createEffect(
   (
     actions$ = inject(Actions),
     cardService = inject(CardService),
-    ngToastService = inject(NgToastService)
+    ngToastService = inject(NgToastService),
+    dialog = inject(MatDialog)
   ) => {
     return actions$.pipe(
       ofType(editBonusCard.editBonusCardAction),
@@ -210,17 +211,19 @@ export const editBonusCardEffect = createEffect(
               detail: 'Success Message',
               summary: 'Bonus card edited successfully',
             });
-            return editBonusCard.editBonusCardActionSuccess({  bonusCard });
+            dialog.closeAll();
+
+            return editBonusCard.editBonusCardActionSuccess({ bonusCard });
           }),
           catchError((err) => {
             return of(editBonusCard.editBonusCardActionFailure({ error: err }));
           })
         );
-      })  
+      })
     );
   },
   { functional: true }
-)
+);
 
 export const deleteBonusCardEffect = createEffect(
   (
@@ -240,11 +243,13 @@ export const deleteBonusCardEffect = createEffect(
             return deleteBonusCard.deleteBonusCardActionSuccess({ id });
           }),
           catchError((err) => {
-            return of(deleteBonusCard.deleteBonusCardActionFailure({ error: err }));
+            return of(
+              deleteBonusCard.deleteBonusCardActionFailure({ error: err })
+            );
           })
         );
       })
     );
   },
-  { functional: true }  
+  { functional: true }
 );

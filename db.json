@@ -207,11 +207,11 @@
       "isActive": "true"
     },
     {
-      "id": "198",
+      "id": "203",
       "userID": "17",
       "cardType": "Freebet",
-      "currencies": "",
-      "quantity": 1
+      "currencies": "EUR",
+      "quantity": 3
     }
   ]
 }

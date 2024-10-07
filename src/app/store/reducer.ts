@@ -76,7 +76,7 @@ const clients = createFeature({
         }
         return bonusCard;
       });
-      return { ...state, bonusCards: upladtedBonusCards };  
+      return { ...state, bonusCards: upladtedBonusCards };
     })
   ),
 });
