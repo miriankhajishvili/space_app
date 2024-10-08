@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { SortingComponent } from '../../shared/components/sorting/sorting.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 
 @Component({
   selector: 'app-client',
@@ -131,18 +132,24 @@ export class ClientComponent implements OnInit, OnDestroy {
   // }
 
   onDelete(id: number, event: Event) {
-    this.confirmationService.confirm({
-      message: 'Are you sure to delete client?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      target: event.target as EventTarget,
+    // this.confirmationService.confirm({
+    //   message: 'Are you sure to delete client?',
+    //   header: 'Delete Confirmation',
+    //   icon: 'pi pi-info-circle',
+    //   target: event.target as EventTarget,
 
-      acceptButtonStyleClass: 'p-button-danger p-button-text',
-      rejectButtonStyleClass: 'p-button-text p-button-text',
-      acceptIcon: 'none',
-      rejectIcon: 'none',
-      accept: () => {
-        this.store.dispatch(deleteClient.deleteClientAction({ id: id }));
+    //   acceptButtonStyleClass: 'p-button-danger p-button-text',
+    //   rejectButtonStyleClass: 'p-button-text p-button-text',
+    //   acceptIcon: 'none',
+    //   rejectIcon: 'none',
+    //   accept: () => {
+    //     this.store.dispatch(deleteClient.deleteClientAction({ id: id }));
+    //   },
+    // });
+
+    this.dialog.open(DeleteConfirmDialogComponent, {
+      data: {
+        id: id,
       },
     });
   }
@@ -179,6 +186,7 @@ export class ClientComponent implements OnInit, OnDestroy {
       getAllClients.getAllClientsAction({ pageRequest: this.pagination })
     );
   }
+
   ngOnDestroy(): void {
     this.mySub$.next(null);
     this.mySub$.complete();

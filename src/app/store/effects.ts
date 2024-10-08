@@ -16,6 +16,7 @@ import { CardService } from '../shared/services/card.service';
 import { NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { pageRequest } from '../shared/interfaces/client.interface';
 
 export const getAllClientEffect = createEffect(
   (
@@ -118,17 +119,31 @@ export const deleteClientEffect = createEffect(
   (
     actions$ = inject(Actions),
     cardService = inject(CardService),
-    ngToastService = inject(NgToastService)
+    ngToastService = inject(NgToastService),
+    clientService = inject(ClientService),
+
   ) => {
     return actions$.pipe(
       ofType(deleteClient.deleteClientAction),
       switchMap(({ id }) => {
         return cardService.deleteClient(id).pipe(
-          map(() => {
+          map((res) => {
+            console.log(res)
+
+           const pagination: pageRequest = {
+              page: 1,
+              row: 10,
+              search: '',
+              sort: '',
+            };
+
             ngToastService.success({
               detail: 'Success Message',
               summary: 'User deleted successfully',
             });
+
+            
+
             return deleteClient.deleteClientActionSuccess({ id });
           }),
           catchError((err) => {

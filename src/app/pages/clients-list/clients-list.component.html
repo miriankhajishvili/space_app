@@ -38,18 +38,23 @@
                   <strong>{{ client.firstname }} {{ client.lastname }}</strong>
                 </h4>
                 <p>For more detailed information, please visit my profile</p>
-                <div style="display: flex; gap: 10px">
-                  <p-toast />
 
-                  <p-button
+                <div style="display: flex; gap: 10px">
+                  <button
+                    mat-raised-button
+                    color="primary"
                     [routerLink]="['/client-detail', client.id]"
-                    label="Show Profile"
-                  ></p-button>
-                  <p-button
-                    [style]="{ 'background-color': '#CD1010', border: 'none' }"
-                    label="Delete Client"
-                    (onClick)="onDelete(client.id, $event)"
-                  ></p-button>
+                  >
+                    Show Profile
+                  </button>
+
+                  <button
+                    mat-raised-button
+                    style="background-color: #cd1010; color: white"
+                    (click)="onDelete(client.id, $event)"
+                  >
+                    Delete Client
+                  </button>
                 </div>
               </div>
             </div>
