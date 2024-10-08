@@ -21,7 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { SortingComponent } from '../../shared/components/sorting/sorting.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-client',
@@ -52,7 +52,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
   allClients$: Observable<IClient[]> = this.store.select(selectClients);
-  items$: Observable<any> = this.store.select(selectItems)
+  items$: Observable<any> = this.store.select(selectItems);
 
   totalRecords?: number;
 
@@ -87,6 +87,7 @@ export class ClientComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getAllClientts();
     this.inputValueChange();
+    console.log(this.page);
   }
 
   getAllClientts() {
@@ -162,12 +163,17 @@ export class ClientComponent implements OnInit, OnDestroy {
     this.dialog.open(SortingComponent);
   }
 
-  handlePageEvent($event: any) {
+  handlePageEvent($event: PageEvent) {
     console.log($event);
     this.pagination = {
       ...this.pagination,
       page: $event.pageIndex + 1,
     };
+    this.router.navigate([], {
+      relativeTo: this.activatedRouter,
+      queryParams: { page: $event.pageIndex + 1 },
+      queryParamsHandling: 'merge',
+    });
 
     this.store.dispatch(
       getAllClients.getAllClientsAction({ pageRequest: this.pagination })
