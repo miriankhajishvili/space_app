@@ -6,7 +6,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
 import { ClientService } from '../../shared/services/client.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
@@ -18,7 +17,6 @@ import { Store } from '@ngrx/store';
 import { addClient, editClient } from '../../store/action';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import e from 'express';
 
 @Component({
   selector: 'app-add-client',
@@ -26,7 +24,6 @@ import e from 'express';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    ButtonModule,
     RouterModule,
     HttpClientModule,
     MatInputModule,

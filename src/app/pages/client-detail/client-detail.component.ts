@@ -4,16 +4,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ClientService } from '../../shared/services/client.service';
 import { Observable, Subject, takeUntil, tap } from 'rxjs';
 import { IClient } from '../../shared/interfaces/client.interface';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { DropdownModule } from 'primeng/dropdown';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { MultiSelectModule } from 'primeng/multiselect';
-import { CardModule } from 'primeng/card';
+
 import { ICard } from '../../shared/interfaces/card.interface';
 import { NgToastService } from 'ng-angular-popup';
-import { InputTextModule } from 'primeng/inputtext';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -37,15 +33,10 @@ interface OptionsType {
   imports: [
     CommonModule,
     RouterModule,
-    ButtonModule,
-    DialogModule,
-    DropdownModule,
+
     ReactiveFormsModule,
     FormsModule,
-    RadioButtonModule,
-    MultiSelectModule,
-    CardModule,
-    InputTextModule,
+
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -55,7 +46,7 @@ interface OptionsType {
     MatButtonModule,
     MatCardModule,
     BonusCardComponent,
-    MatDividerModule
+    MatDividerModule,
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss',

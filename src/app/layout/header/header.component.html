@@ -12,16 +12,5 @@
 
   <button mat-button (click)="onClick()" color="accent">Home</button>
 
-  <button mat-button [routerLink]="['/add-client']" color="accent">
-    <mat-icon>add</mat-icon> Add Client
-  </button>
-
-  <mat-menu #userMenu="matMenu">
-    <button mat-menu-item (click)="onProfile()">Profile</button>
-    <button mat-menu-item (click)="onLogout()">Logout</button>
-  </mat-menu>
-
-  <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User Menu">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <button (click)="onAddClientClick()" mat-button color="accent"><mat-icon>add</mat-icon> Add Client</button>
 </mat-toolbar>

@@ -1,39 +1,32 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ToolbarModule } from 'primeng/toolbar';
-import { ButtonModule } from 'primeng/button';
-import { SplitButtonModule } from 'primeng/splitbutton';
-import { InputTextModule } from 'primeng/inputtext';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
-    ToolbarModule,
     CommonModule,
-    ButtonModule,
-    SplitButtonModule,
-    InputTextModule,
     ReactiveFormsModule,
     FormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   queryParams = {
     page: 1,
@@ -43,7 +36,11 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/clients'], { queryParams: this.queryParams });
   }
 
-  ngOnInit() {}
-  onProfile(){}
-  onLogout(){}
+  onAddClientClick() {
+    this.router.navigate(['/add-client']);
+  }
+
+  ngOnInit() {
+    console.log(this.activatedRoute);
+  }
 }

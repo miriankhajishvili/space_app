@@ -1,20 +1,15 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Observable, Subject, debounceTime, map, takeUntil, tap } from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
-import { PaginatorModule } from 'primeng/paginator';
-import { InputTextModule } from 'primeng/inputtext';
+
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { DialogModule } from 'primeng/dialog';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+
 import { Store } from '@ngrx/store';
-import { deleteClient, getAllClients } from '../../store/action';
+import { getAllClients } from '../../store/action';
 import { selectClients, selectItems } from '../../store/reducer';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,32 +18,30 @@ import { MatDialog } from '@angular/material/dialog';
 import { SortingComponent } from '../../shared/components/sorting/sorting.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-client',
   standalone: true,
   imports: [
     CommonModule,
-    CardModule,
-    ButtonModule,
+
     HttpClientModule,
     RouterModule,
-    PaginatorModule,
-    InputTextModule,
+
     ReactiveFormsModule,
-    DialogModule,
-    ConfirmDialogModule,
-    ToastModule,
+
     AsyncPipe,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
     SortingComponent,
     MatPaginatorModule,
+    MatIconModule,
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
-  providers: [ConfirmationService, MessageService, MatButtonModule],
+  providers: [MatButtonModule],
 })
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
@@ -80,7 +73,6 @@ export class ClientComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private activatedRouter: ActivatedRoute,
-    private confirmationService: ConfirmationService,
     private store: Store,
     private dialog: MatDialog
   ) {}

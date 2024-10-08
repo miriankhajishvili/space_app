@@ -491,5 +491,20 @@
       "id": "35"
     }
   ],
-  "cards": []
+  "cards": [
+    {
+      "id": "236",
+      "userID": "8",
+      "cardType": "Freebet",
+      "currencies": "",
+      "quantity": 2
+    },
+    {
+      "id": "237",
+      "userID": "1",
+      "cardType": "Freebet",
+      "currencies": "",
+      "quantity": 1
+    }
+  ]
 }
