@@ -2,17 +2,14 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
-import { ClientService } from '../../shared/services/client.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Observable, Subject, debounceTime, takeUntil } from 'rxjs';
+import { Observable, Subject, debounceTime, map, takeUntil, tap } from 'rxjs';
 import { IClient, pageRequest } from '../../shared/interfaces/client.interface';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
-import { SortComponent } from '../../shared/components/sort/sort/sort.component';
-import { CardService } from '../../shared/services/card.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -24,6 +21,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 import { SortingComponent } from '../../shared/components/sorting/sorting.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-client',
@@ -38,7 +36,6 @@ import { SortingComponent } from '../../shared/components/sorting/sorting.compon
     InputTextModule,
     ReactiveFormsModule,
     DialogModule,
-    SortComponent,
     ConfirmDialogModule,
     ToastModule,
     AsyncPipe,
@@ -46,6 +43,7 @@ import { SortingComponent } from '../../shared/components/sorting/sorting.compon
     MatButtonModule,
     MatFormFieldModule,
     SortingComponent,
+    MatPaginatorModule,
   ],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss',
@@ -54,7 +52,8 @@ import { SortingComponent } from '../../shared/components/sorting/sorting.compon
 export class ClientComponent implements OnInit, OnDestroy {
   mySub$ = new Subject();
   allClients$: Observable<IClient[]> = this.store.select(selectClients);
-  items$: Observable<number> = this.store.select(selectItems);
+  items$: Observable<any> = this.store.select(selectItems)
+
   totalRecords?: number;
 
   form = new FormGroup({
@@ -111,24 +110,24 @@ export class ClientComponent implements OnInit, OnDestroy {
       });
   }
 
-  onPageChange(event: any) {
-    if (event.page + 1 == this.pagination.page) return;
+  // onPageChange(event: any) {
+  //   if (event.page + 1 == this.pagination.page) return;
 
-    this.inputValueChange();
+  //   this.inputValueChange();
 
-    this.pagination = {
-      ...this.pagination,
-      page: event.page + 1,
-    };
+  //   this.pagination = {
+  //     ...this.pagination,
+  //     page: event.page + 1,
+  //   };
 
-    this.getAllClientts();
+  //   this.getAllClientts();
 
-    this.router.navigate([], {
-      relativeTo: this.activatedRouter,
-      queryParams: { page: event.page + 1 },
-      queryParamsHandling: 'merge',
-    });
-  }
+  //   this.router.navigate([], {
+  //     relativeTo: this.activatedRouter,
+  //     queryParams: { page: event.page + 1 },
+  //     queryParamsHandling: 'merge',
+  //   });
+  // }
 
   onDelete(id: number, event: Event) {
     this.confirmationService.confirm({
@@ -161,6 +160,18 @@ export class ClientComponent implements OnInit, OnDestroy {
 
   openSortDialog() {
     this.dialog.open(SortingComponent);
+  }
+
+  handlePageEvent($event: any) {
+    console.log($event);
+    this.pagination = {
+      ...this.pagination,
+      page: $event.pageIndex + 1,
+    };
+
+    this.store.dispatch(
+      getAllClients.getAllClientsAction({ pageRequest: this.pagination })
+    );
   }
   ngOnDestroy(): void {
     this.mySub$.next(null);

@@ -1,119 +1,133 @@
 /* Gradient background for the page */
 .gradient-custom-3 {
-    background: #1f5132;
-    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
-  }
-  
-  /* Body styling */
-  body {
-    margin-top: 2%;
-    background: #e80d0d;
-  }
+  background: #1f5132;
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(132, 250, 176, 0.5),
+    rgba(143, 211, 244, 0.5)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(132, 250, 176, 0.5),
+    rgba(143, 211, 244, 0.5)
+  );
+}
 
-  .p-toolbar-group-center {
-    justify-content: center;
+/* Body styling */
+body {
+  margin-top: 2%;
+  background: #e80d0d;
+}
 
-    input {
-      width: 300px;
-    }
-    
-    }
+.p-toolbar-group-center {
+  justify-content: center;
 
-  /* Link styling */
-  a {
-    color: #f96332;
+  input {
+    width: 300px;
   }
-  
-  .btn-gray{
-    color: white;
-    background-color: rgb(13, 44, 60);
-  }
-  .btn-red{
-    color: white;
-    background-color: red
-  }
-  
-  /* Margin-top utility class */
-  .m-t-5 {
-    margin-top: 0.5rem;
-  }
-  
-  /* Card styling */
-  .card {
-    background: #fff;
-    margin-bottom: 30px;
-    transition: 0.5s;
-    border: 0;
-    border-radius: 0.1875rem;
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    box-shadow: none;
-    margin-top: 5%;
-  }
-  
-  .card .body {
-    font-size: 1rem;
-    color: #424242;
-    padding: 20px;
-    font-weight: 400;
-  }
-  
-  /* Profile page and header styling */
-  .profile-page .profile-header {
-    position: relative;
-  }
-  
-  .profile-page .profile-header .profile-image img {
-    border-radius: 50%;
-    width: 160px;
-    height: 140px;
-    border: 3px solid #fff;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  }
-  
-  /* Social icon styling */
-  .profile-page .profile-header .social-icon a {
-    margin: 0 5px;
-  }
-  
-  /* Profile sub-header styling */
-  .profile-page .profile-sub-header {
-    min-height: 60px;
-    width: 100%;
-  }
-  
-  .profile-page .profile-sub-header ul.box-list {
-    display: inline-table;
-    table-layout: fixed;
-    width: 100%;
-    background: #eee;
-  }
-  
-  .profile-page .profile-sub-header ul.box-list li {
-    border-right: 1px solid #e0e0e0;
-    display: table-cell;
-    list-style: none;
-  }
-  
-  .profile-page .profile-sub-header ul.box-list li:last-child {
-    border-right: none;
-  }
-  
-  .profile-page .profile-sub-header ul.box-list li a {
-    display: block;
-    padding: 15px 0;
-    color: #424242;
-  }
-  
+}
 
-  :host ::ng-deep .p-ripple.p-element.p-button.p-component { 
-    border-radius: 15px;
+/* Link styling */
+a {
+  color: #f96332;
+}
 
-    
+.btn-gray {
+  color: white;
+  background-color: rgb(13, 44, 60);
+}
+.btn-red {
+  color: white;
+  background-color: red;
+}
+
+/* Margin-top utility class */
+.m-t-5 {
+  margin-top: 0.5rem;
+}
+
+/* Card styling */
+.card {
+  background: #fff;
+  margin-bottom: 30px;
+  transition: 0.5s;
+  border: 0;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  box-shadow: none;
+  margin-top: 5%;
+}
+
+.card .body {
+  font-size: 1rem;
+  color: #424242;
+  padding: 20px;
+  font-weight: 400;
+}
+
+/* Profile page and header styling */
+.profile-page .profile-header {
+  position: relative;
+}
+
+.profile-page .profile-header .profile-image img {
+  border-radius: 50%;
+  width: 160px;
+  height: 140px;
+  border: 3px solid #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* Social icon styling */
+.profile-page .profile-header .social-icon a {
+  margin: 0 5px;
+}
+
+/* Profile sub-header styling */
+.profile-page .profile-sub-header {
+  min-height: 60px;
+  width: 100%;
+}
+
+.profile-page .profile-sub-header ul.box-list {
+  display: inline-table;
+  table-layout: fixed;
+  width: 100%;
+  background: #eee;
+}
+
+.profile-page .profile-sub-header ul.box-list li {
+  border-right: 1px solid #e0e0e0;
+  display: table-cell;
+  list-style: none;
+}
+
+.profile-page .profile-sub-header ul.box-list li:last-child {
+  border-right: none;
+}
+
+.profile-page .profile-sub-header ul.box-list li a {
+  display: block;
+  padding: 15px 0;
+  color: #424242;
+}
+
+:host ::ng-deep .p-ripple.p-element.p-button.p-component {
+  border-radius: 15px;
 }
 
 :host ::ng-deep .p-button-labeb {
   background-color: red;
+}
+// :host ::ng-deep.mat-mdc-paginator-page-size {
+//   display: none;
+// }
+
+.paginator-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px; /* Adjust the margin as needed */
 }

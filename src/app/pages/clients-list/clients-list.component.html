@@ -10,18 +10,11 @@
             placeholder="Search client by firstname"
           />
         </span>
-        <p-button
-          class="myBtnm"
-          (click)="visible.value = true"
-          label="Sorting"
-        />
-        <button (click)="openSortDialog()" mat-button >Sorting</button>
 
+        <button class="sorting-btn" (click)="openSortDialog()" mat-button>
+          Sorting
+        </button>
       </div>
-      <app-sort
-        (sortValue)="receiveValue($event)"
-        [visible]="visible"
-      ></app-sort>
     </form>
     <div class="row">
       <div
@@ -66,12 +59,15 @@
     </div>
   </div>
   <p-confirmDialog />
-  <div class="card flex justify-content-center">
-    <p-paginator
-      [first]="first"
-      [rows]="10"
-      [totalRecords]="items$ | async"
-      (onPageChange)="onPageChange($event)"
-    />
-  </div>
+</div>
+>
+<div class="paginator-container">
+  <mat-paginator
+    [length]="items$ | async"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
 </div>
