@@ -104,41 +104,7 @@ export class ClientComponent implements OnInit, OnDestroy {
       });
   }
 
-  // onPageChange(event: any) {
-  //   if (event.page + 1 == this.pagination.page) return;
-
-  //   this.inputValueChange();
-
-  //   this.pagination = {
-  //     ...this.pagination,
-  //     page: event.page + 1,
-  //   };
-
-  //   this.getAllClientts();
-
-  //   this.router.navigate([], {
-  //     relativeTo: this.activatedRouter,
-  //     queryParams: { page: event.page + 1 },
-  //     queryParamsHandling: 'merge',
-  //   });
-  // }
-
   onDelete(id: number, event: Event) {
-    // this.confirmationService.confirm({
-    //   message: 'Are you sure to delete client?',
-    //   header: 'Delete Confirmation',
-    //   icon: 'pi pi-info-circle',
-    //   target: event.target as EventTarget,
-
-    //   acceptButtonStyleClass: 'p-button-danger p-button-text',
-    //   rejectButtonStyleClass: 'p-button-text p-button-text',
-    //   acceptIcon: 'none',
-    //   rejectIcon: 'none',
-    //   accept: () => {
-    //     this.store.dispatch(deleteClient.deleteClientAction({ id: id }));
-    //   },
-    // });
-
     this.dialog.open(DeleteConfirmDialogComponent, {
       data: {
         id: id,

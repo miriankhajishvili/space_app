@@ -8,6 +8,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { pageRequest } from '../../shared/interfaces/client.interface';
+import { getAllClients } from '../../store/action';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -26,14 +29,24 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private store: Store, private router: Router, private activatedRoute: ActivatedRoute) {}
 
   queryParams = {
     page: 1,
+  }
+
+  pagination: pageRequest = {
+    page: 1,
+    row: 10,
+    search: '',
+    sort: '',
   };
 
   onClick() {
     this.router.navigate(['/clients'], { queryParams: this.queryParams });
+    this.store.dispatch(
+      getAllClients.getAllClientsAction({ pageRequest: this.pagination })
+    );
   }
 
   onAddClientClick() {
@@ -41,6 +54,5 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.activatedRoute);
   }
 }
